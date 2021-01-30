@@ -17,10 +17,10 @@
         tools:layout_editor_absoluteY="-166dp" />
 
     <Button
-        android:id="@+id/login"
+        android:id="@+id/map"
         android:layout_width="103dp"
         android:layout_height="38dp"
-        android:text="Button"
+        android:text="Login"
         app:layout_constraintBottom_toBottomOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Button"
-        tools:layout_editor_absoluteX="153dp"
-        tools:layout_editor_absoluteY="323dp" />
+        tools:layout_editor_absoluteX="159dp"
+        tools:layout_editor_absoluteY="322dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
