@@ -18,19 +18,19 @@ private const val ARG_PARAM2 = "param2"
  * Use the [registerFragment2.newInstance] factory method to
  * create an instance of this fragment.
  */
-class registerFragment2 : Fragment() {
+class registerFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_register2, container, false)
+        return inflater.inflate(R.layout.fragment_register, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         view.findViewById<Button>(R.id.btn_register).setOnClickListener {
-            val action = R.id.action_registerFragment2_to_loginFragment2
+            val action = R.id.action_registerFragment_to_loginFragment
             findNavController().navigate(action)
         }
     }

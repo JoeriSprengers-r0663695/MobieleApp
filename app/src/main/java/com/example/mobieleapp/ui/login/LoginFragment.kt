@@ -19,7 +19,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.example.mobieleapp.R
 
-class LoginFragment2 : Fragment() {
+class LoginFragment : Fragment() {
 
     private lateinit var loginViewModel: LoginViewModel
 
@@ -28,7 +28,7 @@ class LoginFragment2 : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_login2, container, false)
+        return inflater.inflate(R.layout.fragment_login, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -96,7 +96,7 @@ class LoginFragment2 : Fragment() {
             false
         }
         registerButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment2_to_registerFragment22)
+            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
         }
 
 
@@ -106,7 +106,7 @@ class LoginFragment2 : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
-            findNavController().navigate(R.id.action_loginFragment2_to_firstFragment)
+            findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
     }
 
