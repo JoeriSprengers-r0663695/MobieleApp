@@ -6,54 +6,77 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+import android.content.Intent
+import android.util.Patterns
+import android.widget.EditText
+import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.fragment.findNavController
 
-/**
- * A simple [Fragment] subclass.
- * Use the [LoginFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class LoginFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var etEmail: EditText
+    lateinit var  etPassword: EditText
+    val MIN_PASSWORD_LENGTH = 6
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+        viewInitializations()
+    }
+
+    fun viewInitializations() {
+      //  etEmail = findViewById(R.id.et_email)
+    // etPassword = findViewById(R.id.et_password)
+
+        // To show back button in actionbar
+       // supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    // Checking if the input in form is valid
+    fun validateInput(): Boolean {
+        if (etEmail.text.toString() == "") {
+            etEmail.error = "Please Enter Email"
+            return false
+        }
+        if (etPassword.text.toString() == "") {
+            etPassword.error = "Please Enter Password"
+            return false
+        }
+
+        // checking the proper email format
+        if (!isEmailValid(etEmail.text.toString())) {
+            etEmail.error = "Please Enter Valid Email"
+            return false
+        }
+
+        // checking minimum password Length
+        if (etPassword.text.length < MIN_PASSWORD_LENGTH) {
+            etPassword.error = "Password Length must be more than " + MIN_PASSWORD_LENGTH + "characters"
+            return false
+        }
+        return true
+    }
+
+    fun isEmailValid(email: String?): Boolean {
+        return Patterns.EMAIL_ADDRESS.matcher(email).matches()
+    }
+
+    // Hook Click Event
+    fun performSignUp(v: View) {
+        if (validateInput()) {
+
+            // Input is valid, here send data to your server
+            val email = etEmail!!.text.toString()
+            val password = etPassword!!.text.toString()
+           // Toast.makeText(this, "Login Success", Toast.LENGTH_SHORT).show()
+            // Here you can call you API
+            // Check this tutorial to call server api through Google Volley Library https://handyopinion.com
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment LoginFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            LoginFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
+    fun goToSignup(v: View) {
+        // Open your SignUp Activity if the user wants to signup
+        // Visit this article to get SignupActivity code https://handyopinion.com/signup-activity-in-android-studio-kotlin-java/
+        //findNavController().navigate(action)
     }
 }
