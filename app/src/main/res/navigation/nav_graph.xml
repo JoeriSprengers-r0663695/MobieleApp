@@ -25,8 +25,8 @@
         android:label="fragment_register"
         tools:layout="@layout/fragment_register" />
     <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.example.mobieleapp.LoginFragment"
-        android:label="fragment_login"
-        tools:layout="@layout/fragment_login" />
+        android:id="@+id/loginFragment2"
+        android:name="com.example.mobieleapp.ui.login.LoginFragment2"
+        android:label="fragment_login2"
+        tools:layout="@layout/fragment_login2" />
 </navigation>

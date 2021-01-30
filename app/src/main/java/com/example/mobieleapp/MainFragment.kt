@@ -29,21 +29,13 @@ class FirstFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
-
         view.findViewById<Button>(R.id.login).setOnClickListener {
-            val action = R.id.loginFragment
-
-
-
+            val action = R.id.loginFragment2
             findNavController().navigate(action)
         }
 
         view.findViewById<Button>(R.id.register).setOnClickListener {
             val action = R.id.registerFragment
-
-
-
             findNavController().navigate(action)
         }
 
