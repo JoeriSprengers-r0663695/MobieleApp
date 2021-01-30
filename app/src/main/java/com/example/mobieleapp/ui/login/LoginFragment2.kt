@@ -15,6 +15,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 
 import com.example.mobieleapp.R
 
@@ -100,6 +101,7 @@ class LoginFragment2 : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
+            findNavController().navigate(R.id.mapsFragment)
         }
     }
 

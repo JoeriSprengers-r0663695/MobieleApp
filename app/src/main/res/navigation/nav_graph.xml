@@ -9,11 +9,7 @@
         android:id="@+id/firstFragment"
         android:name="com.example.mobieleapp.FirstFragment"
         android:label="fragment_first"
-        tools:layout="@layout/fragment_first" >
-        <action
-            android:id="@+id/action_firstFragment_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_first" />
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.mobieleapp.MapsFragment"

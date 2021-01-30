@@ -11,8 +11,13 @@ import com.example.mobieleapp.R
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
+
+    val user1 = "joeri@hotmail.com"
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
+
+
+    ///--------------------------------------
 
     private val _loginResult = MutableLiveData<LoginResult>()
     val loginResult: LiveData<LoginResult> = _loginResult

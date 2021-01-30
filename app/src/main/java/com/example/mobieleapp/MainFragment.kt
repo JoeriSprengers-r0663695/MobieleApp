@@ -33,11 +33,5 @@ class FirstFragment : Fragment() {
             val action = R.id.loginFragment2
             findNavController().navigate(action)
         }
-
-        view.findViewById<Button>(R.id.register).setOnClickListener {
-            val action = R.id.registerFragment
-            findNavController().navigate(action)
-        }
-
     }
 }
