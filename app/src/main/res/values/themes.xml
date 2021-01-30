@@ -15,11 +15,8 @@
     </style>
 
     <style name="Theme.MobieleApp.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
     </style>
 
-    <style name="Theme.MyFirstApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
-
-    <style name="Theme.MyFirstApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 </resources>
