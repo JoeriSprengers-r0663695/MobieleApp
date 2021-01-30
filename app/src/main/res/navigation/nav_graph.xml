@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/firstFragment">
+    app:startDestination="@id/loginFragment2">
 
     <fragment
         android:id="@+id/firstFragment"
@@ -16,13 +16,24 @@
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.mobieleapp.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
-    <fragment
         android:id="@+id/loginFragment2"
         android:name="com.example.mobieleapp.ui.login.LoginFragment2"
         android:label="fragment_login2"
-        tools:layout="@layout/fragment_login2" />
+        tools:layout="@layout/fragment_login2" >
+        <action
+            android:id="@+id/action_loginFragment2_to_firstFragment"
+            app:destination="@id/firstFragment" />
+        <action
+            android:id="@+id/action_loginFragment2_to_registerFragment22"
+            app:destination="@id/registerFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/registerFragment2"
+        android:name="com.example.mobieleapp.registerFragment2"
+        android:label="fragment_register2"
+        tools:layout="@layout/fragment_register2" >
+        <action
+            android:id="@+id/action_registerFragment2_to_loginFragment2"
+            app:destination="@id/loginFragment2" />
+    </fragment>
 </navigation>

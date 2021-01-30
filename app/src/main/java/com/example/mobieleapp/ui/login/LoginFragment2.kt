@@ -39,6 +39,7 @@ class LoginFragment2 : Fragment() {
         val usernameEditText = view.findViewById<EditText>(R.id.username)
         val passwordEditText = view.findViewById<EditText>(R.id.password)
         val loginButton = view.findViewById<Button>(R.id.login)
+        val registerButton = view.findViewById<Button>(R.id.register)
         val loadingProgressBar = view.findViewById<ProgressBar>(R.id.loading)
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
@@ -94,6 +95,10 @@ class LoginFragment2 : Fragment() {
             }
             false
         }
+        registerButton.setOnClickListener {
+            findNavController().navigate(R.id.action_loginFragment2_to_registerFragment22)
+        }
+
 
         loginButton.setOnClickListener {
             loadingProgressBar.visibility = View.VISIBLE
@@ -101,7 +106,7 @@ class LoginFragment2 : Fragment() {
                 usernameEditText.text.toString(),
                 passwordEditText.text.toString()
             )
-            findNavController().navigate(R.id.mapsFragment)
+            findNavController().navigate(R.id.action_loginFragment2_to_firstFragment)
         }
     }
 
