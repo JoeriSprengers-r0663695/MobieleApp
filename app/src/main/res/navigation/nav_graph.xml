@@ -16,11 +16,6 @@
         android:label="fragment_maps"
         tools:layout="@layout/fragment_maps" />
     <fragment
-        android:id="@+id/registerFragment"
-        android:name="com.example.mobieleapp.RegisterFragment"
-        android:label="fragment_register"
-        tools:layout="@layout/fragment_register" />
-    <fragment
         android:id="@+id/loginFragment2"
         android:name="com.example.mobieleapp.ui.login.LoginFragment2"
         android:label="fragment_login2"
