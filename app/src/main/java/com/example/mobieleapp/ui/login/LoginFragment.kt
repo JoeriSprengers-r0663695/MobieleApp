@@ -1,5 +1,6 @@
 package com.example.mobieleapp.ui.login
 
+import android.content.Intent
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.annotation.StringRes
@@ -18,6 +19,7 @@ import android.widget.Toast
 import androidx.navigation.fragment.findNavController
 
 import com.example.mobieleapp.R
+import com.example.mobieleapp.SecondActivity
 
 class LoginFragment : Fragment() {
 
@@ -97,6 +99,12 @@ class LoginFragment : Fragment() {
         }
         registerButton.setOnClickListener {
             findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        }
+
+        val button = view?.findViewById<Button>(R.id.button)
+        button?.setOnClickListener {
+            val intent = Intent(activity, SecondActivity::class.java)
+            startActivity(intent)
         }
 
 
