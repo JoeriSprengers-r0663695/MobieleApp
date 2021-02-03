@@ -116,6 +116,11 @@ class LoginFragment : Fragment() {
             )
             findNavController().navigate(R.id.action_loginFragment_to_homeFragment)
         }
+
+
+        var test = view.findViewById<Button>(R.id.testMap)
+        test.setOnClickListener {findNavController().navigate(R.id.action_loginFragment_to_testMap2)
+        }
     }
 
     private fun updateUiWithUser(model: LoggedInUserView) {

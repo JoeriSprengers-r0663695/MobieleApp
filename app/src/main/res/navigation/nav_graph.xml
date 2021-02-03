@@ -33,6 +33,12 @@
         <action
             android:id="@+id/action_loginFragment_to_registerFragment"
             app:destination="@id/registerFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_testMap2"
+            app:destination="@id/testMap2" />
+        <action
+            android:id="@+id/action_loginFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -62,5 +68,14 @@
         <action
             android:id="@+id/action_SecondFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testMap2"
+        android:name="com.example.mobieleapp.testMap"
+        android:label="fragment_test_map"
+        tools:layout="@layout/fragment_test_map" >
+        <action
+            android:id="@+id/action_testMap2_to_mapsFragment"
+            app:destination="@id/mapsFragment" />
     </fragment>
 </navigation>
