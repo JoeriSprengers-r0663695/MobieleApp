@@ -10,8 +10,11 @@ class SecondActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         setContentView(R.layout.activity_second)
+
+
+
         val buttonReturn = findViewById<Button>(R.id.button2)
-        val buttonNext = findViewById<Button>(R.id.buttonReturn)
+        val buttonNext = findViewById<Button>(R.id.fab)
         buttonReturn.setOnClickListener{
             finish()
         }

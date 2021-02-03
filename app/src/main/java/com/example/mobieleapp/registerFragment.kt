@@ -29,7 +29,7 @@ class registerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        view.findViewById<Button>(R.id.btn_register).setOnClickListener {
+        view.findViewById<Button>(R.id.button_save).setOnClickListener {
             val action = R.id.action_registerFragment_to_loginFragment
             findNavController().navigate(action)
         }

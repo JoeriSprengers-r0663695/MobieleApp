@@ -20,6 +20,7 @@ import androidx.navigation.fragment.findNavController
 
 import com.example.mobieleapp.R
 import com.example.mobieleapp.SecondActivity
+import com.example.mobieleapp.data.database.WordActivity
 
 class LoginFragment : Fragment() {
 
@@ -41,7 +42,7 @@ class LoginFragment : Fragment() {
         val usernameEditText = view.findViewById<EditText>(R.id.username)
         val passwordEditText = view.findViewById<EditText>(R.id.password)
         val loginButton = view.findViewById<Button>(R.id.login)
-        val registerButton = view.findViewById<Button>(R.id.register)
+        val fabButton = view.findViewById<Button>(R.id.regi)
         val loadingProgressBar = view.findViewById<ProgressBar>(R.id.loading)
 
         loginViewModel.loginFormState.observe(viewLifecycleOwner,
@@ -97,8 +98,10 @@ class LoginFragment : Fragment() {
             }
             false
         }
-        registerButton.setOnClickListener {
-            findNavController().navigate(R.id.action_loginFragment_to_registerFragment)
+        fabButton.setOnClickListener {
+
+            val intent = Intent(activity, WordActivity::class.java)
+            startActivity(intent)
         }
 
         val button = view?.findViewById<Button>(R.id.button)
