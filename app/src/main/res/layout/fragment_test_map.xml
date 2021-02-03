@@ -49,7 +49,7 @@
         android:layout_marginRight="16dp"
         android:layout_marginBottom="52dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="streetname housenumber city"
         app:layout_constraintBottom_toTopOf="@+id/MapId"
         app:layout_constraintEnd_toEndOf="parent" />
 

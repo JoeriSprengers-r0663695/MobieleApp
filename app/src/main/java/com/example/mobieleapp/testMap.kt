@@ -38,7 +38,7 @@ class testMap : Fragment() {
 
 
         //static adres line - temporary
-        view.findViewById<TextView>(R.id.adres).text = "Nieuwpoortsesteenweg Oostende 467"
+        view.findViewById<TextView>(R.id.adres).text = "Nieuwpoortsesteenweg 467 Oostende "
 
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
