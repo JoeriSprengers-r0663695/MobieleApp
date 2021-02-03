@@ -25,6 +25,7 @@ class NewWordActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
                 val word = editWordView.text.toString()
+
                 replyIntent.putExtra(EXTRA_REPLY, word)
                 setResult(Activity.RESULT_OK, replyIntent)
             }
@@ -33,6 +34,7 @@ class NewWordActivity : AppCompatActivity() {
     }
 
     companion object {
-        const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
+       // const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
+       const val EXTRA_REPLY = "com.example.android.wordlistsql.REPLY"
     }
 }
