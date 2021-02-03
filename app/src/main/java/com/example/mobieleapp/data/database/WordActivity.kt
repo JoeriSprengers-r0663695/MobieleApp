@@ -26,7 +26,6 @@ class WordActivity : AppCompatActivity() {
         setContentView(R.layout.activity_second)
 
 
-
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
         val adapter = WordListAdapter()
         recyclerView.adapter = adapter
@@ -46,6 +45,10 @@ class WordActivity : AppCompatActivity() {
         fab.setOnClickListener {
             val intent = Intent(this@WordActivity, NewWordActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
+        }
+        val delete = findViewById<Button>(R.id.delete)
+        delete.setOnClickListener {
+            wordViewModel.delete()
         }
     }
 
