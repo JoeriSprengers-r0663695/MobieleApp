@@ -6,7 +6,6 @@ data class Post (
         //Entire data object from api
         val data: List<Data>
 ) {
-
     data class Data(
             val administrative_area: String,
             val confidence: Int,
