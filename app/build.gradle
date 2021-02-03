@@ -63,6 +63,11 @@ dependencies {
     //Material Design Library
     implementation 'com.google.android.material:material:1.1.0'
 
+    //Fotoapparat
+    implementation 'io.fotoapparat:fotoapparat:2.6.1'
+
+    //Material Design
+    implementation 'com.google.android.material:material:1.0.0-rc01'
 
 
 

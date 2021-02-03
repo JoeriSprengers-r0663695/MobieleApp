@@ -8,6 +8,9 @@
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
 
     <application
         android:allowBackup="true"
@@ -16,7 +19,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobieleApp">
-        <activity android:name=".activity_third"></activity>
+        <activity
+            android:name=".CameraActivity"
+            android:label="@string/title_activity_camera"
+            android:theme="@style/Theme.MobieleApp.NoActionBar"></activity>
+        <activity android:name=".activity_third" />
         <activity android:name=".SecondActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

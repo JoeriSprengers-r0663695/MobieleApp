@@ -19,4 +19,8 @@
         <item name="windowNoTitle">false</item>
     </style>
 
+    <style name="Theme.MobieleApp.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.MobieleApp.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
 </resources>

@@ -16,7 +16,7 @@ class SecondActivity : AppCompatActivity() {
             finish()
         }
         buttonNext.setOnClickListener {
-            val intent = Intent(this, activity_third::class.java)
+            val intent = Intent(this, CameraActivity::class.java)
             startActivity(intent)
         }
 
