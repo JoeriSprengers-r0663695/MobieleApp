@@ -36,13 +36,15 @@ class CameraActivity : AppCompatActivity() {
 
     val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
 
-    var fab_camera = findViewById<Button>(R.id.fab_camera)
-    var fab_switch_camera = findViewById<Button>(R.id.fab_switch_camera)
-    var fab_flash = findViewById<Button>(R.id.fab_flash)
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
+
+        var fab_camera = findViewById<Button>(R.id.fab_camera)
+        var fab_switch_camera = findViewById<Button>(R.id.fab_switch_camera)
+        var fab_flash = findViewById<Button>(R.id.fab_flash)
 
         createFotoapparat()
 
