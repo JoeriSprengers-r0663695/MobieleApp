@@ -17,11 +17,12 @@ import com.example.myfirstapp.repository.Repository
 class testMap : Fragment() {
 
 
+    //initializations and declarations for the Geocoding part
     private lateinit var viewModel: MainViewModel
     private val repository = Repository()
     private val viewModelFactory = MainViewModelFactory(repository)
-
-
+    private var lat : String = ""
+    private var long : String = ""
 
 
     override fun onCreateView(
@@ -36,27 +37,24 @@ class testMap : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
-        //adres line
+        //static adres line - temporary
         view.findViewById<TextView>(R.id.adres).text = "Nieuwpoortsesteenweg Oostende 467"
 
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
         viewModel.getPost(view.findViewById<TextView>(R.id.adres).text.toString())
         viewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
-            //Showing Lat en Long in textview onscreen
-            view.findViewById<TextView>(R.id.lat).text= response.body()?.data?.get(0)?.latitude.toString()
-            view.findViewById<TextView>(R.id.longi).text = response.body()?.data?.get(0)?.longitude.toString()
-        })
 
+            //assigning response data value to global vars for later use
+            lat = response.body()?.data?.get(0)?.latitude.toString()
+            long = response.body()?.data?.get(0)?.longitude.toString()
+
+        })
 
 
         view.findViewById<Button>(R.id.MapId).setOnClickListener {
 
-            val currentLat =  view.findViewById<TextView>(R.id.lat).text.toString()
-            val currentLong = view.findViewById<TextView>(R.id.longi).text.toString()
-            val action = testMapDirections.actionTestMap2ToMapsFragment(currentLat, currentLong)
-
-
+            val action = testMapDirections.actionTestMap2ToMapsFragment(lat, long)
             findNavController().navigate(action)
         }
     }
