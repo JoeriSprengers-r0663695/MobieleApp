@@ -15,8 +15,8 @@
         android:gravity="top|center"
         android:text="details page"
 
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        tools:layout_editor_absoluteX="28dp"
+        tools:layout_editor_absoluteY="41dp" />
 
     <TextView
         android:id="@+id/textView4"
@@ -27,10 +27,10 @@
         android:text="Lat"
         app:layout_constraintBottom_toTopOf="@+id/MapId"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.327"
+        app:layout_constraintHorizontal_bias="0.181"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textv"
-        app:layout_constraintVertical_bias="0.071" />
+        app:layout_constraintVertical_bias="0.04" />
 
     <TextView
         android:id="@+id/textView5"
@@ -40,7 +40,7 @@
         android:text="long"
         app:layout_constraintBottom_toTopOf="@+id/MapId"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.333"
+        app:layout_constraintHorizontal_bias="0.184"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView4"
         app:layout_constraintVertical_bias="0.0" />
@@ -63,7 +63,7 @@
         android:text="adress"
         app:layout_constraintBottom_toTopOf="@+id/MapId"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.347"
+        app:layout_constraintHorizontal_bias="0.192"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
