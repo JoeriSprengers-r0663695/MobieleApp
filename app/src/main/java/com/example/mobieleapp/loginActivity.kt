@@ -25,11 +25,12 @@ class loginActivity : AppCompatActivity() {
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
         val loginButton = findViewById<Button>(R.id.login2)
-
+        var found :Boolean = false
         val usernameEditText = findViewById<EditText>(R.id.username2).text
         val passwordEditText = findViewById<EditText>(R.id.password2).text
 
@@ -53,12 +54,9 @@ class loginActivity : AppCompatActivity() {
 
 
                 Log.d("viewmodel", userViewModel.toString())
-                userViewModel.allUsers?.observe(this){ user ->
-                    for(i in user){
-                       /* Log.d("observerUserComperation",
-                            (i.username.toString() === usernameEditText.toString()).toString())
-                        Log.d("observerPassComperation",
-                            (i.password.toString() === passwordEditText.toString()).toString())*/
+                userViewModel.allUsers?.observe(this){ users ->
+                    for(i in users){
+
                         Log.d("observerUser", i.username.toString())
                         Log.d("observerUserInTextEdit", usernameEditText.toString())
                         Log.d("observerUser", i.password.toString())
@@ -71,22 +69,28 @@ class loginActivity : AppCompatActivity() {
                             Log.d("observerUser", i.username.toString())
                             Log.d("observerUser", passwordEditText.toString())
                             Log.d("observerUser", i.password.toString())
+                            found = true
+
                             val pendingIntent = NavDeepLinkBuilder(this.applicationContext)
                                 .setGraph(R.navigation.nav_graph)
                                 .setDestination(R.id.homeFragment)
                                 .createPendingIntent()
 
                             pendingIntent.send()
-
-                        }else{
-
-                            Toast.makeText(
-                                applicationContext,
-                                R.string.invalid_username,
-                                Toast.LENGTH_LONG
-                            ).show()
+                            finish()
                         }
                     }
+                }
+                if(!found) {
+                    Toast.makeText(
+                        applicationContext,
+                        R.string.invalid_username,
+                        Toast.LENGTH_LONG
+
+                    ).show()
+                }
+                if(found){
+                    found = false
                 }
             }
         }
