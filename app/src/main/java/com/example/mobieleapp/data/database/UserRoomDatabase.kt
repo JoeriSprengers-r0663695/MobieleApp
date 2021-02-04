@@ -17,6 +17,7 @@ public abstract class UserRoomDatabase : RoomDatabase() {
 
     abstract fun userDao(): UserDao
 
+
     private class UserDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
