@@ -16,7 +16,7 @@ class NewWordActivity : AppCompatActivity() {
     public override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_register)
-        editWordView = findViewById(R.id.edit_word)
+        editWordView = findViewById(R.id.userId)
 
         val button = findViewById<Button>(R.id.button_save)
         button.setOnClickListener {

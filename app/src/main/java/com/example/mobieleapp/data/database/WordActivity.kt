@@ -18,7 +18,7 @@ class WordActivity : AppCompatActivity() {
 
     private val newWordActivityRequestCode = 1
     private val wordViewModel: WordViewModel by viewModels {
-        WordViewModelFactory((application as WordsApplication).repository)
+        WordViewModelFactory((application as Application).repositoryWord)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

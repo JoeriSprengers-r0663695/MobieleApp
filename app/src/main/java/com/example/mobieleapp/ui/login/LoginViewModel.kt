@@ -13,6 +13,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
 
     val user1 = "joeri@hotmail.com"
+
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
 
@@ -46,15 +47,18 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     // A placeholder username validation check
     private fun isUserNameValid(username: String): Boolean {
-        return if (username.contains("@")) {
+        /*return if (username.contains("@")) {
             Patterns.EMAIL_ADDRESS.matcher(username).matches()
         } else {
             username.isNotBlank()
-        }
+        }*/
+        return true
     }
 
     // A placeholder password validation check
     private fun isPasswordValid(password: String): Boolean {
+/*
         return password.length > 5
+*/return true
     }
 }
