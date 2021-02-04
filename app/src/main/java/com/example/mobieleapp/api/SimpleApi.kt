@@ -1,16 +1,7 @@
 package com.example.myfirstapp.api
 
-import android.util.Log
-import com.example.myfirstapp.model.Post
-import com.google.gson.GsonBuilder
-import com.google.gson.JsonParser
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import okhttp3.ResponseBody
+import com.example.mobieleapp.data.model.Post
 import retrofit2.Response
-import retrofit2.Retrofit
 import retrofit2.http.GET
 import retrofit2.http.Query
 

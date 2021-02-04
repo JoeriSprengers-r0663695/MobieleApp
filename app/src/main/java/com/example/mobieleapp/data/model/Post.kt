@@ -1,6 +1,4 @@
-package com.example.myfirstapp.model
-
-import java.lang.reflect.Array
+package com.example.mobieleapp.data.model
 
 data class Post (
         //Entire data object from api
