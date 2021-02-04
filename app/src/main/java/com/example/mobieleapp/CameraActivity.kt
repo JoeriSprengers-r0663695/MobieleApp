@@ -4,11 +4,14 @@ package com.example.mobieleapp
 import android.Manifest
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
+import android.provider.MediaStore
 import android.widget.Button
+import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -26,142 +29,30 @@ import java.io.File
 
 class CameraActivity : AppCompatActivity() {
 
-    var fotoapparat: Fotoapparat? = null
-    val filename = "test.png"
-    val sd = Environment.getExternalStorageDirectory()
-    val dest = File(sd, filename)
-    var fotoapparatState : FotoapparatState? = null
-    var cameraStatus : CameraState? = null
-    var flashState: FlashState? = null
-
-    val permissions = arrayOf(Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE)
-
+    private val cameraRequest = 1888
+    lateinit var imageView: ImageView
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
 
-        var fab_camera = findViewById<Button>(R.id.fab_camera)
-        var fab_switch_camera = findViewById<Button>(R.id.fab_switch_camera)
-        var fab_flash = findViewById<Button>(R.id.fab_flash)
-
-        createFotoapparat()
-
-        cameraStatus = CameraState.BACK
-        flashState = FlashState.OFF
-        fotoapparatState = FotoapparatState.OFF
-
-
-
-
-        fab_camera.setOnClickListener {
-            takePhoto()
-        }
-
-        fab_switch_camera.setOnClickListener {
-            switchCamera()
-        }
-
-        fab_flash.setOnClickListener {
-            changeFlashState()
+        title = "KotlinApp"
+        if (ContextCompat.checkSelfPermission(applicationContext, Manifest.permission.CAMERA)
+            == PackageManager.PERMISSION_DENIED)
+            ActivityCompat.requestPermissions(this, arrayOf(Manifest.permission.CAMERA), cameraRequest)
+        imageView = findViewById(R.id.imageView)
+        val photoButton: Button = findViewById(R.id.button)
+        photoButton.setOnClickListener {
+            val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            startActivityForResult(cameraIntent, cameraRequest)
         }
     }
-
-    private fun createFotoapparat(){
-        val cameraView = findViewById<CameraView>(R.id.camera_view)
-
-        fotoapparat = Fotoapparat(
-            context = this,
-            view = cameraView,
-            scaleType = ScaleType.CenterCrop,
-            lensPosition = back(),
-            logger = loggers(
-                logcat()
-            ),
-            cameraErrorCallback = { error ->
-                println("Recorder errors: $error")
-            }
-        )
-    }
-
-    private fun changeFlashState() {
-        fotoapparat?.updateConfiguration(
-            CameraConfiguration(
-                flashMode = if(flashState == FlashState.TORCH) off() else torch()
-            )
-        )
-
-        if(flashState == FlashState.TORCH) flashState = FlashState.OFF
-        else flashState = FlashState.TORCH
-    }
-
-    private fun switchCamera() {
-        fotoapparat?.switchTo(
-            lensPosition =  if (cameraStatus == CameraState.BACK) front() else back(),
-            cameraConfiguration = CameraConfiguration()
-        )
-
-        if(cameraStatus == CameraState.BACK) cameraStatus = CameraState.FRONT
-        else cameraStatus = CameraState.BACK
-    }
-
-    private fun takePhoto() {
-        if (hasNoPermissions()) {
-            requestPermission()
-        }else{
-            fotoapparat
-                ?.takePicture()
-                ?.saveToFile(dest)
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == cameraRequest) {
+            val photo: Bitmap = data?.extras?.get("data") as Bitmap
+            imageView.setImageBitmap(photo)
         }
     }
-
-    override fun onStart() {
-        super.onStart()
-        if (hasNoPermissions()) {
-            requestPermission()
-        }else{
-            fotoapparat?.start()
-            fotoapparatState = FotoapparatState.ON
-        }
-    }
-
-    private fun hasNoPermissions(): Boolean{
-        return ContextCompat.checkSelfPermission(this,
-            Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this,
-            Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this,
-            Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED
-    }
-
-    fun requestPermission(){
-        ActivityCompat.requestPermissions(this, permissions,0)
-    }
-
-    override fun onStop() {
-        super.onStop()
-        fotoapparat?.stop()
-        FotoapparatState.OFF
-    }
-
-    override fun onResume() {
-        super.onResume()
-        if(!hasNoPermissions() && fotoapparatState == FotoapparatState.OFF){
-            val intent = Intent(baseContext, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-    }
-
-}
-
-enum class CameraState{
-    FRONT, BACK
-}
-
-enum class FlashState{
-    TORCH, OFF
-}
-
-enum class FotoapparatState{
-    ON, OFF
 }

@@ -11,5 +11,6 @@ data class User(
     @ColumnInfo(name = "username") val username: String?,
     @ColumnInfo(name="password") val password: String?,
     @ColumnInfo(name= "role") val role: String?
+    // @ColumnInfo(name= "profilePicture") val pic: Data?
 )
 
