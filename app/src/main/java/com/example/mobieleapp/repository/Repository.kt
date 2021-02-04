@@ -1,7 +1,7 @@
 package com.example.myfirstapp.repository
 
 import com.example.myfirstapp.api.RetrofitInstance
-import com.example.myfirstapp.model.Post
+import com.example.mobieleapp.data.model.Post
 import retrofit2.Response
 
 class Repository {
