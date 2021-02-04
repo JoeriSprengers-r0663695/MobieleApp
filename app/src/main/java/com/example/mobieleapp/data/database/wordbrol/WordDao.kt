@@ -1,10 +1,9 @@
-package com.example.mobieleapp.data.database
+package com.example.mobieleapp.data.database.wordbrol
 
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import kotlinx.coroutines.flow.Flow
-import retrofit2.http.Query
 
 @Dao
 interface WordDao {

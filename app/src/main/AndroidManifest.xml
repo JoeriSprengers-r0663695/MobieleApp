@@ -33,8 +33,8 @@
             android:theme="@style/Theme.MobieleApp.NoActionBar" />
         <activity android:name=".activity_third" />
         <activity android:name=".SecondActivity" />
-        <activity android:name=".data.database.NewWordActivity" />
-        <activity android:name=".data.database.WordActivity" />
+        <activity android:name=".data.database.wordbrol.NewWordActivity" />
+        <activity android:name=".data.database.wordbrol.WordActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").

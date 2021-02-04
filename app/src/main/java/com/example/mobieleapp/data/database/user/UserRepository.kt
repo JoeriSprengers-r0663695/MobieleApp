@@ -1,7 +1,6 @@
 package com.example.mobieleapp.data.database.user
 
 import androidx.annotation.WorkerThread
-import com.example.mobieleapp.data.database.Word
 import kotlinx.coroutines.flow.Flow
 
 

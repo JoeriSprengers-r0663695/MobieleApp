@@ -1,7 +1,6 @@
-package com.example.mobieleapp.data.database
+package com.example.mobieleapp.data.database.wordbrol
 
 import androidx.lifecycle.*
-import kotlinx.coroutines.flow.toList
 import kotlinx.coroutines.launch
 
 class WordViewModel(private val repository: WordRepository) : ViewModel() {

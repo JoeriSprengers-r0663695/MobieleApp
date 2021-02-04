@@ -1,4 +1,4 @@
-package com.example.mobieleapp.data.database.user
+package com.example.mobieleapp.data.database.wordbrol
 
 import android.content.Context
 import androidx.room.Database
@@ -8,14 +8,13 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
-
 // Annotates class to be a Room Database with a table (entity) of the Word class
-@Database(entities = arrayOf(User::class), version = 1, exportSchema = false)
-public abstract class UserRoomDatabase : RoomDatabase() {
+@Database(entities = arrayOf(Word::class), version = 1, exportSchema = false)
+public abstract class WordRoomDatabase : RoomDatabase() {
 
-    abstract fun userDao(): UserDao
+    abstract fun wordDao(): WordDao
 
-    private class UserDatabaseCallback(
+    private class WordDatabaseCallback(
         private val scope: CoroutineScope
     ) : RoomDatabase.Callback() {
 
@@ -23,7 +22,20 @@ public abstract class UserRoomDatabase : RoomDatabase() {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 scope.launch {
-                    var userDao = database.userDao()
+                    var wordDao = database.wordDao()
+
+                    // Delete all content here.
+                    wordDao.deleteAll()
+
+                    // Add sample words.
+                    var word = Word("Hello")
+                    wordDao.insert(word)
+                    word = Word("World!")
+                    wordDao.insert(word)
+
+                    // TODO: Add your own words!
+                    word = Word("Testje")
+                    wordDao.insert(word)
                 }
             }
         }
@@ -31,21 +43,21 @@ public abstract class UserRoomDatabase : RoomDatabase() {
 
     companion object {
         @Volatile
-        private var INSTANCE: UserRoomDatabase? = null
+        private var INSTANCE: WordRoomDatabase? = null
 
         fun getDatabase(
             context: Context,
             scope: CoroutineScope
-        ): UserRoomDatabase {
+        ): WordRoomDatabase {
             // if the INSTANCE is not null, then return it,
             // if it is, then create the database
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
-                    UserRoomDatabase::class.java,
-                    "user_database"
+                    WordRoomDatabase::class.java,
+                    "word_database"
                 )
-                    .addCallback(UserDatabaseCallback(scope))
+                    .addCallback(WordDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance
                 // return instance

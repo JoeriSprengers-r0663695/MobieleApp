@@ -1,4 +1,4 @@
-package com.example.mobieleapp.data.database
+package com.example.mobieleapp.data.database.wordbrol
 
 import android.app.Activity
 import android.content.Intent

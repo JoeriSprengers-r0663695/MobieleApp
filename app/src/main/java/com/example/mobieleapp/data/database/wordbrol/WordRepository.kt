@@ -1,4 +1,4 @@
-package com.example.mobieleapp.data.database
+package com.example.mobieleapp.data.database.wordbrol
 
 import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow

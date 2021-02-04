@@ -1,4 +1,4 @@
-package com.example.mobieleapp.data.database
+package com.example.mobieleapp.data.database.wordbrol
 
 import android.view.LayoutInflater
 import android.view.View

@@ -2,7 +2,8 @@ package com.example.mobieleapp.data.database
 
 import android.app.Application
 import com.example.mobieleapp.data.database.user.UserRepository
-import com.example.mobieleapp.data.database.user.UserRoomDatabase
+import com.example.mobieleapp.data.database.wordbrol.WordRepository
+import com.example.mobieleapp.data.database.wordbrol.WordRoomDatabase
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 

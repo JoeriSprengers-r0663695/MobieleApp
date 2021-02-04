@@ -1,4 +1,4 @@
-package com.example.mobieleapp.data.database
+package com.example.mobieleapp.data.database.wordbrol
 
 import android.app.Activity
 import android.content.Intent
@@ -12,6 +12,7 @@ import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.R
+import com.example.mobieleapp.data.database.Application
 
 
 class WordActivity : AppCompatActivity() {
