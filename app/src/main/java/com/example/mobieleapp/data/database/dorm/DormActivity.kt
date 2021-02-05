@@ -48,7 +48,7 @@ class DormActivity : AppCompatActivity() {
 
                 val city = findViewById<EditText>(R.id.CityValue).text.toString()
 
-                val postalcode = findViewById<EditText>(R.id.CityValue).text.toString().toInt()
+                val postalcode = findViewById<EditText>(R.id.PostalcodeValue).text.toString().toInt()
 
                 val rent = findViewById<EditText>(R.id.RentValue).text.toString().toDouble()
 
