@@ -1,6 +1,7 @@
 package com.example.mobieleapp.data.database
 
 import android.app.Application
+import com.example.mobieleapp.data.database.dorm.DormRepository
 import com.example.mobieleapp.data.database.user.UserRepository
 import com.example.mobieleapp.data.database.wordbrol.WordRepository
 import com.example.mobieleapp.data.database.wordbrol.WordRoomDatabase
@@ -15,7 +16,8 @@ class Application : Application() {
     // rather than when the application starts
     val databaseWord by lazy { WordRoomDatabase.getDatabase(this, applicationScope) }
     val repositoryWord by lazy { WordRepository(databaseWord.wordDao()) }
-    val databaseUser by lazy { UserRoomDatabase.getDatabase(this, applicationScope) }
-    val repositoryUser by lazy { UserRepository(databaseUser.userDao()) }
+    val roomDatabase by lazy { RoomDatabase.getDatabase(this, applicationScope) }
+    val repositoryUser by lazy { UserRepository(roomDatabase.userDao()) }
+    val repositoryDorm by lazy { DormRepository(roomDatabase.dormDao())}
 
 }

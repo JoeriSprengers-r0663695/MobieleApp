@@ -8,6 +8,7 @@ import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
+import androidx.lifecycle.observe
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
 
