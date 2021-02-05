@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.mobieleapp.CameraActivity
 import com.example.mobieleapp.R
 import com.example.mobieleapp.SecondActivity
+import com.example.mobieleapp.data.database.dorm.DormActivity
 import com.example.mobieleapp.data.database.wordbrol.WordActivity
 import com.example.mobieleapp.data.database.user.*
 import com.example.mobieleapp.loginActivity
@@ -34,6 +35,7 @@ class LoginFragment : Fragment() {
 
         val logi = view.findViewById<Button>(R.id.login)
         val registreerButton = view.findViewById<Button>(R.id.signupId)
+        val addkot = view.findViewById<Button>(R.id.btn_addkotpage)
 
         registreerButton.setOnClickListener {
 
@@ -50,6 +52,12 @@ class LoginFragment : Fragment() {
 
         var test = view.findViewById<Button>(R.id.testMap)
         test.setOnClickListener {findNavController().navigate(R.id.action_loginFragment_to_testMap2)
+        }
+
+
+        addkot.setOnClickListener {
+            val intent = Intent(activity, DormActivity::class.java)
+            startActivity(intent)
         }
 
     }

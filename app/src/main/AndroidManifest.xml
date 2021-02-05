@@ -34,7 +34,7 @@
             android:label="@string/title_activity_camera"
             android:theme="@style/Theme.MobieleApp.NoActionBar"
             />
-
+        <activity android:name=".data.database.dorm.DormActivity" />
         <activity android:name=".activity_third" />
         <activity android:name=".SecondActivity" />
         <activity android:name=".data.database.wordbrol.NewWordActivity" />

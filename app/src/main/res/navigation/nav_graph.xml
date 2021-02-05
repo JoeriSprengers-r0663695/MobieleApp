@@ -41,6 +41,9 @@
         <action
             android:id="@+id/action_loginFragment_to_testMap2"
             app:destination="@id/detailsFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_dormActivity"
+            app:destination="@id/dormActivity" />
 
     </fragment>
     <fragment
@@ -67,4 +70,9 @@
         android:name="com.example.mobieleapp.CameraActivity"
         android:label="activity_camera"
         tools:layout="@layout/activity_camera" />
+    <activity
+        android:id="@+id/dormActivity"
+        android:name="com.example.mobieleapp.data.database.dorm.DormActivity"
+        android:label="DormActivity"
+        tools:layout="@layout/activity_dorm"/>
 </navigation>
