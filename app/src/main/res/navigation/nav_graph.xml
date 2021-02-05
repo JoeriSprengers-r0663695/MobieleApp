@@ -9,7 +9,11 @@
         android:id="@+id/homeFragment"
         android:name="com.example.mobieleapp.homeFragment"
         android:label="fragment_first"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+         <action
+             android:id="@+id/action_homeFragment_to_cameraActivity"
+             app:destination="@id/cameraActivity" />
+     </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.mobieleapp.MapsFragment"
@@ -58,4 +62,9 @@
             android:id="@+id/action_detailsPage_to_mapsFragment"
             app:destination="@id/mapsFragment" />
     </fragment>
+    <activity
+        android:id="@+id/cameraActivity"
+        android:name="com.example.mobieleapp.CameraActivity"
+        android:label="activity_camera"
+        tools:layout="@layout/activity_camera" />
 </navigation>
