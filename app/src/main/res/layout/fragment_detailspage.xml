@@ -103,26 +103,26 @@
             app:layout_constraintTop_toBottomOf="@+id/streetValue" />
 
         <TextView
-            android:id="@+id/Price"
+            android:id="@+id/Rent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="Price/month"
+            android:text="Rent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/city" />
 
         <TextView
-            android:id="@+id/priceValue"
+            android:id="@+id/rentValue"
             android:layout_width="192dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:gravity="center"
             android:text="200 / month"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.698"
-            app:layout_constraintStart_toEndOf="@+id/Price"
+            app:layout_constraintHorizontal_bias="0.794"
+            app:layout_constraintStart_toEndOf="@+id/Rent"
             app:layout_constraintTop_toBottomOf="@+id/ciyValue" />
 
         <TextView
@@ -132,9 +132,9 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="number"
+            android:text="Number"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/Price" />
+            app:layout_constraintTop_toBottomOf="@+id/Rent" />
 
         <TextView
             android:id="@+id/email"
@@ -143,7 +143,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="email"
+            android:text="Email"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/number" />
 
@@ -160,7 +160,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/number"
-            app:layout_constraintTop_toBottomOf="@+id/priceValue" />
+            app:layout_constraintTop_toBottomOf="@+id/rentValue" />
 
 
         <TextView
@@ -170,7 +170,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginLeft="16dp"
             android:layout_marginTop="16dp"
-            android:text="description"
+            android:text="Description"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/email" />
 
@@ -182,7 +182,7 @@
             android:gravity="center"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec molestie nisi porttitor euismod posuere. Vestibulum bibendum nulla vel urna varius aliquam. Praesent rutrum sed turpis non iaculis. Duis at magna eleifend, suscipit velit et, ullamcorper dolor."
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.75"
+            app:layout_constraintHorizontal_bias="0.721"
             app:layout_constraintStart_toEndOf="@+id/description"
             app:layout_constraintTop_toBottomOf="@+id/emailValue" />
 
