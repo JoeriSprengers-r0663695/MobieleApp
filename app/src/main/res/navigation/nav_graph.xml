@@ -36,7 +36,7 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_testMap2"
-            app:destination="@id/detailsPage" />
+            app:destination="@id/detailsFragment" />
         <action
             android:id="@+id/action_loginFragment_to_FirstFragment"
             app:destination="@id/FirstFragment" />
@@ -71,7 +71,7 @@
             app:destination="@id/FirstFragment" />
     </fragment>
     <fragment
-        android:id="@+id/detailsPage"
+        android:id="@+id/detailsFragment"
         android:name="com.example.mobieleapp.detailsPage"
         android:label="fragment_detailspage"
         tools:layout="@layout/fragment_detailspage" >
