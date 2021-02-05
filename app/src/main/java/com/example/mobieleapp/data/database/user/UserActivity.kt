@@ -27,7 +27,7 @@ class UserActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.BevestigId)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (findViewById<EditText>(R.id.userId).text.isEmpty() || findViewById<EditText>(R.id.userId).text.isEmpty() || findViewById<EditText>(R.id.userId).text.isEmpty()){
+            if (findViewById<EditText>(R.id.userId).text.isEmpty() || findViewById<EditText>(R.id.roleId).text.isEmpty() || findViewById<EditText>(R.id.passwoordId).text.isEmpty()){
 
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {

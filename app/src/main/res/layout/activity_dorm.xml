@@ -27,7 +27,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DesctiptionValue"
+        app:layout_constraintTop_toBottomOf="@+id/DescriptionValue"
         app:layout_constraintVertical_bias="0.531" />
 
     <EditText
@@ -62,6 +62,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="604dp"
         android:text=""
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.316"
@@ -110,6 +111,7 @@
         android:layout_marginLeft="16dp"
         android:layout_marginBottom="488dp"
         android:text=""
+        android:inputType="number"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
@@ -133,6 +135,7 @@
         android:layout_height="40dp"
         android:layout_marginBottom="436dp"
         android:text=""
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.317"
@@ -151,7 +154,7 @@
         app:layout_constraintVertical_bias="0.093" />
 
     <EditText
-        android:id="@+id/DesctiptionValue"
+        android:id="@+id/DescriptionValue"
         android:layout_width="322dp"
         android:layout_height="120dp"
         android:text=""
