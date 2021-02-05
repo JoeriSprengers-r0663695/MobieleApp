@@ -33,22 +33,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val logi = view.findViewById<Button>(R.id.login)
-        val fabButton = view.findViewById<Button>(R.id.regi)
         val registreerButton = view.findViewById<Button>(R.id.signupId)
-
-
-
-        fabButton.setOnClickListener {
-
-            val intent = Intent(activity, WordActivity::class.java)
-            startActivity(intent)
-        }
-
-        val button = view?.findViewById<Button>(R.id.button)
-        button?.setOnClickListener {
-            val intent = Intent(activity, CameraActivity::class.java)
-            startActivity(intent)
-        }
 
         registreerButton.setOnClickListener {
 
