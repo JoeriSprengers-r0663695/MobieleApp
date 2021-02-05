@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mobieleapp.CameraActivity
 import com.example.mobieleapp.R
 import com.example.mobieleapp.SecondActivity
 import com.example.mobieleapp.data.database.wordbrol.WordActivity
@@ -45,7 +46,7 @@ class LoginFragment : Fragment() {
 
         val button = view?.findViewById<Button>(R.id.button)
         button?.setOnClickListener {
-            val intent = Intent(activity, SecondActivity::class.java)
+            val intent = Intent(activity, CameraActivity::class.java)
             startActivity(intent)
         }
 
@@ -65,5 +66,6 @@ class LoginFragment : Fragment() {
         var test = view.findViewById<Button>(R.id.testMap)
         test.setOnClickListener {findNavController().navigate(R.id.action_loginFragment_to_testMap2)
         }
+
     }
 }
