@@ -14,7 +14,7 @@ import com.example.myfirstapp.MainViewModel
 import com.example.myfirstapp.MainViewModelFactory
 import com.example.myfirstapp.repository.Repository
 
-class testMap : Fragment() {
+class detailsPage : Fragment() {
 
 
     //initializations and declarations for the Geocoding part
@@ -30,7 +30,7 @@ class testMap : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_test_map, container, false)
+        return inflater.inflate(R.layout.fragment_detailspage, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -38,11 +38,11 @@ class testMap : Fragment() {
 
 
         //static adres line - temporary
-        view.findViewById<TextView>(R.id.adres).text = "Nieuwpoortsesteenweg 467 Oostende "
+        view.findViewById<TextView>(R.id.address).text = "Nieuwpoortsesteenweg 467 Oostende "
 
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getPost(view.findViewById<TextView>(R.id.adres).text.toString())
+        viewModel.getPost(view.findViewById<TextView>(R.id.address).text.toString())
         viewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
 
             //assigning response data value to global vars for later use
@@ -54,7 +54,7 @@ class testMap : Fragment() {
 
         view.findViewById<Button>(R.id.MapId).setOnClickListener {
 
-            val action = testMapDirections.actionTestMap2ToMapsFragment(lat, long)
+            val action = detailsPageDirections.actionDetailsPageToMapsFragment(lat, long)
             findNavController().navigate(action)
         }
     }
