@@ -8,7 +8,6 @@ import androidx.room.PrimaryKey
 class Dorm(
     @PrimaryKey (autoGenerate = true)
     val id  : Int? = null,
-    @ColumnInfo(name = "username") val username: String?,
     @ColumnInfo(name = "streetname") val streetname: String?,
     @ColumnInfo(name = "housenr") val housenr: Int?,
     @ColumnInfo(name = "city") val city: String?,
