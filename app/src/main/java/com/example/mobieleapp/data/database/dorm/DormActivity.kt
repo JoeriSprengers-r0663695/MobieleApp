@@ -33,7 +33,7 @@ class DormActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.HousenrValue).text.toString().toInt() < 1  ||
                 findViewById<EditText>(R.id.HousenrValue).text.isEmpty() ||
                 findViewById<EditText>(R.id.CityValue).text.isEmpty() ||
-                findViewById<EditText>(R.id.PostalcodeValue).text.toString().toInt() < 1000  && findViewById<EditText>(R.id.PostalcodeValue).text.toString().toInt() > 10000||
+                findViewById<EditText>(R.id.PostalcodeValue).text.toString().toInt() in 10001..999 ||
                 findViewById<EditText>(R.id.PostalcodeValue).text.isEmpty() ||
                 findViewById<EditText>(R.id.RentValue).text.isEmpty() ||
                 findViewById<EditText>(R.id.RentValue).text.toString().toDouble() < 0  ||
