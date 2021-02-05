@@ -12,6 +12,6 @@ class Dorm(
     @ColumnInfo(name = "streetname") val streetname: String?,
     @ColumnInfo(name = "housenr") val housenr: Int?,
     @ColumnInfo(name = "city") val city: String?,
-    @ColumnInfo(name = "price_per_month") val price_per_month: Float?,
+    @ColumnInfo(name = "rent") val rent: Float?,
     @ColumnInfo(name = "description") val description: String?,
     )
