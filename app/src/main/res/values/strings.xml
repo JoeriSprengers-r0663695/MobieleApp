@@ -23,4 +23,10 @@
     <string name="sign_up">SIGN UP</string>
     <string name="empty_not_saved">empty, not saved</string>
     <string name="username">username:</string>
+    <string name="streetname">Streetname:</string>
+    <string name="housenr">House number:</string>
+    <string name="city">City:</string>
+    <string name="postcode">Postcode:</string>
+    <string name="rent">Rent:</string>
+    <string name="description">Description:</string>
 </resources>
