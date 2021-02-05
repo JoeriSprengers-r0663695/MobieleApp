@@ -55,8 +55,11 @@ class DormActivity : AppCompatActivity() {
                 val description = findViewById<EditText>(R.id.DescriptionValue).text.toString()
 
                 dormViewModel.allDorms.observe(this) {dorm ->
-                    Log.d("dorm",dorm[1].toString())
+                    for (i in dorm) {
+                    Log.d("dormBefore",i.streetname.toString())
+                    }
                 }
+
                 val dorm = Dorm(null,streetName, housenr, city, postalcode, rent, description )
                 dormViewModel.insert( dorm)
                 finish()
