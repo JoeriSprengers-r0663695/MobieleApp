@@ -5,7 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
-    <fragment
+     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.mobieleapp.homeFragment"
         android:label="fragment_first"
