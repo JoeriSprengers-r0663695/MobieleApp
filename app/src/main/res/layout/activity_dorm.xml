@@ -92,7 +92,7 @@
         app:layout_constraintStart_toEndOf="@+id/City" />
 
     <TextView
-        android:id="@+id/Postcode"
+        android:id="@+id/Postalcode"
         android:layout_width="152dp"
         android:layout_height="40dp"
         android:text="@string/postcode"
@@ -104,7 +104,7 @@
         app:layout_constraintVertical_bias="0.033" />
 
     <EditText
-        android:id="@+id/PostcodeValue"
+        android:id="@+id/PostalcodeValue"
         android:layout_width="152dp"
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
@@ -115,7 +115,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.127"
-        app:layout_constraintStart_toEndOf="@+id/Postcode" />
+        app:layout_constraintStart_toEndOf="@+id/Postalcode" />
 
     <TextView
         android:id="@+id/Rent"
@@ -126,7 +126,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.169"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Postcode"
+        app:layout_constraintTop_toBottomOf="@+id/Postalcode"
         app:layout_constraintVertical_bias="0.031" />
 
     <EditText
