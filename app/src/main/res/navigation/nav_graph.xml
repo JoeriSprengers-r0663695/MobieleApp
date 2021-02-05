@@ -5,7 +5,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
-    <fragment
+     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.mobieleapp.homeFragment"
         android:label="fragment_first"
@@ -36,10 +36,8 @@
             app:destination="@id/registerFragment" />
         <action
             android:id="@+id/action_loginFragment_to_testMap2"
-            app:destination="@id/detailsPage" />
-        <action
-            android:id="@+id/action_loginFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            app:destination="@id/detailsFragment" />
+
     </fragment>
     <fragment
         android:id="@+id/registerFragment"
@@ -50,28 +48,9 @@
             android:id="@+id/action_registerFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
     </fragment>
-    <fragment
-        android:id="@+id/FirstFragment"
-        android:name="com.example.mobieleapp.FirstFragment"
-        android:label="@string/first_fragment_label"
-        tools:layout="@layout/fragment_first">
 
-        <action
-            android:id="@+id/action_FirstFragment_to_SecondFragment"
-            app:destination="@id/SecondFragment" />
-    </fragment>
     <fragment
-        android:id="@+id/SecondFragment"
-        android:name="com.example.mobieleapp.SecondFragment"
-        android:label="@string/second_fragment_label"
-        tools:layout="@layout/fragment_second">
-
-        <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
-    </fragment>
-    <fragment
-        android:id="@+id/detailsPage"
+        android:id="@+id/detailsFragment"
         android:name="com.example.mobieleapp.detailsPage"
         android:label="fragment_detailspage"
         tools:layout="@layout/fragment_detailspage" >

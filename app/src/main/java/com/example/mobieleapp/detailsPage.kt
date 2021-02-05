@@ -38,11 +38,11 @@ class detailsPage : Fragment() {
 
 
         //static adres line - temporary
-        view.findViewById<TextView>(R.id.address).text = "Nieuwpoortsesteenweg 467 Oostende "
+        view.findViewById<TextView>(R.id.txt_address).text = "Nieuwpoortsesteenweg 467 Oostende "
 
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getPost(view.findViewById<TextView>(R.id.address).text.toString())
+        viewModel.getPost(view.findViewById<TextView>(R.id.txt_address).text.toString())
         viewModel.myResponse.observe(viewLifecycleOwner, Observer { response ->
 
             //assigning response data value to global vars for later use
@@ -52,7 +52,7 @@ class detailsPage : Fragment() {
         })
 
 
-        view.findViewById<Button>(R.id.MapId).setOnClickListener {
+        view.findViewById<Button>(R.id.btn_showOnMap).setOnClickListener {
 
             val action = detailsPageDirections.actionDetailsPageToMapsFragment(lat, long)
             findNavController().navigate(action)
