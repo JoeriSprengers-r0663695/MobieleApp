@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingBottom="100dp"
         >
 
         <ImageView
@@ -69,13 +70,13 @@
             android:id="@+id/txt_address"
             android:layout_width="383dp"
             android:layout_height="24dp"
+            android:layout_marginTop="52dp"
             android:layout_marginEnd="4dp"
             android:layout_marginRight="4dp"
-            android:layout_marginBottom="8dp"
             android:gravity="center"
             android:text="streetname housenumber city"
-            app:layout_constraintBottom_toTopOf="@+id/btn_showOnMap"
-            app:layout_constraintEnd_toEndOf="parent" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_descriptionValue" />
 
         <TextView
             android:id="@+id/txt_city"
@@ -204,11 +205,11 @@
             android:id="@+id/btn_showOnMap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="744dp"
+            android:layout_marginTop="24dp"
             android:text="show on map"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_address" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
