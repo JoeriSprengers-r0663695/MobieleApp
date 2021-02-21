@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ToggleButton
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import com.example.mobieleapp.R
@@ -27,7 +28,7 @@ class UserActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.BevestigId)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (findViewById<EditText>(R.id.userId).text.isEmpty() || findViewById<EditText>(R.id.roleId).text.isEmpty() || findViewById<EditText>(R.id.passwoordId).text.isEmpty()){
+            if (findViewById<EditText>(R.id.userId).text.isEmpty() || findViewById<EditText>(R.id.passwoordId).text.isEmpty()){
 
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
@@ -36,7 +37,7 @@ class UserActivity : AppCompatActivity() {
 
                 val passwoord = findViewById<EditText>(R.id.passwoordId).text.toString()
 
-                val role = findViewById<EditText>(R.id.roleId).text.toString()
+                val role = findViewById<ToggleButton>(R.id.tb_role).text.toString()
 
                 userViewModel.allUsers.observe(this) {user ->
                     Log.d("users",user[1].toString())

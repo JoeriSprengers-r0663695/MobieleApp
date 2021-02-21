@@ -57,18 +57,19 @@ class loginActivity : AppCompatActivity() {
                 userViewModel.allUsers?.observe(this){ users ->
                     for(i in users){
 
-                        Log.d("observerUser", i.username.toString())
+                        /*Log.d("observerUser", i.username.toString())
                         Log.d("observerUserInTextEdit", usernameEditText.toString())
                         Log.d("observerUser", i.password.toString())
                         Log.d("observerUserInTextEdit", passwordEditText.toString())
-                        Log.d("checkEquealsUsername",  i.username.toString().equals(usernameEditText.toString()).toString())
+                        Log.d("checkEquealsUsername",  i.username.toString().equals(usernameEditText.toString()).toString())*/
                         i.username.toString().equals(usernameEditText.toString())
 
                         if (i.username.toString().equals(usernameEditText.toString())&& i.password.toString().equals(passwordEditText.toString())){
-                            Log.d("observerUser", usernameEditText.toString())
+                          /*  Log.d("observerUser", usernameEditText.toString())
                             Log.d("observerUser", i.username.toString())
                             Log.d("observerUser", passwordEditText.toString())
-                            Log.d("observerUser", i.password.toString())
+                            Log.d("observerUser", i.password.toString())*/
+                            Log.d("observerUser", i.role.toString())
                             found = true
 
                             val pendingIntent = NavDeepLinkBuilder(this.applicationContext)
@@ -81,6 +82,7 @@ class loginActivity : AppCompatActivity() {
                         }
                     }
                 }
+
                 if(!found) {
                     Toast.makeText(
                         applicationContext,
