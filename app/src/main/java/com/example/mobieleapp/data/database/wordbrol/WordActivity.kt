@@ -44,7 +44,7 @@ class WordActivity : AppCompatActivity() {
 
         val fab = findViewById<Button>(R.id.fab)
         fab.setOnClickListener {
-            val intent = Intent(this@WordActivity, NewWordActivity::class.java)
+            //val intent = Intent(this@WordActivity, NewWordActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
         val delete = findViewById<Button>(R.id.delete)
@@ -52,25 +52,26 @@ class WordActivity : AppCompatActivity() {
             wordViewModel.delete()
         }
     }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
-        super.onActivityResult(requestCode, resultCode, intentData)
-Log.d("request code",requestCode.toString())
-        Log.d("result code",resultCode.toString())
-        Log.d("request code boool",(requestCode == newWordActivityRequestCode).toString())
-        Log.d("request code boool",( resultCode == Activity.RESULT_OK).toString())
-        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-            intentData?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let { reply ->
-                val word = Word(reply)
-                Log.d("res", reply)
-                wordViewModel.insert(word)
-            }
-        } else {
-            Toast.makeText(
-                applicationContext,
-                R.string.empty_not_saved,
-                Toast.LENGTH_LONG
-            ).show()
-        }
-    }
 }
+
+//    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
+//        super.onActivityResult(requestCode, resultCode, intentData)
+//Log.d("request code",requestCode.toString())
+//        Log.d("result code",resultCode.toString())
+//        Log.d("request code boool",(requestCode == newWordActivityRequestCode).toString())
+//        Log.d("request code boool",( resultCode == Activity.RESULT_OK).toString())
+//        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
+//            intentData?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let { reply ->
+//                val word = Word(reply)
+//                Log.d("res", reply)
+//                wordViewModel.insert(word)
+//            }
+//        } else {
+//            Toast.makeText(
+//                applicationContext,
+//                R.string.empty_not_saved,
+//                Toast.LENGTH_LONG
+//            ).show()
+//        }
+//    }
+//}

@@ -23,19 +23,19 @@ class UserActivity : AppCompatActivity() {
 
 
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_user)
+        setContentView(R.layout.activity_register)
 
-        val button = findViewById<Button>(R.id.BevestigId)
+        val button = findViewById<Button>(R.id.btn_BevestigId)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (findViewById<EditText>(R.id.userId).text.isEmpty() || findViewById<EditText>(R.id.passwoordId).text.isEmpty()){
+            if (findViewById<EditText>(R.id.txtUsername).text.isEmpty() || findViewById<EditText>(R.id.txtPassword).text.isEmpty()){
 
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
 
-                val username = findViewById<EditText>(R.id.userId).text.toString()
+                val username = findViewById<EditText>(R.id.txtUsername).text.toString()
 
-                val passwoord = findViewById<EditText>(R.id.passwoordId).text.toString()
+                val passwoord = findViewById<EditText>(R.id.txtPassword).text.toString()
 
                 val role = findViewById<ToggleButton>(R.id.tb_role).text.toString()
 

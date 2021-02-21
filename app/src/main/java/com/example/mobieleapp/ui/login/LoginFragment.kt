@@ -34,15 +34,7 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val logi = view.findViewById<Button>(R.id.login)
-        val registreerButton = view.findViewById<Button>(R.id.signupId)
         val addkot = view.findViewById<Button>(R.id.btn_addkotpage)
-
-        registreerButton.setOnClickListener {
-
-            val intent = Intent(activity, UserActivity::class.java)
-            startActivity(intent)
-        }
-
 
         logi.setOnClickListener {
 

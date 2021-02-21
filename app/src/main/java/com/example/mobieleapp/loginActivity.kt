@@ -1,5 +1,6 @@
 package com.example.mobieleapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -7,13 +8,12 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import androidx.navigation.NavDeepLinkBuilder
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.mobieleapp.data.database.Application
+import com.example.mobieleapp.data.database.user.UserActivity
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
+import kotlinx.android.synthetic.main.activity_login.*
 
 class loginActivity : AppCompatActivity() {
 
@@ -29,7 +29,7 @@ class loginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
-        val loginButton = findViewById<Button>(R.id.login2)
+        val loginButton = findViewById<Button>(R.id.btn_Login)
         var found :Boolean = false
         val usernameEditText = findViewById<EditText>(R.id.username2).text
         val passwordEditText = findViewById<EditText>(R.id.password2).text
@@ -95,6 +95,11 @@ class loginActivity : AppCompatActivity() {
                     found = false
                 }
             }
+        }
+
+        btn_registerNow.setOnClickListener {
+            val intent = Intent(this, UserActivity::class.java)
+            startActivity(intent)
         }
     }
 }
