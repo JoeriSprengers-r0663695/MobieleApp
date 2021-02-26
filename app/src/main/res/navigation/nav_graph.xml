@@ -1,24 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
- <navigation xmlns:android="http://schemas.android.com/apk/res/android"
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/loginFragment">
 
-     <fragment
+    <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.mobieleapp.homeFragment"
         android:label="fragment_first"
-        tools:layout="@layout/fragment_home" >
-         <action
-             android:id="@+id/action_homeFragment_to_cameraActivity"
-             app:destination="@id/cameraActivity" />
-     </fragment>
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_homeFragment_to_cameraActivity"
+            app:destination="@id/cameraActivity" />
+    </fragment>
     <fragment
         android:id="@+id/mapsFragment"
         android:name="com.example.mobieleapp.MapsFragment"
         android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps" >
+        tools:layout="@layout/fragment_maps">
         <argument
             android:name="lat"
             app:argType="string" />
@@ -27,7 +27,7 @@
             app:argType="string" />
     </fragment>
 
-     <fragment
+    <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.mobieleapp.ui.login.LoginFragment"
         android:label="fragment_login2"
@@ -48,7 +48,7 @@
         android:id="@+id/detailsFragment"
         android:name="com.example.mobieleapp.detailsPage"
         android:label="fragment_detailspage"
-        tools:layout="@layout/fragment_detailspage" >
+        tools:layout="@layout/fragment_detailspage">
         <action
             android:id="@+id/action_detailsPage_to_mapsFragment"
             app:destination="@id/mapsFragment" />
@@ -62,10 +62,30 @@
         android:id="@+id/dormActivity"
         android:name="com.example.mobieleapp.data.database.dorm.DormActivity"
         android:label="DormActivity"
-        tools:layout="@layout/activity_dorm"/>
+        tools:layout="@layout/activity_dorm" />
     <fragment
         android:id="@+id/addWord"
         android:name="com.example.mobieleapp.addWord"
         android:label="fragment_add_word"
         tools:layout="@layout/fragment_add_word" />
+    <fragment
+        android:id="@+id/FirstFragment"
+        android:name="com.example.mobieleapp.data.database.dorm.FirstFragment"
+        android:label="@string/first_fragment_label"
+        tools:layout="@layout/fragment_first">
+
+        <action
+            android:id="@+id/action_FirstFragment_to_SecondFragment"
+            app:destination="@id/SecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/SecondFragment"
+        android:name="com.example.mobieleapp.data.database.dorm.SecondFragment"
+        android:label="@string/second_fragment_label"
+        tools:layout="@layout/fragment_second">
+
+        <action
+            android:id="@+id/action_SecondFragment_to_FirstFragment"
+            app:destination="@id/FirstFragment" />
+    </fragment>
 </navigation>

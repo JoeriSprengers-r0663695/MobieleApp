@@ -6,7 +6,7 @@
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.CAMERA"/>
+    <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
@@ -15,8 +15,6 @@
     <uses-feature
         android:name="android.hardware.camera"
         android:required="true" />
-
-
 
     <application
         android:name=".data.database.Application"
@@ -27,13 +25,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MobieleApp">
-        <activity android:name=".loginActivity"></activity>
+        <activity
+            android:name=".data.database.dorm.DormListActivity"
+            android:label="@string/title_activity_dorm_list"
+            android:theme="@style/Theme.MobieleApp.NoActionBar"></activity>
+        <activity android:name=".loginActivity" />
         <activity android:name=".data.database.user.UserActivity" />
         <activity
             android:name=".CameraActivity"
             android:label="@string/title_activity_camera"
-            android:theme="@style/Theme.MobieleApp.NoActionBar"
-            />
+            android:theme="@style/Theme.MobieleApp.NoActionBar" />
         <activity android:name=".data.database.dorm.DormActivity" />
         <activity android:name=".activity_third" />
         <activity android:name=".SecondActivity" />

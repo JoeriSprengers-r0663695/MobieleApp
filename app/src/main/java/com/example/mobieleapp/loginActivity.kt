@@ -10,9 +10,11 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.navigation.NavDeepLinkBuilder
 import com.example.mobieleapp.data.database.Application
+import com.example.mobieleapp.data.database.dorm.DormListActivity
 import com.example.mobieleapp.data.database.user.UserActivity
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
+import com.example.mobieleapp.data.database.wordbrol.WordActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class loginActivity : AppCompatActivity() {
@@ -72,13 +74,10 @@ class loginActivity : AppCompatActivity() {
                             Log.d("observerUser", i.role.toString())
                             found = true
 
-                            val pendingIntent = NavDeepLinkBuilder(this.applicationContext)
-                                .setGraph(R.navigation.nav_graph)
-                                .setDestination(R.id.homeFragment)
-                                .createPendingIntent()
 
-                            pendingIntent.send()
-                            finish()
+                            val intent = Intent(this, DormListActivity::class.java)
+                            startActivity(intent)
+
                         }
                     }
                 }

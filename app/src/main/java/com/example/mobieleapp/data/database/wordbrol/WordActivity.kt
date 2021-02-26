@@ -1,11 +1,8 @@
 package com.example.mobieleapp.data.database.wordbrol
 
-import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
@@ -13,7 +10,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.Application
-import kotlin.math.log
 
 
 class WordActivity : AppCompatActivity() {
@@ -38,12 +34,7 @@ class WordActivity : AppCompatActivity() {
         // in the foreground.
         wordViewModel.allWords.observe(owner = this) { words ->
             // Update the cached copy of the words in the adapter// .
-            Log.d("woord",words.toString() )
-
             words.let { adapter.submitList(it) }
-
-
-
 
 
         }

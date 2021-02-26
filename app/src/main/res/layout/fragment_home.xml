@@ -22,9 +22,10 @@
             app:layout_constraintHorizontal_bias="0.489"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="MissingConstraints">
+            tools:ignore="MissingConstraints"
+            tools:listitem="@layout/dorm_item"
+            />
 
-        </androidx.recyclerview.widget.RecyclerView>
 
         <Button
             android:id="@+id/btn_toProfile"

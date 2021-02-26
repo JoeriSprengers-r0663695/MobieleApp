@@ -15,7 +15,7 @@
             android:src="@drawable/ic_baseline_image_24"
             android:layout_marginRight="8dp" />
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/streetnameId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toEndOf="@id/image_view"
@@ -25,10 +25,10 @@
             android:textStyle="bold"
             android:layout_toRightOf="@id/image_view" />
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/housnrId"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/textView"
+            android:layout_below="@id/streetnameId"
             android:layout_toEndOf="@id/image_view"
             android:text="Line 2"
             android:layout_toRightOf="@id/image_view" />
