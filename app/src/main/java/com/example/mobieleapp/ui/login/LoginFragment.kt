@@ -35,6 +35,7 @@ class LoginFragment : Fragment() {
 
         val logi = view.findViewById<Button>(R.id.login)
         val addkot = view.findViewById<Button>(R.id.btn_addkotpage)
+        val word = view.findViewById<Button>(R.id.btn_word)
 
         logi.setOnClickListener {
 
@@ -46,6 +47,11 @@ class LoginFragment : Fragment() {
         test.setOnClickListener {findNavController().navigate(R.id.action_loginFragment_to_testMap2)
         }
 
+
+        word.setOnClickListener {
+            val intent = Intent(activity, WordActivity::class.java)
+            startActivity(intent)
+        }
 
         addkot.setOnClickListener {
             val intent = Intent(activity, DormActivity::class.java)

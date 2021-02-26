@@ -28,13 +28,12 @@ public abstract class WordRoomDatabase : RoomDatabase() {
                     wordDao.deleteAll()
 
                     // Add sample words.
-                    var word = Word("Hello")
+                    var word = Word(0,"obj","1")
                     wordDao.insert(word)
-                    word = Word("World!")
+                    word = Word(1,"obj","2")
                     wordDao.insert(word)
 
-                    // TODO: Add your own words!
-                    word = Word("Testje")
+                    word = Word(2,"obj","3")
                     wordDao.insert(word)
                 }
             }

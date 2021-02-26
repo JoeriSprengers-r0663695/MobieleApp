@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.Application
+import kotlin.math.log
 
 
 class WordActivity : AppCompatActivity() {
@@ -36,15 +37,21 @@ class WordActivity : AppCompatActivity() {
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
         wordViewModel.allWords.observe(owner = this) { words ->
-            // Update the cached copy of the words in the adapter.
+            // Update the cached copy of the words in the adapter// .
+            Log.d("woord",words.toString() )
+
             words.let { adapter.submitList(it) }
+
+
+
+
 
         }
 
 
         val fab = findViewById<Button>(R.id.fab)
         fab.setOnClickListener {
-            //val intent = Intent(this@WordActivity, NewWordActivity::class.java)
+            val intent = Intent(this@WordActivity, NewWordActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
         }
         val delete = findViewById<Button>(R.id.delete)
@@ -52,26 +59,25 @@ class WordActivity : AppCompatActivity() {
             wordViewModel.delete()
         }
     }
-}
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
-//        super.onActivityResult(requestCode, resultCode, intentData)
-//Log.d("request code",requestCode.toString())
-//        Log.d("result code",resultCode.toString())
-//        Log.d("request code boool",(requestCode == newWordActivityRequestCode).toString())
-//        Log.d("request code boool",( resultCode == Activity.RESULT_OK).toString())
-//        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
-//            intentData?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let { reply ->
-//                val word = Word(reply)
-//                Log.d("res", reply)
-//                wordViewModel.insert(word)
-//            }
-//        } else {
-//            Toast.makeText(
-//                applicationContext,
-//                R.string.empty_not_saved,
-//                Toast.LENGTH_LONG
-//            ).show()
-//        }
-//    }
-//}
+/*override fun onActivityResult(requestCode: Int, resultCode: Int, intentData: Intent?) {
+        super.onActivityResult(requestCode, resultCode, intentData)
+Log.d("request code",requestCode.toString())
+        Log.d("result code",resultCode.toString())
+        Log.d("request code boool",(requestCode == newWordActivityRequestCode).toString())
+        Log.d("request code boool",( resultCode == Activity.RESULT_OK).toString())
+        if (requestCode == newWordActivityRequestCode && resultCode == Activity.RESULT_OK) {
+            intentData?.getStringExtra(NewWordActivity.EXTRA_REPLY)?.let { reply ->
+                val word = Word(reply)
+                Log.d("res", reply)
+                wordViewModel.insert(word)
+            }
+        } else {
+            Toast.makeText(
+                applicationContext,
+                R.string.empty_not_saved,
+                Toast.LENGTH_LONG
+            ).show()
+        }
+    }*/
+}
