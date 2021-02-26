@@ -3,6 +3,7 @@ package com.example.mobieleapp.data.database.dorm
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import java.io.Serializable
 
 @Entity(tableName = "dorm_table")
 class Dorm(
@@ -14,4 +15,4 @@ class Dorm(
     @ColumnInfo(name = "postalcode") val postalcode: Int?,
     @ColumnInfo(name = "rent") val rent: Double?,
     @ColumnInfo(name = "description") val description: String?,
-    )
+    ):Serializable

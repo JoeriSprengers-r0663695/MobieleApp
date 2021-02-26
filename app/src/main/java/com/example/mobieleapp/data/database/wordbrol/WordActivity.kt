@@ -2,6 +2,7 @@ package com.example.mobieleapp.data.database.wordbrol
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.Application
+import com.example.mobieleapp.data.database.dorm.Dorm
 
 
 class WordActivity : AppCompatActivity() {
@@ -22,6 +24,14 @@ class WordActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_second)
+
+
+
+        var kot  = intent.getSerializableExtra("kot") as Dorm
+
+            Log.d("array",kot.city.toString() )
+
+
 
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerview)
@@ -44,6 +54,7 @@ class WordActivity : AppCompatActivity() {
         fab.setOnClickListener {
             val intent = Intent(this@WordActivity, NewWordActivity::class.java)
             startActivityForResult(intent, newWordActivityRequestCode)
+            finish()
         }
         val delete = findViewById<Button>(R.id.delete)
         delete.setOnClickListener {

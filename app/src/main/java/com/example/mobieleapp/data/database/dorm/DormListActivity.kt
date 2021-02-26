@@ -17,6 +17,7 @@ class DormListActivity : AppCompatActivity() {
         DormViewModelFactory((application as Application).repositoryDorm)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_home)
@@ -24,7 +25,6 @@ class DormListActivity : AppCompatActivity() {
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewDorms)
         val adapter = DormListAdapter()
-        Log.d("adapter",adapter.toString() )
 
         recyclerView.adapter = adapter
         recyclerView.layoutManager = LinearLayoutManager(this)
@@ -39,5 +39,5 @@ class DormListActivity : AppCompatActivity() {
             dorms.let { adapter.submitList(it) }
 
         }
-}
+    }
 }
