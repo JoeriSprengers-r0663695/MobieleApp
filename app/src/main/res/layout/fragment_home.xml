@@ -12,6 +12,20 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerviewDorms"
+            android:layout_width="364dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="88dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.489"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="MissingConstraints">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
         <Button
             android:id="@+id/btn_toProfile"
             android:layout_width="wrap_content"
@@ -27,9 +41,10 @@
             android:id="@+id/txt_temp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="308dp"
+            android:layout_marginTop="348dp"
             android:text="lijst met koten hier"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.43"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
