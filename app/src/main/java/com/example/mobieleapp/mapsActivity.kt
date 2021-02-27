@@ -35,14 +35,11 @@ class mapsActivity : AppCompatActivity() {
 
 
         //Putting the passed through lat and long in variables
-        var long  = intent.getSerializableExtra("long") as String
-        var lat  = intent.getSerializableExtra("lat") as String
+        var long  = intent.getSerializableExtra("long") as Double
+        var lat  = intent.getSerializableExtra("lat") as Double
 
-        //Debug stuff
-        Log.d("longitude values",long )
-        Log.d("Lat values",lat )
 
-        val customHome = LatLng(lat.toDouble(),long.toDouble())
+        val customHome = LatLng(lat, long)
         val belgium = LatLng(50.85045, 4.34878)
         googleMap.addMarker(MarkerOptions().position(customHome).title("Marker for Custom"))
         googleMap.addMarker(MarkerOptions().position(belgium).title("Marker in Belgium"))
