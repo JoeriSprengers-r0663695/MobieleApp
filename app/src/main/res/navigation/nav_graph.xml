@@ -14,11 +14,6 @@
             android:id="@+id/action_homeFragment_to_cameraActivity"
             app:destination="@id/cameraActivity" />
     </fragment>
-    <fragment
-        android:id="@+id/mapsFragment"
-        android:name="com.example.mobieleapp.MapsFragment"
-        android:label="fragment_maps"
-        tools:layout="@layout/fragment_maps"/>
 
     <fragment
         android:id="@+id/loginFragment"
@@ -34,15 +29,7 @@
 
     </fragment>
 
-    <fragment
-        android:id="@+id/detailsFragment"
-        android:name="com.example.mobieleapp.detailsPage"
-        android:label="fragment_detailspage"
-        tools:layout="@layout/fragment_detailspage">
-        <action
-            android:id="@+id/action_detailsPage_to_mapsFragment"
-            app:destination="@id/mapsFragment" />
-    </fragment>
+
     <activity
         android:id="@+id/cameraActivity"
         android:name="com.example.mobieleapp.CameraActivity"
