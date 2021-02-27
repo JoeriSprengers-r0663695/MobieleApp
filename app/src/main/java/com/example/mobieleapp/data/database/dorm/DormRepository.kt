@@ -1,8 +1,6 @@
 package com.example.mobieleapp.data.database.dorm
 
 import androidx.annotation.WorkerThread
-import com.example.mobieleapp.data.database.user.User
-import com.example.mobieleapp.data.database.user.UserDao
 import kotlinx.coroutines.flow.Flow
 
 class DormRepository(private val dormDao: DormDao) {

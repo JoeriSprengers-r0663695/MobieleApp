@@ -8,7 +8,6 @@ import android.widget.Button
 import android.widget.ImageView
 
 import androidx.appcompat.app.AppCompatActivity
-import kotlinx.android.synthetic.main.activity_camera.*
 
 class CameraActivity : AppCompatActivity() {
     lateinit var imagview : ImageView

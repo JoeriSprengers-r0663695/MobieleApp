@@ -8,13 +8,11 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.navigation.NavDeepLinkBuilder
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.DormListActivity
 import com.example.mobieleapp.data.database.user.UserActivity
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
-import com.example.mobieleapp.data.database.wordbrol.WordActivity
 import kotlinx.android.synthetic.main.activity_login.*
 
 class loginActivity : AppCompatActivity() {

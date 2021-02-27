@@ -7,13 +7,11 @@ import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.CameraActivity
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.Application
-import com.example.mobieleapp.data.database.wordbrol.NewWordActivity
 
 class DormListActivity : AppCompatActivity() {
 

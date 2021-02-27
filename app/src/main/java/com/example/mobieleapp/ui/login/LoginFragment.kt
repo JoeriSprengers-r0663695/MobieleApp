@@ -7,13 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import com.example.mobieleapp.CameraActivity
 import com.example.mobieleapp.R
-import com.example.mobieleapp.SecondActivity
 import com.example.mobieleapp.data.database.dorm.DormActivity
 import com.example.mobieleapp.data.database.wordbrol.WordActivity
-import com.example.mobieleapp.data.database.user.*
 import com.example.mobieleapp.loginActivity
 
 

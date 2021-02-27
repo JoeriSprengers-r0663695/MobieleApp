@@ -3,7 +3,6 @@ package com.example.mobieleapp.data.database.dorm
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
-import com.example.mobieleapp.data.database.user.User
 import kotlinx.coroutines.flow.Flow
 
 @Dao

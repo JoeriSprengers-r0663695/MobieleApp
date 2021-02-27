@@ -1,7 +1,5 @@
 package com.example.mobieleapp.data.database.dorm
 
-import com.example.mobieleapp.data.database.user.User
-
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
