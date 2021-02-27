@@ -47,8 +47,8 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         viewModel.myResponse.observe(this, Observer { response ->
 
             //assigning response data value to global vars for later use
-            lat = response.body()?.data?.get(0)?.latitude!!
-            long = response.body()?.data?.get(0)?.longitude!!
+            lat = response.body()!!.data[0].latitude
+            long = response.body()!!.data[0].longitude
 
         })
 

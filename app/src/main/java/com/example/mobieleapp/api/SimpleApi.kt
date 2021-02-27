@@ -12,7 +12,8 @@ interface SimpleApi {
 
     @GET("v1/forward?access_key=005ee2992bd30070e603ac1014c2972d")
     suspend fun getPost(
-            @Query("query") adres : String
+            @Query("query") adres : String,
+            @Query("limit") limit : Int
     ): Response<Post>
 
 }

@@ -7,6 +7,6 @@ import retrofit2.Response
 class Repository {
 
     suspend fun getPost(adres : String): Response<Post> {
-        return RetrofitInstance.api.getPost(adres = adres)
+        return RetrofitInstance.api.getPost(adres = adres, limit = 1)
     }
 }
