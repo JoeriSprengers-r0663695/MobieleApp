@@ -11,38 +11,27 @@
         android:id="@+id/Streetname"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:gravity="center_vertical"
         android:text="@string/streetname"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/adTitle"
-        app:layout_constraintVertical_bias="0.038" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <TextView
         android:id="@+id/adTitle"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginStart="24dp"
-        android:layout_marginLeft="24dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:gravity="center_vertical"
         android:text="adTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.04" />
-
-    <TextView
-        android:id="@+id/adTitleValue"
-        android:layout_width="152dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="28dp"
-        android:gravity="center_vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.818"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bevestigDorm"
@@ -59,15 +48,29 @@
         android:id="@+id/StreetnameValue"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="15dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center_vertical"
         android:inputType="textAutoComplete"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.483"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/Streetname"
         app:layout_constraintTop_toBottomOf="@+id/adTitleValue" />
+
+    <EditText
+        android:id="@+id/adTitleValue"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical"
+        android:inputType="textAutoComplete"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintStart_toEndOf="@+id/Streetname"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Housenr"
@@ -86,12 +89,12 @@
         android:id="@+id/HousenrValue"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
         android:inputType="number"
         android:text=""
-        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/Housenr"
         app:layout_constraintTop_toBottomOf="@+id/StreetnameValue" />
 
@@ -112,11 +115,11 @@
         android:id="@+id/CityValue"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
-        android:text=""
+        android:layout_marginTop="12dp"
         android:gravity="center_vertical"
+        android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/City"
         app:layout_constraintTop_toBottomOf="@+id/HousenrValue" />
 
@@ -139,12 +142,12 @@
         android:layout_height="40dp"
         android:layout_marginStart="16dp"
         android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
+        android:gravity="center_vertical"
         android:inputType="number"
         android:text=""
-        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintHorizontal_bias="0.4"
         app:layout_constraintStart_toEndOf="@+id/Postalcode"
         app:layout_constraintTop_toBottomOf="@+id/CityValue" />
 
@@ -165,12 +168,12 @@
         android:id="@+id/RentValue"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="12dp"
         android:gravity="center_vertical"
         android:inputType="numberDecimal"
         android:text=""
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/Rent"
         app:layout_constraintTop_toBottomOf="@+id/PostalcodeValue" />
 

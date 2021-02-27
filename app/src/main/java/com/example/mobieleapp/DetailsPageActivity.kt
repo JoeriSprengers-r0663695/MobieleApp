@@ -19,8 +19,8 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
     private lateinit var viewModel: MainViewModel
     private val repository = Repository()
     private val viewModelFactory = MainViewModelFactory(repository)
-    private var lat : String = ""
-    private var long : String = ""
+    private var lat : Double = 0.0
+    private var long : Double = 0.0
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,8 +47,8 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         viewModel.myResponse.observe(this, Observer { response ->
 
             //assigning response data value to global vars for later use
-            lat = response.body()?.data?.get(0)?.latitude.toString()
-            long = response.body()?.data?.get(0)?.longitude.toString()
+            lat = response.body()?.data?.get(0)?.latitude!!
+            long = response.body()?.data?.get(0)?.longitude!!
 
         })
 
