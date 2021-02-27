@@ -67,18 +67,6 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_detailsHeader" />
 
         <TextView
-            android:id="@+id/txt_address"
-            android:layout_width="383dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="44dp"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:gravity="center"
-            android:text="streetname housenumber city"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_descriptionValue" />
-
-        <TextView
             android:id="@+id/txt_city"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -90,7 +78,7 @@
             app:layout_constraintTop_toBottomOf="@+id/txt_street" />
 
         <TextView
-            android:id="@+id/txt_ciyValue"
+            android:id="@+id/txt_cityValue"
             android:layout_width="190dp"
             android:layout_height="20dp"
             android:layout_marginTop="12dp"
@@ -124,10 +112,10 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.794"
             app:layout_constraintStart_toEndOf="@+id/txt_rent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_ciyValue" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_cityValue" />
 
         <TextView
-            android:id="@+id/txt_number"
+            android:id="@+id/txt_phoneNumber"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -146,11 +134,11 @@
             android:layout_marginTop="16dp"
             android:text="Email"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_number" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_phoneNumber" />
 
 
         <TextView
-            android:id="@+id/txt_numberValue"
+            android:id="@+id/txt_phoneNumberValue"
             android:layout_width="190dp"
             android:layout_height="20dp"
             android:layout_marginTop="16dp"
@@ -160,7 +148,7 @@
             android:text="04123456789"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
-            app:layout_constraintStart_toEndOf="@+id/txt_number"
+            app:layout_constraintStart_toEndOf="@+id/txt_phoneNumber"
             app:layout_constraintTop_toBottomOf="@+id/txt_rentValue" />
 
         <TextView
@@ -198,17 +186,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toEndOf="@+id/txt_email"
-            app:layout_constraintTop_toBottomOf="@+id/txt_numberValue" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_phoneNumberValue" />
 
         <Button
             android:id="@+id/btn_showOnMap"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_width="341dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="44dp"
             android:text="show on map"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/txt_address" />
+            app:layout_constraintTop_toBottomOf="@+id/txt_descriptionValue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

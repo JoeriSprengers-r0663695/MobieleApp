@@ -11,9 +11,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.DetailsPageActivity
 import com.example.mobieleapp.R
-import com.example.mobieleapp.data.database.wordbrol.WordActivity
-import com.example.mobieleapp.detailsPage
-import com.example.mobieleapp.mapsActivity
 import java.io.Serializable
 
 class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormComparator()),Serializable {

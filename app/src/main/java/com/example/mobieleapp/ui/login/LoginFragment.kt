@@ -43,11 +43,6 @@ class LoginFragment : Fragment() {
             startActivity(intent)
         }
 
-        var test = view.findViewById<Button>(R.id.testMap)
-        test.setOnClickListener {findNavController().navigate(R.id.action_loginFragment_to_testMap2)
-        }
-
-
         word.setOnClickListener {
             val intent = Intent(activity, WordActivity::class.java)
             startActivity(intent)

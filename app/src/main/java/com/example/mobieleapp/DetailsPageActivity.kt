@@ -2,7 +2,6 @@ package com.example.mobieleapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -31,15 +30,20 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         var kot  = intent.getSerializableExtra("kot") as Dorm
 
-        Log.d("array",kot.city.toString() )
 
-     //   findViewById<TextView>(R.id.txt_address).text = "Nieuwpoortsesteenweg 467 Oostende "
-        findViewById<TextView>(R.id.txt_address).text = kot.streetname + " " + kot.housenr + " " + kot.city
+        findViewById<TextView>(R.id.txt_streetValue).text = kot.streetname + " " + kot.housenr.toString()
+        findViewById<TextView>(R.id.txt_cityValue).text = kot.postalcode.toString() + ", " + kot.city
+        findViewById<TextView>(R.id.txt_rentValue).text = "€" + kot.rent.toString() + " / month"
+        findViewById<TextView>(R.id.txt_emailValue).text = "email@domain.poop"
+        findViewById<TextView>(R.id.txt_phoneNumberValue).text = "0123456789"
+        findViewById<TextView>(R.id.txt_descriptionValue).text = kot.description
+
+
 
 
 
         viewModel = ViewModelProvider(this, viewModelFactory).get(MainViewModel::class.java)
-        viewModel.getPost(findViewById<TextView>(R.id.txt_address).text.toString())
+        viewModel.getPost(kot.streetname + " " + kot.housenr.toString() + ", " + kot.postalcode.toString() + " " + kot.city)
         viewModel.myResponse.observe(this, Observer { response ->
 
             //assigning response data value to global vars for later use
