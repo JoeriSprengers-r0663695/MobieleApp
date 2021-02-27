@@ -33,7 +33,7 @@ import kotlinx.coroutines.launch
                         var dormDao = database.dormDao()
 
 
-                        var kot = Dorm(0,"Distelstraat",70,"tienen",3300,50.50,"bladibla")
+                        var kot = Dorm(0,"groot huis","Distelstraat",70,"tienen",3300,50.50,"bladibla")
 
                         dormDao.insert(kot)
 

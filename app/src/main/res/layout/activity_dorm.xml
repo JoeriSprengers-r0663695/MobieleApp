@@ -11,14 +11,38 @@
         android:id="@+id/Streetname"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:text="@string/streetname"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
         android:gravity="center_vertical"
+        android:text="@string/streetname"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/adTitle"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <TextView
+        android:id="@+id/adTitle"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:gravity="center_vertical"
+        android:text="adTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.035" />
+        app:layout_constraintVertical_bias="0.04" />
+
+    <TextView
+        android:id="@+id/adTitleValue"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="28dp"
+        android:gravity="center_vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.818"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/bevestigDorm"
@@ -35,15 +59,15 @@
         android:id="@+id/StreetnameValue"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="24dp"
         android:fontFamily="sans-serif-light"
+        android:gravity="center_vertical"
         android:inputType="textAutoComplete"
         android:textSize="18sp"
-        android:gravity="center_vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.506"
+        app:layout_constraintHorizontal_bias="0.483"
         app:layout_constraintStart_toEndOf="@+id/Streetname"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/adTitleValue" />
 
     <TextView
         android:id="@+id/Housenr"
@@ -174,4 +198,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Description"
         app:layout_constraintVertical_bias="0.077" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

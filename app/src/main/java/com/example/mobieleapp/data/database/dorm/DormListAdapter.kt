@@ -22,14 +22,14 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
     override fun onBindViewHolder(holder: DormViewHolder, position: Int) {
         val current = getItem(position)
 
-            holder.bind(current.id,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description)
+            holder.bind(current.id,current.adTitle,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description)
     }
 
     class DormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener,Serializable {
 
-        private val dormItemView1: TextView = itemView.findViewById(R.id.streetnameId)
-        private val dormItemView2: TextView = itemView.findViewById(R.id.rentId)
-        private val dormItemView3: TextView = itemView.findViewById(R.id.housnrId)
+        private val dormItemViewTitle: TextView = itemView.findViewById(R.id.adTitleId)
+        private val dormItemViewRent: TextView = itemView.findViewById(R.id.rentId)
+        private val dormItemViewAdress: TextView = itemView.findViewById(R.id.adresId)
 
        lateinit var  kot : Dorm
 
@@ -38,11 +38,11 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
             itemView.setOnClickListener(this)
         }
 
-        fun bind(current:Int?,streetname: String?, housenr : Int?,city :String?,postalcode:Int?,rent: Double?,description:String?) {
-            dormItemView1.text = streetname.toString()
-            dormItemView2.text = rent.toString()
-            dormItemView3.text = housenr.toString()
-            kot = Dorm(current,streetname,housenr,city,postalcode,rent,description)
+        fun bind(current:Int?,adTitle:String?,streetname: String?, housenr : Int?,city :String?,postalcode:Int?,rent: Double?,description:String?) {
+            dormItemViewTitle.text = adTitle
+            dormItemViewRent.text = "€"+ rent.toString()
+            dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
+            kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description)
 
         }
 

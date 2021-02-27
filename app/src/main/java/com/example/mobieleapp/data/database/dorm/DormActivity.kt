@@ -27,7 +27,9 @@ class DormActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.bevestigDorm)
         button.setOnClickListener {
             val replyIntent = Intent()
-            if (findViewById<EditText>(R.id.StreetnameValue).text.isEmpty() ||
+            if (
+                findViewById<EditText>(R.id.adTitleValue).text.isEmpty() ||
+                findViewById<EditText>(R.id.StreetnameValue).text.isEmpty() ||
                 findViewById<EditText>(R.id.HousenrValue).text.toString().toInt() < 1  ||
                 findViewById<EditText>(R.id.HousenrValue).text.isEmpty() ||
                 findViewById<EditText>(R.id.CityValue).text.isEmpty() ||
@@ -40,6 +42,7 @@ class DormActivity : AppCompatActivity() {
                 setResult(Activity.RESULT_CANCELED, replyIntent)
             } else {
 
+                val adTitle = findViewById<EditText>(R.id.adTitleValue).text.toString()
                 val streetName = findViewById<EditText>(R.id.StreetnameValue).text.toString()
 
                 val housenr = findViewById<EditText>(R.id.HousenrValue).text.toString().toInt()
@@ -58,7 +61,7 @@ class DormActivity : AppCompatActivity() {
                     }
                 }
 
-                val dorm = Dorm(null,streetName, housenr, city, postalcode, rent, description )
+                val dorm = Dorm(null,adTitle,streetName, housenr, city, postalcode, rent, description )
                 dormViewModel.insert( dorm)
                 finish()
             }
