@@ -30,4 +30,6 @@
     <string name="rent">Rent:</string>
     <string name="description">Description:</string>
     <string name="title_activity_dorm_list">DormListActivity</string>
+    <string name="title_activity_details_page">DetailsPageActivity</string>
+    <string name="title_activity_maps">mapsActivity</string>
 </resources>

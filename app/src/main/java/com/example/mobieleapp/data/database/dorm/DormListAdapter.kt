@@ -9,8 +9,11 @@ import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobieleapp.DetailsPageActivity
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.wordbrol.WordActivity
+import com.example.mobieleapp.detailsPage
+import com.example.mobieleapp.mapsActivity
 import java.io.Serializable
 
 class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormComparator()),Serializable {
@@ -57,7 +60,7 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
         override fun onClick(v: View?) {
             Log.d("kot",kot.city.toString())
 
-            val intent = Intent(v?.context, WordActivity::class.java).putExtra("kot",
+            val intent = Intent(v?.context, DetailsPageActivity::class.java).putExtra("kot",
                 kot)
 
             v?.context?.startActivity(intent)

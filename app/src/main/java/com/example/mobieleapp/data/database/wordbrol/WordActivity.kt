@@ -29,7 +29,7 @@ class WordActivity : AppCompatActivity() {
 
         var kot  = intent.getSerializableExtra("kot") as Dorm
 
-            Log.d("array",kot.city.toString() )
+        Log.d("array",kot.city.toString() )
 
 
 
