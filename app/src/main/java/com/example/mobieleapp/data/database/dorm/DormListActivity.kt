@@ -1,16 +1,22 @@
 package com.example.mobieleapp.data.database.dorm
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.mobieleapp.CameraActivity
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.Application
+import com.example.mobieleapp.data.database.wordbrol.NewWordActivity
 
 class DormListActivity : AppCompatActivity() {
+
 
     private val newWordActivityRequestCode = 1
     private val dormViewModel: DormViewModel by viewModels {
@@ -39,5 +45,12 @@ class DormListActivity : AppCompatActivity() {
             dorms.let { adapter.submitList(it) }
 
         }
+        findViewById<Button>(R.id.btn_toProfile).setOnClickListener {
+            val intent = Intent(this@DormListActivity, CameraActivity::class.java)
+            startActivity(intent)
+            finish()
+
+        }
+
     }
 }

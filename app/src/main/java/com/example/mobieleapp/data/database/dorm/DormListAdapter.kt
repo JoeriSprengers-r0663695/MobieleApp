@@ -59,7 +59,6 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
 
             val intent = Intent(v?.context, DetailsPageActivity::class.java).putExtra("kot",
                 kot)
-
             v?.context?.startActivity(intent)
             }
         }
