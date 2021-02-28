@@ -40,7 +40,7 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
 
         fun bind(current:Int?,adTitle:String?,streetname: String?, housenr : Int?,city :String?,postalcode:Int?,rent: Double?,description:String?) {
             dormItemViewTitle.text = adTitle
-            dormItemViewRent.text = "€"+ rent.toString()
+            dormItemViewRent.text = "€"+ String.format("%.2f", rent)
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
             kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description)
 

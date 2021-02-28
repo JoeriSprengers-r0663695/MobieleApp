@@ -33,7 +33,7 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         findViewById<TextView>(R.id.txt_streetValue).text = kot.streetname + " " + kot.housenr.toString()
         findViewById<TextView>(R.id.txt_cityValue).text = kot.postalcode.toString() + ", " + kot.city
-        findViewById<TextView>(R.id.txt_rentValue).text = "€" + kot.rent.toString() + " / month"
+        findViewById<TextView>(R.id.txt_rentValue).text = "€" + String.format("%.2f", kot.rent) + " / month"
         findViewById<TextView>(R.id.txt_emailValue).text = "email@domain.poop"
         findViewById<TextView>(R.id.txt_phoneNumberValue).text = "0123456789"
         findViewById<TextView>(R.id.txt_descriptionValue).text = kot.description
