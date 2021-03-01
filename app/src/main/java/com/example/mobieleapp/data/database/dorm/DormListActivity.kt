@@ -35,6 +35,8 @@ class DormListActivity : AppCompatActivity() {
         var user  = intent.getSerializableExtra("user") as User
             Log.d("user",user.toString())
 
+        var userTest = userViewModel.getById(0)
+        Log.d("querrie", userTest.toString())
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewDorms)
         val adapter = DormListAdapter()
@@ -47,7 +49,7 @@ class DormListActivity : AppCompatActivity() {
         // in the foreground.
         dormViewModel.allDorms.observe(owner =  this) { dorms ->
             // Update the cached copy of the dorms in the adapter// .
-            Log.d("woord",dorms.toString() )
+            //Log.d("woord",dorms.toString() )
 
             dorms.let { adapter.submitList(it) }
 

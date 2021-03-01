@@ -1,6 +1,8 @@
 package com.example.mobieleapp.data.database.user
 
 import androidx.lifecycle.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 
 import kotlinx.coroutines.launch
 
@@ -9,6 +11,10 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     /*
      * Launching a new coroutine to insert the data in a non-blocking way
      */
+    fun getById(id : Int) = viewModelScope.launch {
+        repository.userByid(id)
+    }
+
     fun insert(user: User) = viewModelScope.launch {
         repository.insert(user)
 
