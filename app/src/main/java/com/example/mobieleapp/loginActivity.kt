@@ -73,7 +73,8 @@ class loginActivity : AppCompatActivity() {
                             found = true
 
 
-                            val intent = Intent(this, DormListActivity::class.java)
+                            val intent = Intent(this, DormListActivity::class.java).putExtra("user", i)
+
                             startActivity(intent)
 
                         }

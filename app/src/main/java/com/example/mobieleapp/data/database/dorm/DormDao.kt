@@ -3,7 +3,9 @@ package com.example.mobieleapp.data.database.dorm
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
+import androidx.room.Query
 import kotlinx.coroutines.flow.Flow
+import org.jetbrains.annotations.NotNull
 
 @Dao
 interface DormDao {
@@ -16,4 +18,5 @@ interface DormDao {
 
     @androidx.room.Query("DELETE FROM dorm_table")
     suspend fun deleteAll()
+
 }

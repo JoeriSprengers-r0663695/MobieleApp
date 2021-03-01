@@ -22,7 +22,7 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
     override fun onBindViewHolder(holder: DormViewHolder, position: Int) {
         val current = getItem(position)
 
-            holder.bind(current.id,current.adTitle,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description)
+            holder.bind(current.idDorm,current.adTitle,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description)
     }
 
     class DormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener,Serializable {
@@ -42,7 +42,7 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
             dormItemViewTitle.text = adTitle
             dormItemViewRent.text = "€"+ String.format("%.2f", rent)
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
-            kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description)
+            kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description,0)
 
         }
 
@@ -69,7 +69,7 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
         }
 
         override fun areContentsTheSame(oldItem: Dorm, newItem: Dorm): Boolean {
-            return oldItem.id == newItem.id
+            return oldItem.idDorm == newItem.idDorm
         }
     }
 }

@@ -43,6 +43,7 @@ class UserActivity : AppCompatActivity() {
                     Log.d("users",user[1].toString())
                 }
                 val user = User(null,username, passwoord, role)
+
                 userViewModel.insert( user)
                 finish()
             }

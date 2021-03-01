@@ -11,6 +11,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
+import com.example.mobieleapp.data.database.user.User
 
 class DormActivity : AppCompatActivity() {
 
@@ -23,7 +24,8 @@ class DormActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dorm)
-
+        var user  = intent.getSerializableExtra("user") as User
+        var iduser = user.idUser
         val button = findViewById<Button>(R.id.bevestigDorm)
         button.setOnClickListener {
             val replyIntent = Intent()
@@ -61,8 +63,13 @@ class DormActivity : AppCompatActivity() {
                     }
                 }
 
-                val dorm = Dorm(null,adTitle,streetName, housenr, city, postalcode, rent, description )
-                dormViewModel.insert( dorm)
+                val dorm = iduser?.let { it1 ->
+                    Dorm(null,adTitle,streetName, housenr, city, postalcode, rent, description,
+                        it1)
+                }
+                if (dorm != null) {
+                    dormViewModel.insert( dorm)
+                }
                 finish()
             }
         }
