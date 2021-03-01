@@ -6,7 +6,6 @@ import android.util.Log
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.observe
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -16,7 +15,6 @@ import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
-import kotlinx.coroutines.Job
 
 class DormListActivity : AppCompatActivity() {
 
@@ -58,13 +56,12 @@ class DormListActivity : AppCompatActivity() {
 
         findViewById<Button>(R.id.addKotId).setOnClickListener {
             val intent = Intent(this@DormListActivity, DormActivity::class.java).putExtra("user",user)
-
             startActivity(intent)
             finish()
 
         }
         findViewById<Button>(R.id.btn_toProfile).setOnClickListener {
-            val intent = Intent(this@DormListActivity, CameraActivity::class.java)
+            val intent = Intent(this@DormListActivity, CameraActivity::class.java).putExtra("user",user)
             startActivity(intent)
             finish()
 

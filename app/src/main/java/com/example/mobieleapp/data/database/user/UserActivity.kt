@@ -39,10 +39,14 @@ class UserActivity : AppCompatActivity() {
 
                 val role = findViewById<ToggleButton>(R.id.tb_role).text.toString()
 
+                val email = findViewById<EditText>(R.id.txtEmail).text.toString()
+
+                val phoneNr = findViewById<EditText>(R.id.txtPhoneNr).text.toString()
+
                 userViewModel.allUsers.observe(this) {user ->
                     Log.d("users",user[1].toString())
                 }
-                val user = User(null,username, passwoord, role)
+                val user = User(null,username, passwoord, role, email, phoneNr)
 
                 userViewModel.insert( user)
                 finish()

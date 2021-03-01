@@ -11,9 +11,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.DetailsPageActivity
 import com.example.mobieleapp.R
+import com.example.mobieleapp.data.database.user.User
 import java.io.Serializable
 
-class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormComparator()),Serializable {
+class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormComparator()),Serializable {
+
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DormViewHolder {
         Log.d("test1",DormViewHolder.create(parent).toString())
         return DormViewHolder.create(parent)
@@ -33,17 +36,24 @@ class DormListAdapter : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormCo
 
        lateinit var  kot : Dorm
 
-
         init {
             itemView.setOnClickListener(this)
         }
 
-        fun bind(current:Int?,adTitle:String?,streetname: String?, housenr : Int?,city :String?,postalcode:Int?,rent: Double?,description:String?) {
+        fun bind(
+            current: Int?,
+            adTitle: String?,
+            streetname: String?,
+            housenr: Int?,
+            city: String?,
+            postalcode: Int?,
+            rent: Double?,
+            description: String?,
+        ) {
             dormItemViewTitle.text = adTitle
             dormItemViewRent.text = "€"+ String.format("%.2f", rent)
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
             kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description,0)
-
         }
 
         companion object :Serializable {

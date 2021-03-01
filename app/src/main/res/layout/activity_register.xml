@@ -37,6 +37,32 @@
         app:layout_constraintStart_toEndOf="@+id/txtvPassword"
         app:layout_constraintTop_toBottomOf="@+id/txtUsername" />
 
+    <EditText
+        android:id="@+id/txtEmail"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:inputType="textAutoComplete"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.811"
+        app:layout_constraintStart_toEndOf="@+id/txtvEmail"
+        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+
+    <EditText
+        android:id="@+id/txtPhoneNr"
+        android:layout_width="152dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="sans-serif-light"
+        android:inputType="textAutoComplete"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.784"
+        app:layout_constraintStart_toEndOf="@+id/txtvPhoneNr"
+        app:layout_constraintTop_toBottomOf="@+id/txtEmail" />
+
     <TextView
         android:id="@+id/txtvUsername"
         android:layout_width="wrap_content"
@@ -62,6 +88,30 @@
         app:layout_constraintTop_toBottomOf="@+id/txtvUsername" />
 
     <TextView
+        android:id="@+id/txtvEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:text="Email"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtvPassword" />
+
+    <TextView
+        android:id="@+id/txtvPhoneNr"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginStart="28dp"
+        android:layout_marginLeft="28dp"
+        android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:text="Phone Nr"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtvEmail" />
+
+    <TextView
         android:id="@+id/txtvRole"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
@@ -71,7 +121,7 @@
         android:gravity="center_vertical"
         android:text="Role"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txtvPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtvPhoneNr" />
 
     <Button
         android:id="@+id/btn_BevestigId"
@@ -93,9 +143,9 @@
         android:textOff="Renter"
         android:textOn="Owner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.816"
+        app:layout_constraintHorizontal_bias="0.817"
         app:layout_constraintStart_toEndOf="@+id/txtvRole"
-        app:layout_constraintTop_toBottomOf="@+id/txtPassword" />
+        app:layout_constraintTop_toBottomOf="@+id/txtPhoneNr" />
 
     <TextView
         android:id="@+id/RegisterPageTitle"

@@ -6,17 +6,22 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mobieleapp.data.database.user.User
+import org.w3c.dom.Text
 
 class CameraActivity : AppCompatActivity() {
     lateinit var imagview : ImageView
     lateinit var btnCapture: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
-       var intent : Intent
+
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
+
+        var user  = intent.getSerializableExtra("user") as User
 
         imagview = findViewById(R.id.iv_camera)
         btnCapture= findViewById(R.id.btnCapture)
@@ -26,7 +31,9 @@ class CameraActivity : AppCompatActivity() {
             startActivityForResult(intent,1000)
         }
 
-
+        findViewById<TextView>(R.id.txtvProfileName).text = user.username
+        findViewById<TextView>(R.id.txtvProfileEmail).text = user.email
+        findViewById<TextView>(R.id.txtvProfilePhone).text = user.phoneNr
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
