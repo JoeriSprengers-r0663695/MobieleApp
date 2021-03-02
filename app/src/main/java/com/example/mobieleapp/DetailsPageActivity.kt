@@ -4,10 +4,15 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.Dorm
+import com.example.mobieleapp.data.database.dorm.DormListActivity
+import com.example.mobieleapp.data.database.dorm.DormViewModel
+import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
 import com.example.mobieleapp.data.database.user.User
 import com.example.myfirstapp.MainViewModel
 import com.example.myfirstapp.MainViewModelFactory
@@ -22,6 +27,10 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
     private val viewModelFactory = MainViewModelFactory(repository)
     private var lat : Double = 0.0
     private var long : Double = 0.0
+
+    private val dormViewModel: DormViewModel by viewModels {
+        DormViewModelFactory((application as Application).repositoryDorm)
+    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,5 +71,17 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
             startActivity(intent)
 
         }
+
+        findViewById<Button>(R.id.btn_editDorm).setOnClickListener {
+
+        }
+
+        findViewById<Button>(R.id.btn_deleteDorm).setOnClickListener {
+            dormViewModel.deleteSpecific(kot)
+            val intent = Intent(applicationContext, DormListActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

@@ -1,6 +1,5 @@
 package com.example.mobieleapp.data.database.dorm
 
-import androidx.annotation.WorkerThread
 import kotlinx.coroutines.flow.Flow
 
 class DormRepository(private val dormDao: DormDao) {
@@ -11,14 +10,15 @@ class DormRepository(private val dormDao: DormDao) {
     // off the main thread.
 
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
     suspend fun insert(dorm : Dorm) {
         dormDao.insert(dorm)
     }
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
+
     suspend fun deleteAll() {
         dormDao.deleteAll()
+    }
+
+    suspend fun deleteSpecific(dorm: Dorm) {
+        dormDao.delete(dorm)
     }
 }

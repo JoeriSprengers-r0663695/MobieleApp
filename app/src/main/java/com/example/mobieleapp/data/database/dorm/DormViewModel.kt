@@ -1,6 +1,7 @@
 package com.example.mobieleapp.data.database.dorm
 
 import androidx.lifecycle.*
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class DormViewModel(private val repository: DormRepository) : ViewModel() {
@@ -12,10 +13,13 @@ class DormViewModel(private val repository: DormRepository) : ViewModel() {
      */
     fun insert(dorm: Dorm) = viewModelScope.launch {
         repository.insert(dorm)
-
-    }fun delete() = viewModelScope.launch {
+    }
+    fun delete() = viewModelScope.launch {
         repository.deleteAll()
+    }
 
+    fun deleteSpecific(dorm: Dorm) = viewModelScope.launch(Dispatchers.IO) {
+        repository.deleteSpecific(dorm)
     }
 }
 
