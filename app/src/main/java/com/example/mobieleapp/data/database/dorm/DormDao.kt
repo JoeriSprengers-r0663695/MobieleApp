@@ -17,8 +17,10 @@ interface DormDao {
     suspend fun deleteAll()
 
     @Delete
-    fun delete(dorm: Dorm)
+    suspend fun delete(dorm: Dorm)
 
     @Update
     suspend fun updateDorm(dorm: Dorm)
+
+
 }

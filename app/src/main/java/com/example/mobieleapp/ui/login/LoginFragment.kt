@@ -30,7 +30,6 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val logi = view.findViewById<Button>(R.id.login)
-        val addkot = view.findViewById<Button>(R.id.btn_addkotpage)
         val word = view.findViewById<Button>(R.id.btn_word)
 
         logi.setOnClickListener {
@@ -41,11 +40,6 @@ class LoginFragment : Fragment() {
 
         word.setOnClickListener {
             val intent = Intent(activity, WordActivity::class.java)
-            startActivity(intent)
-        }
-
-        addkot.setOnClickListener {
-            val intent = Intent(activity, DormActivity::class.java)
             startActivity(intent)
         }
 

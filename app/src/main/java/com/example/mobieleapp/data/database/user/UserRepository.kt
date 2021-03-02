@@ -14,21 +14,14 @@ class UserRepository(private val userDao: UserDao) {
     // off the main thread.
 
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
      suspend fun userByid(id : Int) : User {
         return userDao.getUserById(id)
     }
 
-
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
     suspend fun insert(user :User) {
         userDao.insert(user)
     }
 
-    @Suppress("RedundantSuspendModifier")
-    @WorkerThread
     suspend fun deleteAll() {
         userDao.deleteAll()
     }

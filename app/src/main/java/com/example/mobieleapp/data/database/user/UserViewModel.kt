@@ -11,7 +11,7 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
     /*
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun getById(id : Int) = viewModelScope.launch {
+    fun getById(id : Int) = viewModelScope.launch(Dispatchers.IO) {
         repository.userByid(id)
     }
 

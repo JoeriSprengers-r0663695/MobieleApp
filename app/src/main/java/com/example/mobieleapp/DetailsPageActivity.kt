@@ -33,7 +33,6 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_detailspage)
-        //setSupportActionBar(findViewById(R.id.toolbar))
 
         var kot  = intent.getSerializableExtra("kot") as Dorm
 
