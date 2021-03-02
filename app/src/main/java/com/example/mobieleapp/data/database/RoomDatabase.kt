@@ -31,10 +31,13 @@ import kotlinx.coroutines.launch
                     scope.launch {
                         var userDao = database.userDao()
                         var dormDao = database.dormDao()
-                        var user = User(null,"m","ù","Renter", "dieter@email.com", "0234556")
+                        var user0 = User(0,"a","a","Renter", "dieter@email.com", "0234556")
+                        var user1 = User(1,"b","b","Owner", "dieter@email.com", "0234556")
 
                         var kot = Dorm(0,"groot huis","Distelstraat",70,"tienen",3300,50.50,"bladibla",0)
 
+                        userDao.insert(user0)
+                        userDao.insert(user1)
                         dormDao.insert(kot)
 
 

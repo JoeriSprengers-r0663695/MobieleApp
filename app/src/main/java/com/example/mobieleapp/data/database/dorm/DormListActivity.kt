@@ -3,6 +3,7 @@ package com.example.mobieleapp.data.database.dorm
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -32,8 +33,16 @@ class DormListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_home)
 
+
+
+
         var user  = intent.getSerializableExtra("user") as User
             Log.d("user",user.toString())
+
+        if(user.role.toString() == "Renter") {
+            findViewById<Button>(R.id.addKotId).visibility = View.GONE
+        }
+
 
         var userTest = userViewModel.getById(0)
         Log.d("querrie", userTest.toString())
