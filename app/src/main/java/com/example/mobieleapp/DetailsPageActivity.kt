@@ -9,10 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.mobieleapp.data.database.Application
-import com.example.mobieleapp.data.database.dorm.Dorm
-import com.example.mobieleapp.data.database.dorm.DormListActivity
-import com.example.mobieleapp.data.database.dorm.DormViewModel
-import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
+import com.example.mobieleapp.data.database.dorm.*
 import com.example.mobieleapp.data.database.user.User
 import com.example.myfirstapp.MainViewModel
 import com.example.myfirstapp.MainViewModelFactory
@@ -73,7 +70,8 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         }
 
         findViewById<Button>(R.id.btn_editDorm).setOnClickListener {
-
+            val intent = Intent(applicationContext, UpdateDormActivity::class.java).putExtra("kot", kot)
+            startActivity(intent)
         }
 
         findViewById<Button>(R.id.btn_deleteDorm).setOnClickListener {

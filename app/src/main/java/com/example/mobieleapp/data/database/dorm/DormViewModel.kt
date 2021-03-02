@@ -21,6 +21,10 @@ class DormViewModel(private val repository: DormRepository) : ViewModel() {
     fun deleteSpecific(dorm: Dorm) = viewModelScope.launch(Dispatchers.IO) {
         repository.deleteSpecific(dorm)
     }
+
+    fun updateDorm(dorm: Dorm) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateDorm(dorm)
+    }
 }
 
 class DormViewModelFactory(private val repository: DormRepository) : ViewModelProvider.Factory {

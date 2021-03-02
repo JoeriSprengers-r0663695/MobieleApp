@@ -18,7 +18,13 @@ class DormRepository(private val dormDao: DormDao) {
         dormDao.deleteAll()
     }
 
-    suspend fun deleteSpecific(dorm: Dorm) {
+    fun deleteSpecific(dorm: Dorm) {
         dormDao.delete(dorm)
     }
+
+    suspend fun updateDorm(dorm: Dorm) {
+        dormDao.updateDorm(dorm)
+    }
+
+
 }
