@@ -26,9 +26,13 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MobieleApp">
         <activity
+            android:name=".data.database.dorm.UpdateDormActivity"
+            android:label="@string/title_activity_update_dorm"
+            android:theme="@style/Theme.MobieleApp.NoActionBar"></activity>
+        <activity
             android:name=".mapsActivity"
             android:label="@string/title_activity_maps"
-            android:theme="@style/Theme.MobieleApp.NoActionBar"></activity>
+            android:theme="@style/Theme.MobieleApp.NoActionBar" />
         <activity
             android:name=".DetailsPageActivity"
             android:label="@string/title_activity_details_page"
