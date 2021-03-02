@@ -53,6 +53,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             dormItemViewTitle.text = adTitle
             dormItemViewRent.text = "€"+ String.format("%.2f", rent)
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
+            //TODO aanpassen van hardvoded iduser hier
             kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description,0)
         }
 

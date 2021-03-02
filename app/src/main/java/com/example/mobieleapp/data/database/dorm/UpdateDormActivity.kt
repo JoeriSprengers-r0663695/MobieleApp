@@ -8,6 +8,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.mobieleapp.DetailsPageActivity
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.Application
 
@@ -33,15 +34,19 @@ class UpdateDormActivity : AppCompatActivity() {
         findViewById<EditText>(R.id.txtv_updateDormDescription).setText(kot.description)
 
         findViewById<Button>(R.id.btn_confirmUpdateDorm).setOnClickListener {
-            updateDorm(kot)
-            val intent = Intent(applicationContext, DormListActivity::class.java)
-            startActivity(intent)
+            var newDorm = updateDorm(kot)
+            if(newDorm !== null) {
+                val intent =
+                    Intent(applicationContext, DetailsPageActivity::class.java).putExtra("kot",
+                        newDorm)
+                startActivity(intent)
+            }
         }
 
 
     }
 
-    private fun updateDorm(kot: Dorm) {
+    private fun updateDorm(kot: Dorm): Dorm?{
         var newTitle = findViewById<EditText>(R.id.txtv_updateDormAdTitle).text.toString()
         var newStreet =findViewById<EditText>(R.id.txtv_updateDormStreet).text.toString()
         var newHouseNr =findViewById<EditText>(R.id.txtv_updateDormHouseNr).text.toString().toInt()
@@ -54,21 +59,20 @@ class UpdateDormActivity : AppCompatActivity() {
         if(validateFields(newTitle,newStreet,newHouseNr,newCity,newPostalCode,newRent,newDescription)) {
             var updatedDorm = Dorm(kot.idDorm, newTitle,newStreet,newHouseNr,newCity,newPostalCode,newRent,newDescription,kot.idUser)
             dormViewModel.updateDorm(updatedDorm)
+            return updatedDorm
         } else {
             Toast.makeText(applicationContext,"you didnt fill in everything or at least not correct", Toast.LENGTH_LONG).show()
+            return null
         }
-
-
-
     }
 
     fun validateFields(title:String,street:String,nr:Int,city:String,code:Int,rent:Double,description:String) : Boolean {
-        return !(TextUtils.isEmpty(title) &&
-                TextUtils.isEmpty(street) &&
-                nr<1 &&
-                TextUtils.isEmpty(city) &&
-                code in 10001..999 &&
-                rent < 0 &&
+        return !(TextUtils.isEmpty(title) ||
+                TextUtils.isEmpty(street) ||
+                nr<1 ||
+                TextUtils.isEmpty(city) ||
+                code in 10001..999 ||
+                rent < 0 ||
                 TextUtils.isEmpty(description)
                 )
     }
