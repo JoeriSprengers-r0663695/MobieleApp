@@ -33,4 +33,5 @@
     <string name="title_activity_details_page">DetailsPageActivity</string>
     <string name="title_activity_maps">mapsActivity</string>
     <string name="title_activity_update_dorm">UpdateDormActivity</string>
+    <string name="title_activity_update_profile_pic">UpdateProfilePicActivity</string>
 </resources>

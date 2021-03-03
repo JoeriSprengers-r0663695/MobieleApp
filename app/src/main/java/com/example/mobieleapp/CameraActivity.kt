@@ -15,9 +15,11 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.data.database.Application
+import com.example.mobieleapp.data.database.dorm.DormListActivity
 import com.example.mobieleapp.data.database.dorm.DormListAdapter
 import com.example.mobieleapp.data.database.dorm.DormViewModel
 import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
+import com.example.mobieleapp.data.database.user.UpdateProfilePicActivity
 import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
@@ -27,6 +29,7 @@ import org.w3c.dom.Text
 class CameraActivity : AppCompatActivity() {
     lateinit var imagview : ImageView
     lateinit var btnCapture: Button
+    lateinit var btnSafeProfile: Button
 
     private val dormViewModel: DormViewModel by viewModels {
         DormViewModelFactory((application as Application).repositoryDorm)
@@ -56,10 +59,17 @@ class CameraActivity : AppCompatActivity() {
 
         imagview = findViewById(R.id.iv_camera)
         btnCapture= findViewById(R.id.btnCapture)
+        btnSafeProfile = findViewById(R.id.btnSafeProfile)
+
+
 
         btnCapture.setOnClickListener{
             intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(intent,1000)
+        }
+        btnSafeProfile.setOnClickListener{
+            val intent = Intent(this, UpdateProfilePicActivity::class.java)
+            startActivity(intent)
         }
 
         findViewById<TextView>(R.id.txtvProfileName).text = user.username
@@ -69,6 +79,7 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         var bitmap: Bitmap
+        var intent: Intent
         super.onActivityResult(requestCode, resultCode, data)
 
         if(requestCode == 1000 && resultCode == RESULT_OK){

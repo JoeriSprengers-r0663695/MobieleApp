@@ -1,6 +1,7 @@
 package com.example.mobieleapp.data.database.user
 
 import androidx.lifecycle.*
+import com.example.mobieleapp.data.database.dorm.Dorm
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
@@ -24,6 +25,9 @@ class UserViewModel(private val repository: UserRepository) : ViewModel() {
 
     }
 
+    fun updateUser(user: User) = viewModelScope.launch(Dispatchers.IO) {
+        repository.updateUser(user)
+    }
 
 }
 

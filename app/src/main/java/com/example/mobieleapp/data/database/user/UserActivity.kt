@@ -46,7 +46,7 @@ class UserActivity : AppCompatActivity() {
                 userViewModel.allUsers.observe(this) {user ->
                     Log.d("users",user[1].toString())
                 }
-                val user = User(null,username, passwoord, role, email, phoneNr)
+                val user = User(null,username, passwoord, role, email, phoneNr,null)
 
                 userViewModel.insert( user)
                 Log.d("getbyid", userViewModel.getById(0).toString())
