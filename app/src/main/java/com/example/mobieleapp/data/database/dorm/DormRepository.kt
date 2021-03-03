@@ -6,10 +6,11 @@ class DormRepository(private val dormDao: DormDao) {
     val allDorms: Flow<List<Dorm>> = dormDao.getAllDorms()
 
 
-    suspend fun getDormsForUser(id: Int) {
-        dormDao.getUsersWithDorms(id)
-    }
 
+
+    suspend fun dormForUser(id: Int): List<Dorm> {
+        return dormDao.dormForUser(id)
+    }
 
     suspend fun insert(dorm : Dorm) {
         dormDao.insert(dorm)

@@ -23,7 +23,7 @@ interface DormDao {
     @Update
     suspend fun updateDorm(dorm: Dorm)
 
-    @androidx.room.Query("SELECT * FROM dorm_table WHERE owner =:id")
-    suspend fun getUsersWithDorms(id: Int): List<Dorm>
+    @androidx.room.Query("SELECT * FROM dorm_table WHERE owner = :id")
+    suspend fun dormForUser(id: Int): List<Dorm>
 
 }

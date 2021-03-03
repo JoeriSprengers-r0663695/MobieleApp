@@ -9,10 +9,11 @@ class DormViewModel(private val repository: DormRepository) : ViewModel() {
     val allDorms: MutableLiveData<List<Dorm>> = repository.allDorms.asLiveData() as MutableLiveData<List<Dorm>>
 
 
-    fun getDormFromUser(id:Int) = runBlocking {
-        repository.getDormsForUser(id)
-    }
 
+
+    fun dormForUser(id: Int) = runBlocking {
+        repository.dormForUser(id)
+    }
 
     fun insert(dorm: Dorm) = viewModelScope.launch {
         repository.insert(dorm)

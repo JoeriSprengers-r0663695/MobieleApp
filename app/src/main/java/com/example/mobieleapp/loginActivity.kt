@@ -51,7 +51,10 @@ class loginActivity : AppCompatActivity() {
            */
 
             //Get list of users with their respecctive dorms
-            Log.d("Dormsforuser1",dormViewModel.getDormFromUser(0).toString())
+            /*dormViewModel.dormForUser(0).observe(this) { dorm ->
+                Log.d("DormForuser0", dorm.toString())
+            }*/
+            Log.d("dormForUser0", dormViewModel.dormForUser(0).toString())
 
 
             /* loadingProgressBar.visibility = View.VISIBLE
