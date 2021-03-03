@@ -2,6 +2,8 @@ package com.example.mobieleapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager
+import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import androidx.activity.viewModels
@@ -16,6 +18,7 @@ import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.example.myfirstapp.MainViewModel
 import com.example.myfirstapp.MainViewModelFactory
 import com.example.myfirstapp.repository.Repository
+import com.google.gson.Gson
 import java.io.Serializable
 
 class DetailsPageActivity : AppCompatActivity(),Serializable {
@@ -42,7 +45,17 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         var kotOwner  = kot.idUser?.let { userViewModel.getById(it) } as User
 
+        //Code for current user
+        val gson = Gson()
+        val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext)
+            .getString("user", "")
+        val u: User = gson.fromJson(json, User::class.java)
 
+
+        if(kotOwner.idUser == u.idUser) {
+            findViewById<Button>(R.id.btn_editDorm).visibility = View.VISIBLE
+            findViewById<Button>(R.id.btn_deleteDorm).visibility = View.VISIBLE
+        }
 
 
         findViewById<TextView>(R.id.txt_streetValue).text = kot.streetname + " " + kot.housenr.toString()

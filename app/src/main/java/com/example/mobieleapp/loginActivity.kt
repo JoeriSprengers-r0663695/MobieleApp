@@ -46,22 +46,7 @@ class loginActivity : AppCompatActivity() {
         val passwordEditText = findViewById<EditText>(R.id.password2).text
 
         loginButton.setOnClickListener {
-           /*Log.d("userinfo", usernameEditText.toString())
-            Log.d("userinfo", passwordEditText.toString())
-           */
 
-            //Get list of users with their respecctive dorms
-            /*dormViewModel.dormForUser(0).observe(this) { dorm ->
-                Log.d("DormForuser0", dorm.toString())
-            }*/
-            Log.d("dormForUser1", dormViewModel.dormForUser(1).toString())
-
-
-            /* loadingProgressBar.visibility = View.VISIBLE
-             loginViewModel.login(
-                 usernameEditText.text.toString(),
-                 passwordEditText.text.toString()
-             )*/
             if(usernameEditText.isEmpty() && passwordEditText.isEmpty()){
                 Toast.makeText(
                     applicationContext,
@@ -74,21 +59,10 @@ class loginActivity : AppCompatActivity() {
                 //Log.d("viewmodel", userViewModel.toString())
                 userViewModel.allUsers?.observe(this){ users ->
                     for(i in users){
-
-                        /*Log.d("observerUser", i.username.toString())
-                        Log.d("observerUserInTextEdit", usernameEditText.toString())
-                        Log.d("observerUser", i.password.toString())
-                        Log.d("observerUserInTextEdit", passwordEditText.toString())
-                        Log.d("checkEquealsUsername",  i.username.toString().equals(usernameEditText.toString()).toString())*/
                         i.username.toString().equals(usernameEditText.toString())
 
                         if (i.username.toString().equals(usernameEditText.toString())&& i.password.toString().equals(
                                 passwordEditText.toString())){
-                          /*  Log.d("observerUser", usernameEditText.toString())
-                            Log.d("observerUser", i.username.toString())
-                            Log.d("observerUser", passwordEditText.toString())
-                            Log.d("observerUser", i.password.toString())
-                            Log.d("observerUser", i.role.toString())*/
                             found = true
 
 
