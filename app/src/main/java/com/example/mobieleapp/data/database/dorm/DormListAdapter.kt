@@ -24,7 +24,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
     override fun onBindViewHolder(holder: DormViewHolder, position: Int) {
         val current = getItem(position)
 
-            holder.bind(current.idDorm,current.adTitle,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description)
+            holder.bind(current.idDorm,current.adTitle,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description,current.idUser)
     }
 
     class DormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener,Serializable {
@@ -48,12 +48,13 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             postalcode: Int?,
             rent: Double?,
             description: String?,
+            owner: Int?,
         ) {
             dormItemViewTitle.text = adTitle
             dormItemViewRent.text = "€"+ String.format("%.2f", rent)
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
-            //TODO aanpassen van hardvoded iduser hier
-            kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description,0)
+
+            kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description,owner)
         }
 
         companion object :Serializable {
