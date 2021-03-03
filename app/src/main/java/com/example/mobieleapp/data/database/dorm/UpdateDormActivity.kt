@@ -39,6 +39,7 @@ class UpdateDormActivity : AppCompatActivity() {
                 val intent =
                     Intent(applicationContext, DetailsPageActivity::class.java).putExtra("kot",
                         newDorm)
+                finish()
                 startActivity(intent)
             }
         }

@@ -85,7 +85,6 @@ class DormListActivity : AppCompatActivity() {
             val intent = Intent(this@DormListActivity, CameraActivity::class.java).putExtra("user",
                 user)
             startActivity(intent)
-            finish()
         }
 
     }

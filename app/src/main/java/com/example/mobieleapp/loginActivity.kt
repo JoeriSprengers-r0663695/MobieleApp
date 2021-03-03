@@ -89,6 +89,7 @@ class loginActivity : AppCompatActivity() {
                             val json = gson.toJson(i)
                             prefsEditor.putString("user", json)
                             prefsEditor.commit()
+                            finish()
                             startActivity(intent)
 
                         }
