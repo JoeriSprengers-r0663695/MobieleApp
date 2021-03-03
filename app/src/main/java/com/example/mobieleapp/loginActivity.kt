@@ -3,17 +3,18 @@ package com.example.mobieleapp
 import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.preference.PreferenceManager.getDefaultSharedPreferences
+import android.preference.PreferenceManager
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.preference.PreferenceManager
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.DormListActivity
+import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
 import com.example.mobieleapp.data.database.user.User
+import com.example.mobieleapp.data.database.dorm.DormViewModel
 import com.example.mobieleapp.data.database.user.UserActivity
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
@@ -27,6 +28,9 @@ class loginActivity : AppCompatActivity() {
 
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as Application).repositoryUser)
+    }
+    private val dormViewModel: DormViewModel by viewModels {
+        DormViewModelFactory((application as Application).repositoryDorm)
     }
 
 
@@ -42,8 +46,12 @@ class loginActivity : AppCompatActivity() {
         val passwordEditText = findViewById<EditText>(R.id.password2).text
 
         loginButton.setOnClickListener {
-            Log.d("userinfo", usernameEditText.toString())
+           /*Log.d("userinfo", usernameEditText.toString())
             Log.d("userinfo", passwordEditText.toString())
+           */
+
+            //Get list of users with their respecctive dorms
+            Log.d("Dormsforuser1",dormViewModel.getDormFromUser(0).toString())
 
 
             /* loadingProgressBar.visibility = View.VISIBLE
@@ -60,7 +68,7 @@ class loginActivity : AppCompatActivity() {
             }else{
 
 
-                Log.d("viewmodel", userViewModel.toString())
+                //Log.d("viewmodel", userViewModel.toString())
                 userViewModel.allUsers?.observe(this){ users ->
                     for(i in users){
 
@@ -76,8 +84,8 @@ class loginActivity : AppCompatActivity() {
                           /*  Log.d("observerUser", usernameEditText.toString())
                             Log.d("observerUser", i.username.toString())
                             Log.d("observerUser", passwordEditText.toString())
-                            Log.d("observerUser", i.password.toString())*/
-                            Log.d("observerUser", i.role.toString())
+                            Log.d("observerUser", i.password.toString())
+                            Log.d("observerUser", i.role.toString())*/
                             found = true
 
 

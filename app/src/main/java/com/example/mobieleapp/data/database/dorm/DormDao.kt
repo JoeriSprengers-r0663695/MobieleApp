@@ -1,5 +1,6 @@
 package com.example.mobieleapp.data.database.dorm
 
+import androidx.annotation.MainThread
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
 import org.jetbrains.annotations.NotNull
@@ -22,5 +23,7 @@ interface DormDao {
     @Update
     suspend fun updateDorm(dorm: Dorm)
 
+    @androidx.room.Query("SELECT * FROM dorm_table WHERE owner =:id")
+    suspend fun getUsersWithDorms(id: Int): List<Dorm>
 
 }

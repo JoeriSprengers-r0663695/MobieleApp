@@ -5,13 +5,14 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.runBlocking
 
 class UserViewModel(private val repository: UserRepository) : ViewModel() {
     val allUsers: MutableLiveData<List<User>> = repository.allUsers.asLiveData() as MutableLiveData<List<User>>
     /*
      * Launching a new coroutine to insert the data in a non-blocking way
      */
-    fun getById(id : Int) = viewModelScope.launch(Dispatchers.IO) {
+    fun getById(id : Int) = runBlocking {
         repository.userByid(id)
     }
 
