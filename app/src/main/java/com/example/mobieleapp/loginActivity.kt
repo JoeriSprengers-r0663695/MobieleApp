@@ -92,8 +92,7 @@ class loginActivity : AppCompatActivity() {
                             found = true
 
 
-                            val intent = Intent(this, DormListActivity::class.java).putExtra("user",
-                                i)
+                            val intent = Intent(this, DormListActivity::class.java)
 
                             val prefsEditor: SharedPreferences.Editor = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
                             val gson = Gson()

@@ -8,10 +8,19 @@ import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.activity.viewModels
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.preference.PreferenceManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.mobieleapp.data.database.Application
+import com.example.mobieleapp.data.database.dorm.DormListAdapter
+import com.example.mobieleapp.data.database.dorm.DormViewModel
+import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
 import com.example.mobieleapp.data.database.user.User
+import com.example.mobieleapp.data.database.user.UserViewModel
+import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.google.gson.Gson
 import org.w3c.dom.Text
 
@@ -19,7 +28,13 @@ class CameraActivity : AppCompatActivity() {
     lateinit var imagview : ImageView
     lateinit var btnCapture: Button
 
+    private val dormViewModel: DormViewModel by viewModels {
+        DormViewModelFactory((application as Application).repositoryDorm)
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
+
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
@@ -27,11 +42,17 @@ class CameraActivity : AppCompatActivity() {
 
         val gson = Gson()
         val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
-        val u: User = gson.fromJson(json, User::class.java)
+        val user: User = gson.fromJson(json, User::class.java)
 
-        Log.d("user in current session",u.username.toString())
+        Log.d("user in current session",user.username.toString())
 
-        var user  = intent.getSerializableExtra("user") as User
+        val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewUserDorms)
+        val adapter = DormListAdapter()
+
+        recyclerView.adapter = adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
+        adapter.submitList(user.idUser?.let { dormViewModel.dormForUser(it) })
 
         imagview = findViewById(R.id.iv_camera)
         btnCapture= findViewById(R.id.btnCapture)

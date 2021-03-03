@@ -67,20 +67,15 @@ class DormListActivity : AppCompatActivity() {
             //Log.d("woord",dorms.toString() )
 
             dorms.let { adapter.submitList(it) }
-
         }
 
 
         findViewById<Button>(R.id.addKotId).setOnClickListener {
-            val intent = Intent(this@DormListActivity, DormActivity::class.java).putExtra("user",
-                user)
+            val intent = Intent(this@DormListActivity, DormActivity::class.java)
             startActivity(intent)
-            finish()
-
         }
         findViewById<Button>(R.id.btn_toProfile).setOnClickListener {
-            val intent = Intent(this@DormListActivity, CameraActivity::class.java).putExtra("user",
-                user)
+            val intent = Intent(this@DormListActivity, CameraActivity::class.java)
             startActivity(intent)
         }
 

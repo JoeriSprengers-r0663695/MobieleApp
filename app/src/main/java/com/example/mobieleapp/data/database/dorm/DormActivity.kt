@@ -9,9 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
+import androidx.preference.PreferenceManager
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
 import com.example.mobieleapp.data.database.user.User
+import com.google.gson.Gson
 
 class DormActivity : AppCompatActivity() {
 
@@ -24,9 +26,16 @@ class DormActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dorm)
-        var user  = intent.getSerializableExtra("user") as User
+
+        val gson = Gson()
+        val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
+        val u: User = gson.fromJson(json, User::class.java)
+
+        var user  = u
         var iduser = user.idUser
         val button = findViewById<Button>(R.id.bevestigDorm)
+
+
         button.setOnClickListener {
             val replyIntent = Intent()
             if (
