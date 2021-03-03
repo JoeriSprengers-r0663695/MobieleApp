@@ -54,7 +54,7 @@ class loginActivity : AppCompatActivity() {
             /*dormViewModel.dormForUser(0).observe(this) { dorm ->
                 Log.d("DormForuser0", dorm.toString())
             }*/
-            Log.d("dormForUser0", dormViewModel.dormForUser(0).toString())
+            Log.d("dormForUser1", dormViewModel.dormForUser(1).toString())
 
 
             /* loadingProgressBar.visibility = View.VISIBLE
