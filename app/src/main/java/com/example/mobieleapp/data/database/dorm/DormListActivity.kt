@@ -9,7 +9,6 @@ import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
-import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.CameraActivity
@@ -19,8 +18,6 @@ import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.google.gson.Gson
-
-
 
 
 class DormListActivity : AppCompatActivity() {
@@ -40,7 +37,7 @@ class DormListActivity : AppCompatActivity() {
         setContentView(R.layout.fragment_home)
 
         val gson = Gson()
-        val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
+        val json: String? = getDefaultSharedPreferences(applicationContext).getString("user", "")
         val u: User = gson.fromJson(json, User::class.java)
         Log.d("user in current session",u.username.toString())
 

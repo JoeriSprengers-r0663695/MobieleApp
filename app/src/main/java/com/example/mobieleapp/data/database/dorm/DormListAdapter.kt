@@ -18,7 +18,6 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DormViewHolder {
-        Log.d("test1",DormViewHolder.create(parent).toString())
         return DormViewHolder.create(parent)
     }
 

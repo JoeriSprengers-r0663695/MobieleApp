@@ -13,7 +13,7 @@ data class User(
     @ColumnInfo(name="password") val password: String?,
     @ColumnInfo(name="role") val role: String?,
     @ColumnInfo(name="email") val  email: String?,
-    @ColumnInfo(name="phoneNr") val phoneNr: String?
+    @ColumnInfo(name="phoneNr") val phoneNr: String?,
     // @ColumnInfo(name= "profilePicture") val pic: Data?
 ):Serializable
 

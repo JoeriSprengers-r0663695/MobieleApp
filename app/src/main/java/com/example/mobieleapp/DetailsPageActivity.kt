@@ -11,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.*
 import com.example.mobieleapp.data.database.user.User
+import com.example.mobieleapp.data.database.user.UserViewModel
+import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.example.myfirstapp.MainViewModel
 import com.example.myfirstapp.MainViewModelFactory
 import com.example.myfirstapp.repository.Repository
@@ -28,7 +30,9 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
     private val dormViewModel: DormViewModel by viewModels {
         DormViewModelFactory((application as Application).repositoryDorm)
     }
-
+    private val userViewModel: UserViewModel by viewModels {
+        UserViewModelFactory((application as Application).repositoryUser)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,11 +40,16 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         var kot  = intent.getSerializableExtra("kot") as Dorm
 
+        var kotOwner  = kot.idUser?.let { userViewModel.getById(it) } as User
+
+
+
+
         findViewById<TextView>(R.id.txt_streetValue).text = kot.streetname + " " + kot.housenr.toString()
         findViewById<TextView>(R.id.txt_cityValue).text = kot.postalcode.toString() + ", " + kot.city
         findViewById<TextView>(R.id.txt_rentValue).text = "€" + String.format("%.2f", kot.rent) + " / month"
-        findViewById<TextView>(R.id.txt_emailValue).text = "placeholder email"
-        findViewById<TextView>(R.id.txt_phoneNumberValue).text = "placeholder tel"
+        findViewById<TextView>(R.id.txt_emailValue).text = kotOwner.email
+        findViewById<TextView>(R.id.txt_phoneNumberValue).text = kotOwner.phoneNr
         findViewById<TextView>(R.id.txt_descriptionValue).text = kot.description
 
 
