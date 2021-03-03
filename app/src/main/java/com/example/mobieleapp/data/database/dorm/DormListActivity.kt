@@ -2,12 +2,14 @@ package com.example.mobieleapp.data.database.dorm
 
 import android.content.Intent
 import android.os.Bundle
+import android.preference.PreferenceManager.getDefaultSharedPreferences
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
+import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.CameraActivity
@@ -16,6 +18,10 @@ import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
+import com.google.gson.Gson
+
+
+
 
 class DormListActivity : AppCompatActivity() {
 
@@ -33,11 +39,14 @@ class DormListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.fragment_home)
 
+        val gson = Gson()
+        val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
+        val u: User = gson.fromJson(json, User::class.java)
+        Log.d("user in current session",u.username.toString())
 
 
-
-        var user  = intent.getSerializableExtra("user") as User
-            Log.d("user",user.toString())
+        var user  = u
+            Log.d("user", user.toString())
 
         if(user.role.toString() == "Renter") {
             findViewById<Button>(R.id.addKotId).visibility = View.GONE
@@ -56,7 +65,7 @@ class DormListActivity : AppCompatActivity() {
         // Add an observer on the LiveData returned by getAlphabetizedWords.
         // The onChanged() method fires when the observed data changes and the activity is
         // in the foreground.
-        dormViewModel.allDorms.observe(owner =  this) { dorms ->
+        dormViewModel.allDorms.observe(owner = this) { dorms ->
             // Update the cached copy of the dorms in the adapter// .
             //Log.d("woord",dorms.toString() )
 
@@ -66,16 +75,17 @@ class DormListActivity : AppCompatActivity() {
 
 
         findViewById<Button>(R.id.addKotId).setOnClickListener {
-            val intent = Intent(this@DormListActivity, DormActivity::class.java).putExtra("user",user)
+            val intent = Intent(this@DormListActivity, DormActivity::class.java).putExtra("user",
+                user)
             startActivity(intent)
             finish()
 
         }
         findViewById<Button>(R.id.btn_toProfile).setOnClickListener {
-            val intent = Intent(this@DormListActivity, CameraActivity::class.java).putExtra("user",user)
+            val intent = Intent(this@DormListActivity, CameraActivity::class.java).putExtra("user",
+                user)
             startActivity(intent)
             finish()
-
         }
 
     }

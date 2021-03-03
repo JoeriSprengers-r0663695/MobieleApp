@@ -4,12 +4,15 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.example.mobieleapp.data.database.user.User
+import com.google.gson.Gson
 import org.w3c.dom.Text
 
 class CameraActivity : AppCompatActivity() {
@@ -20,6 +23,13 @@ class CameraActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_camera)
+
+
+        val gson = Gson()
+        val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
+        val u: User = gson.fromJson(json, User::class.java)
+
+        Log.d("user in current session",u.username.toString())
 
         var user  = intent.getSerializableExtra("user") as User
 

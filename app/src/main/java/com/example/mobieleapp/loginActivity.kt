@@ -1,22 +1,29 @@
 package com.example.mobieleapp
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
+import android.content.SharedPreferences
 import android.os.Bundle
+import android.preference.PreferenceManager.getDefaultSharedPreferences
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
+import androidx.preference.PreferenceManager
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.DormListActivity
+import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.user.UserActivity
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
+import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_login.*
+
 
 class loginActivity : AppCompatActivity() {
 
+   private val currentUser : User? = null
 
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as Application).repositoryUser)
@@ -64,7 +71,8 @@ class loginActivity : AppCompatActivity() {
                         Log.d("checkEquealsUsername",  i.username.toString().equals(usernameEditText.toString()).toString())*/
                         i.username.toString().equals(usernameEditText.toString())
 
-                        if (i.username.toString().equals(usernameEditText.toString())&& i.password.toString().equals(passwordEditText.toString())){
+                        if (i.username.toString().equals(usernameEditText.toString())&& i.password.toString().equals(
+                                passwordEditText.toString())){
                           /*  Log.d("observerUser", usernameEditText.toString())
                             Log.d("observerUser", i.username.toString())
                             Log.d("observerUser", passwordEditText.toString())
@@ -73,8 +81,14 @@ class loginActivity : AppCompatActivity() {
                             found = true
 
 
-                            val intent = Intent(this, DormListActivity::class.java).putExtra("user", i)
+                            val intent = Intent(this, DormListActivity::class.java).putExtra("user",
+                                i)
 
+                            val prefsEditor: SharedPreferences.Editor = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
+                            val gson = Gson()
+                            val json = gson.toJson(i)
+                            prefsEditor.putString("user", json)
+                            prefsEditor.commit()
                             startActivity(intent)
 
                         }
