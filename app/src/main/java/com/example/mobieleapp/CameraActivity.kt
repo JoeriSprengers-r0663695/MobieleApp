@@ -1,7 +1,9 @@
 package com.example.mobieleapp
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
@@ -25,18 +27,25 @@ import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.google.gson.Gson
 import org.w3c.dom.Text
+import java.io.ByteArrayOutputStream
 
 class CameraActivity : AppCompatActivity() {
     lateinit var imagview : ImageView
     lateinit var btnCapture: Button
     lateinit var btnSafeProfile: Button
+    private lateinit var bitmap : Bitmap
+
 
     private val dormViewModel: DormViewModel by viewModels {
         DormViewModelFactory((application as Application).repositoryDorm)
     }
 
+    @SuppressLint("WrongThread")
     override fun onCreate(savedInstanceState: Bundle?) {
 
+        val userViewModel: UserViewModel by viewModels {
+            UserViewModelFactory((application as Application).repositoryUser)
+        }
 
 
         super.onCreate(savedInstanceState)
@@ -64,17 +73,23 @@ class CameraActivity : AppCompatActivity() {
 
 
         btnCapture.setOnClickListener{
-            intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+            val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE)
             startActivityForResult(intent,1000)
         }
         btnSafeProfile.setOnClickListener{
-            val intent = Intent(this, UpdateProfilePicActivity::class.java)
-            startActivity(intent)
+           bitmap = (findViewById<ImageView>(R.id.iv_camera).drawable as BitmapDrawable).bitmap as Bitmap
+            val stream = ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+            val image = stream.toByteArray()
+
+            updatePic(image, user, userViewModel)
         }
 
         findViewById<TextView>(R.id.txtvProfileName).text = user.username
         findViewById<TextView>(R.id.txtvProfileEmail).text = user.email
         findViewById<TextView>(R.id.txtvProfilePhone).text = user.phoneNr
+
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -86,5 +101,17 @@ class CameraActivity : AppCompatActivity() {
             bitmap = data?.extras?.get("data") as Bitmap
             imagview.setImageBitmap(bitmap)
         }
+        if(requestCode == 2000 && resultCode == RESULT_OK){
+
+
+        }
+    }
+
+    private fun updatePic(pic: ByteArray, user: User, userViewModel: UserViewModel): User?{
+
+        var updatedPic = User(user.idUser, user.username,user.password,user.role,user.email,user.phoneNr,pic)
+        Log.d("update User his Pic", updatedPic.toString())
+        userViewModel.updateUser(updatedPic)
+        return updatedPic
     }
 }
