@@ -7,8 +7,10 @@ import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
+import android.provider.ContactsContract
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
@@ -31,7 +33,6 @@ import java.io.ByteArrayOutputStream
 class CameraActivity : AppCompatActivity() {
     lateinit var imagview : ImageView
     lateinit var btnCapture: Button
-    lateinit var btnSafeProfile: Button
 
 
     private val dormViewModel: DormViewModel by viewModels {
@@ -61,7 +62,6 @@ class CameraActivity : AppCompatActivity() {
 
         imagview = findViewById(R.id.iv_camera)
         btnCapture= findViewById(R.id.btnCapture)
-        btnSafeProfile = findViewById(R.id.btnSafeProfile)
 
 
 
@@ -69,13 +69,15 @@ class CameraActivity : AppCompatActivity() {
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE)
             startActivityForResult(intent, 1000)
         }
-        btnSafeProfile.setOnClickListener{
 
+
+        findViewById<TextView>(R.id.txtvProfileName).text = "Username: " +user.username
+        findViewById<TextView>(R.id.txtvProfileEmail).text = "Email: " +user.email
+        findViewById<TextView>(R.id.txtvProfilePhone).text = "Phone: " + user.phoneNr
+
+        if(user.role.equals("Renter")) {
+            findViewById<TextView>(R.id.txtvMyDorms).visibility = View.GONE
         }
-
-        findViewById<TextView>(R.id.txtvProfileName).text = user.username
-        findViewById<TextView>(R.id.txtvProfileEmail).text = user.email
-        findViewById<TextView>(R.id.txtvProfilePhone).text = user.phoneNr
 
         if(user.pic != null){
                 val bitmap = BitmapFactory.decodeByteArray(user.pic, 0, user.pic.size)
@@ -133,11 +135,15 @@ class CameraActivity : AppCompatActivity() {
 
         val prefsEditor: SharedPreferences.Editor = android.preference.PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
         prefsEditor.remove("user")
+        prefsEditor.commit()
         val gson = Gson()
         val json = gson.toJson(updatedPic)
         prefsEditor.putString("user", json)
+        prefsEditor.commit()
 
-        val bitmap = user.pic?.let { BitmapFactory.decodeByteArray(updatedPic.pic, 0, it.size) }
+
+
+        val bitmap = updatedPic.pic?.let { BitmapFactory.decodeByteArray(it, 0, it.size) }
         imagview.setImageBitmap(bitmap);
 
 
