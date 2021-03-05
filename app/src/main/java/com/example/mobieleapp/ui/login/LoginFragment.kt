@@ -8,8 +8,6 @@ import android.view.ViewGroup
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import com.example.mobieleapp.R
-import com.example.mobieleapp.data.database.dorm.DormActivity
-import com.example.mobieleapp.data.database.wordbrol.WordActivity
 import com.example.mobieleapp.loginActivity
 
 
@@ -30,16 +28,11 @@ class LoginFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val logi = view.findViewById<Button>(R.id.login)
-        val word = view.findViewById<Button>(R.id.btn_word)
+
 
         logi.setOnClickListener {
 
             val intent = Intent(activity, loginActivity::class.java)
-            startActivity(intent)
-        }
-
-        word.setOnClickListener {
-            val intent = Intent(activity, WordActivity::class.java)
             startActivity(intent)
         }
 
