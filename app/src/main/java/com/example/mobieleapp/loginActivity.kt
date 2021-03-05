@@ -41,7 +41,6 @@ class loginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         val loginButton = findViewById<Button>(R.id.btn_Login)
-        var found :Boolean = false
         val usernameEditText = findViewById<EditText>(R.id.username2).text
         val passwordEditText = findViewById<EditText>(R.id.password2).text
 
@@ -50,21 +49,22 @@ class loginActivity : AppCompatActivity() {
             if(usernameEditText.isEmpty() && passwordEditText.isEmpty()){
                 Toast.makeText(
                     applicationContext,
-                    R.string.empty_not_saved,
+                    "Empty, fill something in",
                     Toast.LENGTH_LONG
                 ).show()
             }else{
 
-
-                //Log.d("viewmodel", userViewModel.toString())
-                userViewModel.allUsers?.observe(this){ users ->
-                    for(i in users){
+                var found = false
+                userViewModel.allUsers?.observe(this){ users -> for(i in users){
                         i.username.toString().equals(usernameEditText.toString())
 
-                        if (i.username.toString().equals(usernameEditText.toString())&& i.password.toString().equals(
-                                passwordEditText.toString())){
+                        if (i.username.toString().equals(usernameEditText.toString())&& i.password.toString().equals(passwordEditText.toString())){
                             found = true
-
+                            Toast.makeText(
+                                applicationContext,
+                                "Welcome " + i.username,
+                                Toast.LENGTH_LONG
+                            ).show()
 
                             val intent = Intent(this, DormListActivity::class.java)
 
@@ -76,21 +76,17 @@ class loginActivity : AppCompatActivity() {
                             prefsEditor.commit()
                             finish()
                             startActivity(intent)
-
+                            break
                         }
+                }
+                    if(!found) {
+                        Toast.makeText(
+                            applicationContext,
+                            R.string.invalid_username,
+                            Toast.LENGTH_SHORT
+
+                        ).show()
                     }
-                }
-
-                if(!found) {
-                    Toast.makeText(
-                        applicationContext,
-                        R.string.invalid_username,
-                        Toast.LENGTH_LONG
-
-                    ).show()
-                }
-                if(found){
-                    found = false
                 }
             }
         }
