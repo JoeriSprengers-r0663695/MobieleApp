@@ -5,6 +5,7 @@ plugins {
 apply plugin: 'androidx.navigation.safeargs.kotlin'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
 android {
     compileSdkVersion 30
     buildToolsVersion "30.0.3"
@@ -89,6 +90,7 @@ dependencies {
 
     implementation 'androidx.preference:preference:1.1.1'
 
+    implementation platform('com.google.firebase:firebase-bom:26.6.0')
 
-
+    implementation 'com.google.firebase:firebase-database-ktx'
 }
