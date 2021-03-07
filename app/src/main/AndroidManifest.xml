@@ -45,7 +45,7 @@
             android:label="@string/title_activity_dorm_list"
             android:theme="@style/Theme.MobieleApp.NoActionBar" />
         <activity android:name=".loginActivity" />
-        <activity android:name=".data.database.user.UserActivity" />
+        <activity android:name=".data.database.user.RegisterActivity" />
         <activity
             android:name=".CameraActivity"
             android:label="@string/title_activity_camera"

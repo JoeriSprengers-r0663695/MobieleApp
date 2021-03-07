@@ -4,7 +4,6 @@ import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.preference.PreferenceManager
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
@@ -15,7 +14,7 @@ import com.example.mobieleapp.data.database.dorm.DormListActivity
 import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
 import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.dorm.DormViewModel
-import com.example.mobieleapp.data.database.user.UserActivity
+import com.example.mobieleapp.data.database.user.RegisterActivity
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.google.gson.Gson
@@ -88,7 +87,7 @@ class loginActivity : AppCompatActivity() {
         }
 
         btn_registerNow.setOnClickListener {
-            val intent = Intent(this, UserActivity::class.java)
+            val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
         }
     }
