@@ -29,10 +29,6 @@ class loginActivity : AppCompatActivity() {
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as Application).repositoryUser)
     }
-    private val dormViewModel: DormViewModel by viewModels {
-        DormViewModelFactory((application as Application).repositoryDorm)
-    }
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

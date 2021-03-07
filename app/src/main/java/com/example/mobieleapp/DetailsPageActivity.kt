@@ -20,6 +20,7 @@ import com.example.myfirstapp.MainViewModelFactory
 import com.example.myfirstapp.repository.Repository
 import com.google.gson.Gson
 import java.io.Serializable
+import kotlinx.android.synthetic.main.fragment_detailspage.*
 
 class DetailsPageActivity : AppCompatActivity(),Serializable {
 
@@ -50,6 +51,15 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext)
             .getString("user", "")
         val u: User = gson.fromJson(json, User::class.java)
+
+
+
+        //slideshow list and such
+        var imgs = listOf<Int>(R.mipmap.ic_placeh1,R.mipmap.ic_placeh2,R.mipmap.ic_placeh3)
+        var slideshowAdapter = SlideshowAdapater(imgs,this)
+        pager.adapter = slideshowAdapter
+
+
 
 
         if(kotOwner.idUser == u.idUser) {
