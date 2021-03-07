@@ -4,6 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp">
     android:clickable="true"
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -11,15 +12,15 @@
 
         <ImageView
             android:id="@+id/image_view"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginEnd="7dp"
+            android:layout_marginRight="7dp"
             android:src="@drawable/ic_baseline_image_24" />
 
         <TextView
             android:id="@+id/adTitleId"
-            android:layout_width="wrap_content"
+            android:layout_width="298dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
@@ -27,33 +28,35 @@
             android:layout_toRightOf="@id/image_view"
             android:text="Ruim kot in hartje leuven"
             android:textColor="@android:color/black"
-            android:textSize="18sp"
+            android:textSize="20dp"
             android:textStyle="bold" />
 
         <TextView
             android:id="@+id/adresId"
-            android:layout_width="wrap_content"
+            android:layout_width="178dp"
             android:layout_height="wrap_content"
             android:layout_below="@id/adTitleId"
             android:layout_marginStart="0dp"
             android:layout_marginLeft="0dp"
-            android:layout_marginTop="4dp"
+            android:layout_marginTop="13dp"
             android:layout_toEndOf="@id/image_view"
             android:layout_toRightOf="@id/image_view"
-            android:text="straatnaam nr stad" />
+            android:text="straatnaam nr stad"
+            android:textSize="15dp" />
 
         <TextView
             android:id="@+id/rentId"
-            android:layout_width="69dp"
+            android:layout_width="107dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
+            android:layout_below="@+id/adTitleId"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="0dp"
-            android:layout_marginRight="0dp"
+            android:layout_marginTop="13dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
             android:gravity="right"
-            android:text="rent" />
+            android:text="rent"
+            android:textSize="15dp" />
 
     </RelativeLayout>
 </androidx.cardview.widget.CardView>
