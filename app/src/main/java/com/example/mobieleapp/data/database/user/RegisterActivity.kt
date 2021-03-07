@@ -12,11 +12,7 @@ import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
-import java.lang.StringBuilder
 
 class RegisterActivity : AppCompatActivity() {
     var maxId:Long = 0
@@ -31,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        var database = FirebaseDatabase.getInstance().reference
+        var database = FirebaseDatabase.getInstance().reference.child("User")
 
 
         val button = findViewById<Button>(R.id.btn_BevestigId)
@@ -56,38 +52,11 @@ class RegisterActivity : AppCompatActivity() {
                 val phoneNr = findViewById<EditText>(R.id.txtPhoneNr).text.toString()
 
 
-                var getdata = object : ValueEventListener{
-                    override fun onDataChange(snapshot: DataSnapshot) {
-                        var sb = StringBuilder()
-                        var list: ArrayList<Long> = ArrayList()
-                        if(snapshot.exists()) {
-                            var a = UserFireBase(maxId+1,username, passwoord, role, email, phoneNr,null)
-
-                            for (i in snapshot.children) {
-
-                                list.add(i.child("idUser").getValue() as Long)
-                                maxId = list.size.toLong()
-                                Log.d("List",list.toString())
-
-                                Log.d("maxid",maxId.toString())
-                            }
-                            database.child(a.idUser.toString()).setValue(a)
-                        }else{
-                            maxId = 0
-                        }
-                    }
 
 
-                    override fun onCancelled(error: DatabaseError) {
-                        TODO("Not yet implemented")
-                    }
+                var a = UserFireBase(username, passwoord, role, email, phoneNr,null)
 
-                }
-                database.addValueEventListener(getdata)
-                database.addListenerForSingleValueEvent(getdata)
-
-                Log.d("GetMaxID", maxId.toString())
-
+                a.username?.let { it1 -> database.child(it1).setValue(a) }
 
                 userViewModel.allUsers.observe(this) {user ->
                     Log.d("users",user[1].toString())
