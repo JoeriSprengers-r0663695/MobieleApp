@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
 import com.example.mobieleapp.R
@@ -53,7 +54,22 @@ class DormActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.DescriptionValue).text.isEmpty()){
 
                 setResult(Activity.RESULT_CANCELED, replyIntent)
-            } else {
+            }
+            if(!findViewById<EditText>(R.id.RentValue).text.toString().contains(".")){
+                Toast.makeText(applicationContext,
+                "Rent must be a double!",
+                Toast.LENGTH_SHORT).show()
+
+            }
+            if(findViewById<EditText>(R.id.RentValue).text.toString().contains(".00")){
+                Toast.makeText(applicationContext,
+                "cannot accept .00 because fuck it  ¯\\_(ツ)_/¯",
+                Toast.LENGTH_SHORT).show()
+
+            }
+
+
+            else {
 
                 val adTitle = findViewById<EditText>(R.id.adTitleValue).text.toString()
                 val streetName = findViewById<EditText>(R.id.StreetnameValue).text.toString()

@@ -10,6 +10,7 @@ import android.widget.EditText
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.observe
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.DormListActivity
 import com.example.mobieleapp.data.database.user.*
