@@ -9,10 +9,11 @@ import android.widget.Button
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.observe
-import androidx.preference.PreferenceManager
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
 import com.example.mobieleapp.data.database.user.User
+import com.example.mobieleapp.data.database.user.UserFireBase
+import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 
 class DormActivity : AppCompatActivity() {
@@ -27,8 +28,10 @@ class DormActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dorm)
 
+        var database = FirebaseDatabase.getInstance().reference.child("Dorm")
+
         val gson = Gson()
-        val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
+        val json: String? = androidx.preference.PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
         val u: User = gson.fromJson(json, User::class.java)
 
         var user  = u
@@ -65,6 +68,10 @@ class DormActivity : AppCompatActivity() {
                 val rent = findViewById<EditText>(R.id.RentValue).text.toString().toDouble()
 
                 val description = findViewById<EditText>(R.id.DescriptionValue).text.toString()
+
+                var dormFireBase = DormFireBase(adTitle, streetName, housenr, city, postalcode, rent, description, u.username)
+
+                dormFireBase.adTitle?.let { it1 -> database.child(it1).setValue(dormFireBase) }
 
                 dormViewModel.allDorms.observe(this) {dorm ->
                     for (i in dorm) {

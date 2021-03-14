@@ -1,7 +1,7 @@
 package com.example.mobieleapp.data.database.dorm
 
 class DormFireBase {
-    var title: String? =""
+    var adTitle: String? =""
     var streetName: String? =""
     var housenr: Int?=0
     var city: String? =""
@@ -12,7 +12,7 @@ class DormFireBase {
     //var pics: List<ByteArray>?=null
 
     constructor(
-        title: String?,
+        adTitle: String?,
         streetName: String?,
         housenr: Int?,
         city: String?,
@@ -21,7 +21,7 @@ class DormFireBase {
         description: String?,
         owner: String?
     ){
-        this.title = title
+        this.adTitle = adTitle
         this.streetName = streetName
         this.housenr = housenr
         this.city = city
