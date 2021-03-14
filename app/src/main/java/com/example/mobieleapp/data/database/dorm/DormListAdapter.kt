@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.DetailsPageActivity
 import com.example.mobieleapp.R
-import com.example.mobieleapp.data.database.user.User
 import java.io.Serializable
 
 class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormComparator()),Serializable {
@@ -24,7 +23,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
     override fun onBindViewHolder(holder: DormViewHolder, position: Int) {
         val current = getItem(position)
 
-            holder.bind(current.idDorm,current.adTitle,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description,current.idUser)
+            holder.bind(current.adTitle,current.streetname,current.housenr,current.city,current.postalcode,current.rent,current.description,current.User)
     }
 
     class DormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener,Serializable {
@@ -33,28 +32,27 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
         private val dormItemViewRent: TextView = itemView.findViewById(R.id.rentId)
         private val dormItemViewAdress: TextView = itemView.findViewById(R.id.adresId)
 
-       lateinit var  kot : Dorm
+       lateinit var  kot : DormFireBase
 
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(
-            current: Int?,
             adTitle: String?,
             streetname: String?,
-            housenr: Int?,
+            housenr: Long?,
             city: String?,
-            postalcode: Int?,
+            postalcode: Long?,
             rent: Double?,
             description: String?,
-            owner: Int?,
+            owner: String?,
         ) {
             dormItemViewTitle.text = adTitle
             dormItemViewRent.text = "€"+ String.format("%.2f", rent)
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
 
-            kot = Dorm(current,adTitle,streetname,housenr,city,postalcode,rent,description,owner)
+            kot = DormFireBase(adTitle,streetname,housenr,city,postalcode,rent,description,owner)
         }
 
         companion object :Serializable {
@@ -69,7 +67,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             Log.d("kot",kot.city.toString())
 
             val intent = Intent(v?.context, DetailsPageActivity::class.java).putExtra("kot",
-                kot)
+                kot.toString())
             v?.context?.startActivity(intent)
             }
         }
@@ -80,7 +78,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
         }
 
         override fun areContentsTheSame(oldItem: Dorm, newItem: Dorm): Boolean {
-            return oldItem.idDorm == newItem.idDorm
+            return oldItem.adTitle == newItem.adTitle
         }
     }
 }

@@ -3,9 +3,9 @@ package com.example.mobieleapp.data.database.dorm
 class DormFireBase {
     var adTitle: String? =""
     var streetName: String? =""
-    var housenr: Int?=0
+    var housenr: Long?=0
     var city: String? =""
-    var postalcode: Int?=0
+    var postalcode: Long?=0
     var rent: Double?=0.0
     var description: String?=""
     var owner: String?=""
@@ -14,9 +14,9 @@ class DormFireBase {
     constructor(
         adTitle: String?,
         streetName: String?,
-        housenr: Int?,
+        housenr: Long?,
         city: String?,
-        postalcode: Int?,
+        postalcode: Long?,
         rent: Double?,
         description: String?,
         owner: String?

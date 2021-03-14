@@ -34,11 +34,15 @@ import kotlinx.coroutines.launch
                         var user0 = User(0,"a","a","Renter", "dieter@email.com", "23455699",null)
                         var user1 = User(1,"b","b","Owner", "dieter@email.com", "12234556",null)
 
+/*
                         var kot = Dorm(0,"groot huis","Distelstraat",70,"tienen",3300,50.50,"bladibla",1)
+*/
 
                         userDao.insert(user0)
                         userDao.insert(user1)
+/*
                         dormDao.insert(kot)
+*/
 
 
                     }

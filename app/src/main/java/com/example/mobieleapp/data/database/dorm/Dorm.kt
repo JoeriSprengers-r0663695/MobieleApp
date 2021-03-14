@@ -6,16 +6,15 @@ import java.io.Serializable
 
 @Entity(tableName = "dorm_table")
 data class Dorm(
-    @PrimaryKey (autoGenerate = true)
-    val idDorm: Int? = null,
-    @ColumnInfo(name = "adTitle") val adTitle: String?,
+    @PrimaryKey
+    val adTitle: String,
     @ColumnInfo(name = "streetname") val streetname: String?,
-    @ColumnInfo(name = "housenr") val housenr: Int?,
+    @ColumnInfo(name = "housenr") val housenr: Long?,
     @ColumnInfo(name = "city") val city: String?,
-    @ColumnInfo(name = "postalcode") val postalcode: Int?,
+    @ColumnInfo(name = "postalcode") val postalcode: Long?,
     @ColumnInfo(name = "rent") val rent: Double?,
     @ColumnInfo(name = "description") val description: String?,
-    @ColumnInfo(name = "owner") val  idUser: Int?,
+    @ColumnInfo(name = "owner") val  User: String?,
 
     ):Serializable
 

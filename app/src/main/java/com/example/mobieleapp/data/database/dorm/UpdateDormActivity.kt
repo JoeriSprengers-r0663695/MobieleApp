@@ -50,15 +50,15 @@ class UpdateDormActivity : AppCompatActivity() {
     private fun updateDorm(kot: Dorm): Dorm?{
         var newTitle = findViewById<EditText>(R.id.txtv_updateDormAdTitle).text.toString()
         var newStreet =findViewById<EditText>(R.id.txtv_updateDormStreet).text.toString()
-        var newHouseNr =findViewById<EditText>(R.id.txtv_updateDormHouseNr).text.toString().toInt()
+        var newHouseNr =findViewById<EditText>(R.id.txtv_updateDormHouseNr).text.toString().toLong()
         var newCity =findViewById<EditText>(R.id.txtv_updateDormCity).text.toString()
-        var newPostalCode =findViewById<EditText>(R.id.txtv_updateDormPostalcode).text.toString().toInt()
+        var newPostalCode =findViewById<EditText>(R.id.txtv_updateDormPostalcode).text.toString().toLong()
         var newRent =findViewById<EditText>(R.id.txtv_updateDormRent).text.toString().toDouble()
         var newDescription =findViewById<EditText>(R.id.txtv_updateDormDescription).text.toString()
 
 
         if(validateFields(newTitle,newStreet,newHouseNr,newCity,newPostalCode,newRent,newDescription)) {
-            var updatedDorm = Dorm(kot.idDorm, newTitle,newStreet,newHouseNr,newCity,newPostalCode,newRent,newDescription,kot.idUser)
+            var updatedDorm = Dorm(kot.adTitle,newStreet,newHouseNr,newCity,newPostalCode,newRent,newDescription,"m")
             dormViewModel.updateDorm(updatedDorm)
             return updatedDorm
         } else {
@@ -67,7 +67,14 @@ class UpdateDormActivity : AppCompatActivity() {
         }
     }
 
-    fun validateFields(title:String,street:String,nr:Int,city:String,code:Int,rent:Double,description:String) : Boolean {
+    fun validateFields(
+        title:String,
+        street:String,
+        nr: Long,
+        city:String,
+        code: Long,
+        rent:Double,
+        description:String) : Boolean {
         return !(TextUtils.isEmpty(title) ||
                 TextUtils.isEmpty(street) ||
                 nr<1 ||

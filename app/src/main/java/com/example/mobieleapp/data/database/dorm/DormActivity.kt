@@ -12,7 +12,6 @@ import androidx.lifecycle.observe
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
 import com.example.mobieleapp.data.database.user.User
-import com.example.mobieleapp.data.database.user.UserFireBase
 import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 
@@ -59,17 +58,21 @@ class DormActivity : AppCompatActivity() {
                 val adTitle = findViewById<EditText>(R.id.adTitleValue).text.toString()
                 val streetName = findViewById<EditText>(R.id.StreetnameValue).text.toString()
 
-                val housenr = findViewById<EditText>(R.id.HousenrValue).text.toString().toInt()
+                val housenr = findViewById<EditText>(R.id.HousenrValue).text.toString().toLong()
 
                 val city = findViewById<EditText>(R.id.CityValue).text.toString()
 
-                val postalcode = findViewById<EditText>(R.id.PostalcodeValue).text.toString().toInt()
+                val postalcode = findViewById<EditText>(R.id.PostalcodeValue).text.toString().toLong()
 
                 val rent = findViewById<EditText>(R.id.RentValue).text.toString().toDouble()
 
-                val description = findViewById<EditText>(R.id.DescriptionValue).text.toString()
 
-                var dormFireBase = DormFireBase(adTitle, streetName, housenr, city, postalcode, rent, description, u.username)
+                val description = findViewById<EditText>(R.id.DescriptionValue).text.toString()
+                Log.d("toon de rent",(rent).toString())
+
+                Log.d("toon de rent met 0 00",(rent.toString()))
+
+                var dormFireBase = DormFireBase(adTitle, streetName, housenr, city, postalcode, rent , description, u.username)
 
                 dormFireBase.adTitle?.let { it1 -> database.child(it1).setValue(dormFireBase) }
 
@@ -79,13 +82,13 @@ class DormActivity : AppCompatActivity() {
                     }
                 }
 
-                val dorm = iduser?.let { it1 ->
+              /*  val dorm = iduser?.let { it1 ->
                     Dorm(null,adTitle,streetName, housenr, city, postalcode, rent, description,
                         it1)
                 }
                 if (dorm != null) {
                     dormViewModel.insert( dorm)
-                }
+                }*/
                 finish()
             }
         }

@@ -44,7 +44,7 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         var kot  = intent.getSerializableExtra("kot") as Dorm
 
-        var kotOwner  = kot.idUser?.let { userViewModel.getById(it) } as User
+       /* var kotOwner  = kot.idUser?.let { userViewModel.getById(it) } as User*/
 
         //Code for current user
         val gson = Gson()
@@ -61,18 +61,18 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
 
 
-
+/*
         if(kotOwner.idUser == u.idUser) {
             findViewById<Button>(R.id.btn_editDorm).visibility = View.VISIBLE
             findViewById<Button>(R.id.btn_deleteDorm).visibility = View.VISIBLE
-        }
+        }*/
 
 
         findViewById<TextView>(R.id.txt_streetValue).text = kot.streetname + " " + kot.housenr.toString()
         findViewById<TextView>(R.id.txt_cityValue).text = kot.postalcode.toString() + ", " + kot.city
         findViewById<TextView>(R.id.txt_rentValue).text = "€" + String.format("%.2f", kot.rent) + " / month"
-        findViewById<TextView>(R.id.txt_emailValue).text = kotOwner.email
-        findViewById<TextView>(R.id.txt_phoneNumberValue).text = kotOwner.phoneNr
+      /*  findViewById<TextView>(R.id.txt_emailValue).text = kotOwner.email
+        findViewById<TextView>(R.id.txt_phoneNumberValue).text = kotOwner.phoneNr*/
         findViewById<TextView>(R.id.txt_descriptionValue).text = kot.description
 
 
