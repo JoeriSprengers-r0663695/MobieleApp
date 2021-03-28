@@ -93,8 +93,12 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
                     for (d in snapshot.children) run {
 
                             var d = d.value as HashMap<String, String>
-                            if(d.toString() == kotOwner) {
+                            /*Log.d("kotowner", kotOwner.toString())
+                            Log.d("d", d["username"].toString())*/
 
+
+                            if(d["username"].equals(kotOwner)) {
+                                Log.d("im inside if", "inside")
                                 var email: String? = d["email"]
                                 var phoneNr: String? = d["phoneNr"]
 
@@ -143,8 +147,8 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         }
 
         findViewById<Button>(R.id.btn_deleteDorm).setOnClickListener {
-            var database = FirebaseDatabase.getInstance().reference.child("Dorm")
-            database.ref.child(kot.adTitle).removeValue()
+            var databasedel = FirebaseDatabase.getInstance().reference.child("Dorm")
+            databasedel.ref.child(kot.adTitle).removeValue()
             val intent = Intent(applicationContext, DormListActivity::class.java)
             startActivity(intent)
         }
