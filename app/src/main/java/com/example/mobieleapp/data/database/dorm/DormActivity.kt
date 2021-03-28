@@ -2,6 +2,7 @@ package com.example.mobieleapp.data.database.dorm
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,12 +16,23 @@ import com.example.mobieleapp.data.database.*
 import com.example.mobieleapp.data.database.user.User
 import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
+import kotlinx.android.synthetic.main.activity_dorm.*
 
 class DormActivity : AppCompatActivity() {
 
     private val dormViewModel: DormViewModel by viewModels {
         DormViewModelFactory((application as Application).repositoryDorm)
     }
+
+    //store uris of picked images Needs to
+    private var images: MutableList<String?>? = null
+
+    //current position/index of selected images
+    private var position = 0
+    //request code to pick image(s)
+    private val PICK_IMAGES_CODE = 0;
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -37,6 +49,14 @@ class DormActivity : AppCompatActivity() {
         var user  = u
         var iduser = user.idUser
         val button = findViewById<Button>(R.id.bevestigDorm)
+
+
+
+        //pick images clicking this button
+        btn_selectImages.setOnClickListener {
+            pickImagesIntent()
+        }
+
 
 
         button.setOnClickListener {
@@ -109,4 +129,40 @@ class DormActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun pickImagesIntent() {
+        val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        intent.type = "image/*"
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.action = Intent.ACTION_GET_CONTENT
+        startActivityForResult(Intent.createChooser(intent,"Select Image(s)"), PICK_IMAGES_CODE)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if(requestCode == PICK_IMAGES_CODE) {
+
+            if(resultCode == Activity.RESULT_OK) {
+                if(data!!.clipData != null) {
+                    //picked multiple images
+                    //get number of picked images
+                    val count = data.clipData!!.itemCount
+                    for (i in 0 until count) {
+                        val imageUri = data.clipData!!.getItemAt(i).uri
+                        //add image to list
+                        images!!.add(imageUri.toString())
+                    }
+                }
+                else {
+                    //picked single image
+                    val imageUri = data.data
+                    //add single image
+                    images!!.add(imageUri.toString())
+                }
+            }
+
+        }
+    }
+
 }

@@ -72,3 +72,4 @@ class SlideshowAdapater(var list: List<Int>, var ctx: Context) : PagerAdapter() 
 
     }
 }
+

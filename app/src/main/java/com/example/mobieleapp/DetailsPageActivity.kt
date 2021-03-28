@@ -57,6 +57,8 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         //slideshow list and such
         var imgs = listOf<Int>(R.mipmap.ic_placeh1,R.mipmap.ic_placeh2,R.mipmap.ic_placeh3)
+
+
         var slideshowAdapter = SlideshowAdapater(imgs,this)
         pager.adapter = slideshowAdapter
 
