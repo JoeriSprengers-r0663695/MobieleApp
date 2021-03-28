@@ -32,14 +32,14 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
         private val dormItemViewRent: TextView = itemView.findViewById(R.id.rentId)
         private val dormItemViewAdress: TextView = itemView.findViewById(R.id.adresId)
 
-       lateinit var  kot : DormFireBase
+       lateinit var  kot : Dorm
 
         init {
             itemView.setOnClickListener(this)
         }
 
         fun bind(
-            adTitle: String?,
+            adTitle: String,
             streetname: String?,
             housenr: Long?,
             city: String?,
@@ -52,7 +52,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             dormItemViewRent.text = "€"+ String.format("%.2f", rent)
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
 
-            kot = DormFireBase(adTitle,streetname,housenr,city,postalcode,rent,description,owner)
+            kot = Dorm(adTitle,streetname,housenr,city,postalcode,rent,description,owner)
         }
 
         companion object :Serializable {
@@ -67,7 +67,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             Log.d("kot",kot.city.toString())
 
             val intent = Intent(v?.context, DetailsPageActivity::class.java).putExtra("kot",
-                kot.toString())
+                kot)
             v?.context?.startActivity(intent)
             }
         }

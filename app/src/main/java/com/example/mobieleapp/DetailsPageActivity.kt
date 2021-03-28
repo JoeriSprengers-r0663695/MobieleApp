@@ -13,6 +13,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.*
 import com.example.mobieleapp.data.database.user.User
+import com.example.mobieleapp.data.database.user.UserFireBase
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.example.myfirstapp.MainViewModel
@@ -44,13 +45,13 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         var kot  = intent.getSerializableExtra("kot") as Dorm
 
-       /* var kotOwner  = kot.idUser?.let { userViewModel.getById(it) } as User*/
+        var kotOwner  = kot.User
 
         //Code for current user
         val gson = Gson()
         val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext)
             .getString("user", "")
-        val u: User = gson.fromJson(json, User::class.java)
+        val u: UserFireBase = gson.fromJson(json, UserFireBase::class.java)
 
 
 
@@ -61,11 +62,11 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
 
 
-/*
-        if(kotOwner.idUser == u.idUser) {
+
+        if(kotOwner == u.username) {
             findViewById<Button>(R.id.btn_editDorm).visibility = View.VISIBLE
             findViewById<Button>(R.id.btn_deleteDorm).visibility = View.VISIBLE
-        }*/
+        }
 
 
         findViewById<TextView>(R.id.txt_streetValue).text = kot.streetname + " " + kot.housenr.toString()

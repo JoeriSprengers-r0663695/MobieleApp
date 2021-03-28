@@ -14,6 +14,7 @@ import com.example.mobieleapp.CameraActivity
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.user.User
+import com.example.mobieleapp.data.database.user.UserFireBase
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.google.firebase.database.DataSnapshot
@@ -41,8 +42,10 @@ class DormListActivity : AppCompatActivity() {
 
         val gson = Gson()
         val json: String? = getDefaultSharedPreferences(applicationContext).getString("user", "")
-        val u: User = gson.fromJson(json, User::class.java)
-        Log.d("user in current session",u.username.toString())
+        val u: UserFireBase? = gson.fromJson(json, UserFireBase::class.java)
+        if (u != null) {
+            Log.d("user in current session",u.username.toString())
+        }
 
         var database = FirebaseDatabase.getInstance().reference.child("Dorm")
 
@@ -92,8 +95,10 @@ class DormListActivity : AppCompatActivity() {
         var user  = u
             Log.d("user", user.toString())
 
-        if(user.role.toString() == "Renter") {
-            findViewById<Button>(R.id.addKotId).visibility = View.GONE
+        if (user != null) {
+            if(user.role.toString() == "Renter") {
+                findViewById<Button>(R.id.addKotId).visibility = View.GONE
+            }
         }
 
 
