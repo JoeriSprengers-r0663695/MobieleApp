@@ -143,7 +143,8 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         }
 
         findViewById<Button>(R.id.btn_deleteDorm).setOnClickListener {
-            dormViewModel.deleteSpecific(kot)
+            var database = FirebaseDatabase.getInstance().reference.child("Dorm")
+            database.ref.child(kot.adTitle).removeValue()
             val intent = Intent(applicationContext, DormListActivity::class.java)
             startActivity(intent)
         }
