@@ -45,12 +45,12 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             housenr: Long?,
             city: String?,
             postalcode: Long?,
-            rent: Double?,
+            rent: String?,
             description: String?,
             owner: String?,
         ) {
             dormItemViewTitle.text = adTitle
-            dormItemViewRent.text = "€"+ String.format("%.2f", rent)
+            dormItemViewRent.text = "€"+ rent
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
 
             kot = Dorm(adTitle,streetname,housenr,city,postalcode,rent,description,owner)

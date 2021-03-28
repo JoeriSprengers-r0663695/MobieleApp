@@ -6,7 +6,7 @@ class DormFireBase {
     var housenr: Long?=0
     var city: String? =""
     var postalcode: Long?=0
-    var rent: Double?=0.0
+    var rent: String?= ""
     var description: String?=""
     var owner: String?=""
     //var pics: List<ByteArray>?=null
@@ -17,7 +17,7 @@ class DormFireBase {
         housenr: Long?,
         city: String?,
         postalcode: Long?,
-        rent: Double?,
+        rent: String?,
         description: String?,
         owner: String?
     ){

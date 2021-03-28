@@ -12,7 +12,7 @@ data class Dorm(
     @ColumnInfo(name = "housenr") val housenr: Long?,
     @ColumnInfo(name = "city") val city: String?,
     @ColumnInfo(name = "postalcode") val postalcode: Long?,
-    @ColumnInfo(name = "rent") val rent: Double?,
+    @ColumnInfo(name = "rent") val rent: String?,
     @ColumnInfo(name = "description") val description: String?,
     @ColumnInfo(name = "owner") val  User: String?,
 

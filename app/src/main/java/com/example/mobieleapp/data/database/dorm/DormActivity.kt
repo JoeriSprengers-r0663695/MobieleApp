@@ -17,6 +17,8 @@ import com.example.mobieleapp.data.database.user.User
 import com.google.firebase.database.FirebaseDatabase
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_dorm.*
+import java.math.RoundingMode
+import java.text.DecimalFormat
 
 class DormActivity : AppCompatActivity() {
 
@@ -102,13 +104,14 @@ class DormActivity : AppCompatActivity() {
 
                 val rent = findViewById<EditText>(R.id.RentValue).text.toString().toDouble()
 
+                val formattedrent = String.format("%.2f",rent)
+                Log.d("test fix",String.format("%.2f",rent))
+
 
                 val description = findViewById<EditText>(R.id.DescriptionValue).text.toString()
-                Log.d("toon de rent",(rent).toString())
 
-                Log.d("toon de rent met 0 00",(rent.toString()))
 
-                var dormFireBase = DormFireBase(adTitle, streetName, housenr, city, postalcode, rent , description, u.username)
+                var dormFireBase = DormFireBase(adTitle, streetName, housenr, city, postalcode, formattedrent , description, u.username)
 
                 dormFireBase.adTitle?.let { it1 -> database.child(it1).setValue(dormFireBase) }
 

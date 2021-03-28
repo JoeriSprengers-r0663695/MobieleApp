@@ -56,9 +56,8 @@ class UpdateDormActivity : AppCompatActivity() {
         var newRent =findViewById<EditText>(R.id.txtv_updateDormRent).text.toString().toDouble()
         var newDescription =findViewById<EditText>(R.id.txtv_updateDormDescription).text.toString()
 
-
         if(validateFields(newTitle,newStreet,newHouseNr,newCity,newPostalCode,newRent,newDescription)) {
-            var updatedDorm = Dorm(kot.adTitle,newStreet,newHouseNr,newCity,newPostalCode,newRent,newDescription,"m")
+            var updatedDorm = Dorm(kot.adTitle,newStreet,newHouseNr,newCity,newPostalCode,String.format("%.2f",newRent),newDescription,"m")
             dormViewModel.updateDorm(updatedDorm)
             return updatedDorm
         } else {

@@ -67,7 +67,7 @@ class DormListActivity : AppCompatActivity() {
                         var housenr: Long? =d.get("housenr")  as Long
                         var city: String? =d.get("city")
                         var postalcode: Long? =d.get("postalcode") as Long
-                        var rent: Double =d.get("rent") as Double
+                        var rent: String =d.get("rent") as String
                         var description: String?=d.get("description")
                         var owner: String?=d.get("owner")
 
