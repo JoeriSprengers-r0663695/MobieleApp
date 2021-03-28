@@ -52,8 +52,6 @@ class DormActivity : AppCompatActivity() {
         var iduser = user.idUser
         val button = findViewById<Button>(R.id.bevestigDorm)
 
-
-
         //pick images clicking this button
         btn_selectImages.setOnClickListener {
             pickImagesIntent()
@@ -76,18 +74,6 @@ class DormActivity : AppCompatActivity() {
                 findViewById<EditText>(R.id.DescriptionValue).text.isEmpty()){
 
                 setResult(Activity.RESULT_CANCELED, replyIntent)
-            }
-            if(!findViewById<EditText>(R.id.RentValue).text.toString().contains(".")){
-                Toast.makeText(applicationContext,
-                "Rent must be a double!",
-                Toast.LENGTH_SHORT).show()
-
-            }
-            if(findViewById<EditText>(R.id.RentValue).text.toString().contains(".00")){
-                Toast.makeText(applicationContext,
-                "cannot accept .00 because fuck it  ¯\\_(ツ)_/¯",
-                Toast.LENGTH_SHORT).show()
-
             }
 
 

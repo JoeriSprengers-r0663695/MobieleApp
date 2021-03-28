@@ -87,10 +87,8 @@ class DormListActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         }
-
-
-
         database.addValueEventListener(getdata)
+
 
         var user  = u
             Log.d("user", user.toString())

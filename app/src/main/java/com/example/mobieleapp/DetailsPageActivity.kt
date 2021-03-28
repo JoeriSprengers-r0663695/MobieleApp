@@ -3,6 +3,7 @@ package com.example.mobieleapp
 import android.content.Intent
 import android.os.Bundle
 import android.preference.PreferenceManager
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
@@ -10,6 +11,8 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.*
 import com.example.mobieleapp.data.database.user.User
@@ -19,6 +22,10 @@ import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.example.myfirstapp.MainViewModel
 import com.example.myfirstapp.MainViewModelFactory
 import com.example.myfirstapp.repository.Repository
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import java.io.Serializable
 import kotlinx.android.synthetic.main.fragment_detailspage.*
@@ -47,6 +54,7 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
 
         var kotOwner  = kot.User
 
+
         //Code for current user
         val gson = Gson()
         val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext)
@@ -74,9 +82,34 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         findViewById<TextView>(R.id.txt_streetValue).text = kot.streetname + " " + kot.housenr.toString()
         findViewById<TextView>(R.id.txt_cityValue).text = kot.postalcode.toString() + ", " + kot.city
         findViewById<TextView>(R.id.txt_rentValue).text = "€" + kot.rent + " / month"
-      /*  findViewById<TextView>(R.id.txt_emailValue).text = kotOwner.email
-        findViewById<TextView>(R.id.txt_phoneNumberValue).text = kotOwner.phoneNr*/
         findViewById<TextView>(R.id.txt_descriptionValue).text = kot.description
+
+        //This part grabs the kotOwners' necessary data out of db
+        var database = FirebaseDatabase.getInstance().reference.child("User")
+        var getdata = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+
+                    for (d in snapshot.children) run {
+
+                            var d = d.value as HashMap<String, String>
+                            if(d.toString() == kotOwner) {
+
+                                var email: String? = d["email"]
+                                var phoneNr: String? = d["phoneNr"]
+
+                                findViewById<TextView>(R.id.txt_emailValue).text = email
+                                findViewById<TextView>(R.id.txt_phoneNumberValue).text = phoneNr
+                            }
+                    }
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        }
+        database.addValueEventListener(getdata)
 
 
 
