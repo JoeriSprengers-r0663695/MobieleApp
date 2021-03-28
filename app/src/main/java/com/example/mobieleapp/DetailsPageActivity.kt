@@ -141,7 +141,7 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         }
 
         findViewById<Button>(R.id.btn_editDorm).setOnClickListener {
-            val intent = Intent(applicationContext, UpdateDormActivity::class.java).putExtra("kot", kot)
+            val intent = Intent(applicationContext, UpdateDormActivity::class.java).putExtra("kot", kot.adTitle)
             finish()
             startActivity(intent)
         }
