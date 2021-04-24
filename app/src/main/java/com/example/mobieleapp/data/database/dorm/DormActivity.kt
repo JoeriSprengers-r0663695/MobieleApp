@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
+import com.example.mobieleapp.data.database.user.RegisterActivity
 import com.example.mobieleapp.data.database.user.User
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -135,6 +136,9 @@ class DormActivity : AppCompatActivity() {
                 pickImagesIntent(usern,huisnaam)
                 Thread.sleep(5_000,)
                 finish()
+                val intent = Intent(this, DormListActivity::class.java)
+                startActivity(intent)
+               finish()
 
 
             }
@@ -190,13 +194,10 @@ class DormActivity : AppCompatActivity() {
                     bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
                     val image = stream.toByteArray()
 
-                    imagview =findViewById(R.id.iv_camera2)
-                    imagview.setImageBitmap(bitmap)
-
                     var databaseStorage =FirebaseStorage.getInstance()
 
                     Log.d("huisnaam",huisnaam)
-                    databaseStorage.reference.child("dorm").child(huisnaam).child("pic").putBytes(image)
+                    databaseStorage.reference.child("dorm").child(huisnaam).child("pic0").putBytes(image)
 
                 }
             }

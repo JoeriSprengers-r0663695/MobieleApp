@@ -87,7 +87,7 @@ class DormListActivity : AppCompatActivity() {
                 TODO("Not yet implemented")
             }
         }
-        database.addValueEventListener(getdata)
+        database.addListenerForSingleValueEvent(getdata)
 
 
         var user  = u
@@ -123,6 +123,11 @@ class DormListActivity : AppCompatActivity() {
         }
         findViewById<Button>(R.id.btn_toProfile).setOnClickListener {
             val intent = Intent(this@DormListActivity, CameraActivity::class.java)
+            startActivity(intent)
+        }
+        findViewById<Button>(R.id.Reload).setOnClickListener {
+            finish()
+            val intent = Intent(this@DormListActivity, DormListActivity::class.java)
             startActivity(intent)
         }
 

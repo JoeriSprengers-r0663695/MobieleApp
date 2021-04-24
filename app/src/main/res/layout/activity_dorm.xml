@@ -31,8 +31,8 @@
         android:text="adTitle"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_selectImages"
-        app:layout_constraintVertical_bias="0.013" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.035" />
 
     <Button
         android:id="@+id/bevestigDorm"
@@ -63,7 +63,7 @@
         android:id="@+id/adTitleValue"
         android:layout_width="152dp"
         android:layout_height="40dp"
-        android:layout_marginTop="24dp"
+        android:layout_marginTop="40dp"
         android:fontFamily="sans-serif-light"
         android:gravity="center_vertical"
         android:inputType="textAutoComplete"
@@ -71,7 +71,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toEndOf="@+id/Streetname"
-        app:layout_constraintTop_toBottomOf="@+id/btn_selectImages" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Housenr"
@@ -202,31 +202,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Description"
         app:layout_constraintVertical_bias="0.077" />
-
-    <Button
-        android:id="@+id/btn_selectImages"
-        android:layout_width="344dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="18dp"
-        android:layout_marginLeft="18dp"
-        android:layout_marginTop="21dp"
-        android:layout_marginEnd="49dp"
-        android:layout_marginRight="49dp"
-        android:text="addImage"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/iv_camera2"
-        android:layout_width="360dp"
-        android:layout_height="129dp"
-        android:layout_gravity="center"
-        android:src="@drawable/ic_profile_picture"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.49"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bevestigDorm" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

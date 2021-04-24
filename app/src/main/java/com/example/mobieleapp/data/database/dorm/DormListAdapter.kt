@@ -1,17 +1,23 @@
 package com.example.mobieleapp.data.database.dorm
 
 import android.content.Intent
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.DetailsPageActivity
 import com.example.mobieleapp.R
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import com.squareup.picasso.Picasso
 import java.io.Serializable
 
 class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(DormComparator()),Serializable {
@@ -28,7 +34,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
     }
 
     class DormViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),View.OnClickListener,Serializable {
-
+        private val imagev : ImageView = itemView.findViewById(R.id.image_view)
         private val dormItemViewTitle: TextView = itemView.findViewById(R.id.adTitleId)
         private val dormItemViewRent: TextView = itemView.findViewById(R.id.rentId)
         private val dormItemViewAdress: TextView = itemView.findViewById(R.id.adresId)
@@ -49,6 +55,24 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             description: String?,
             owner: String?,
         ) {
+
+
+
+
+
+            val imageref = Firebase.storage.reference.child("dorm/$adTitle/pic0")
+            imageref.downloadUrl.addOnSuccessListener {Uri->
+
+                val imageURL = Uri.toString()
+              /*  Glide.with(itemView).load(imageURL).into(imagev)*/
+                Picasso.get().load(imageURL).into(imagev);
+
+
+            }
+
+
+
+
 
             dormItemViewTitle.text = adTitle
             dormItemViewRent.text = "€"+ rent

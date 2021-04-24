@@ -26,19 +26,28 @@
 
         <Button
             android:id="@+id/btn_toProfile"
-            android:layout_width="175dp"
-            android:layout_height="47dp"
+            android:layout_width="130dp"
+            android:layout_height="49dp"
             android:layout_marginTop="16dp"
             android:text="Profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.947"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
+            android:id="@+id/Reload"
+            android:layout_width="130dp"
+            android:layout_height="49dp"
+            android:layout_marginTop="16dp"
+            android:text="Reload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/btn_toProfile"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Button
             android:id="@+id/addKotId"
-            android:layout_width="169dp"
-            android:layout_height="47dp"
+            android:layout_width="130dp"
+            android:layout_height="49dp"
             android:layout_marginTop="16dp"
             android:text="Add Kot"
             app:layout_constraintEnd_toStartOf="@+id/btn_toProfile"
