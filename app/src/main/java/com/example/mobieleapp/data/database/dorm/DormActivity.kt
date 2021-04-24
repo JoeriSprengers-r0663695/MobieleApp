@@ -2,32 +2,35 @@ package com.example.mobieleapp.data.database.dorm
 
 import android.app.Activity
 import android.content.Intent
-import android.net.Uri
-import androidx.appcompat.app.AppCompatActivity
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.provider.MediaStore
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
-import android.widget.Toast
+import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
 import com.example.mobieleapp.data.database.user.User
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_dorm.*
-import java.math.RoundingMode
-import java.text.DecimalFormat
+
 
 class DormActivity : AppCompatActivity() {
-
+    lateinit var imagview : ImageView
     private val dormViewModel: DormViewModel by viewModels {
         DormViewModelFactory((application as Application).repositoryDorm)
     }
 
     //store uris of picked images Needs to
     private var images: MutableList<String?>? = null
+    private var imageB: ArrayList<Bitmap>? = null
+
 
     //current position/index of selected images
     private var position = 0
@@ -43,9 +46,12 @@ class DormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dorm)
 
         var database = FirebaseDatabase.getInstance().reference.child("Dorm")
+        var databaseStorage : FirebaseStorage = FirebaseStorage.getInstance()
+        var imageref = databaseStorage.getReference().child("images")
 
         val gson = Gson()
-        val json: String? = androidx.preference.PreferenceManager.getDefaultSharedPreferences(applicationContext).getString("user", "")
+        val json: String? = androidx.preference.PreferenceManager.getDefaultSharedPreferences(
+            applicationContext).getString("user", "")
         val u: User = gson.fromJson(json, User::class.java)
 
         var user  = u
@@ -90,20 +96,27 @@ class DormActivity : AppCompatActivity() {
 
                 val rent = findViewById<EditText>(R.id.RentValue).text.toString().toDouble()
 
-                val formattedrent = String.format("%.2f",rent)
-                Log.d("test fix",String.format("%.2f",rent))
+                val formattedrent = String.format("%.2f", rent)
+                Log.d("test fix", String.format("%.2f", rent))
 
 
                 val description = findViewById<EditText>(R.id.DescriptionValue).text.toString()
 
 
-                var dormFireBase = DormFireBase(adTitle, streetName, housenr, city, postalcode, formattedrent , description, u.username)
+                var dormFireBase = DormFireBase(adTitle,
+                    streetName,
+                    housenr,
+                    city,
+                    postalcode,
+                    formattedrent,
+                    description,
+                    u.username)
 
                 dormFireBase.adTitle?.let { it1 -> database.child(it1).setValue(dormFireBase) }
 
-                dormViewModel.allDorms.observe(this) {dorm ->
+                dormViewModel.allDorms.observe(this) { dorm ->
                     for (i in dorm) {
-                    Log.d("dormBefore",i.streetname.toString())
+                    Log.d("dormBefore", i.streetname.toString())
                     }
                 }
 
@@ -119,12 +132,14 @@ class DormActivity : AppCompatActivity() {
         }
     }
 
+
     private fun pickImagesIntent() {
-        val intent = Intent(Intent.ACTION_PICK, android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+        val intent = Intent(Intent.ACTION_PICK,
+            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.action = Intent.ACTION_GET_CONTENT
-        startActivityForResult(Intent.createChooser(intent,"Select Image(s)"), PICK_IMAGES_CODE)
+        startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -147,7 +162,16 @@ class DormActivity : AppCompatActivity() {
                     //picked single image
                     val imageUri = data.data
                     //add single image
-                    images!!.add(imageUri.toString())
+                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+
+                    imageB?.add(bitmap)
+                    Log.d("uri", bitmap.toString())
+
+                    imagview =findViewById(R.id.iv_camera2)
+                    imagview.setImageBitmap(bitmap)
+                    
+
+                    //
                 }
             }
 
