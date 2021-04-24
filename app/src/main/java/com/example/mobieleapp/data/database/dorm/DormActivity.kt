@@ -26,6 +26,7 @@ class DormActivity : AppCompatActivity() {
     lateinit var databaseStorage : FirebaseStorage
     lateinit var imagview : ImageView
     lateinit var usern  : String
+    lateinit var huisnaam  : String
     private val dormViewModel: DormViewModel by viewModels {
         DormViewModelFactory((application as Application).repositoryDorm)
     }
@@ -62,9 +63,9 @@ class DormActivity : AppCompatActivity() {
         val button = findViewById<Button>(R.id.bevestigDorm)
 
         //pick images clicking this button
-        btn_selectImages.setOnClickListener {
+        /*btn_selectImages.setOnClickListener {
             pickImagesIntent(usern)
-        }
+        }*/
 
 
 
@@ -130,20 +131,25 @@ class DormActivity : AppCompatActivity() {
                 if (dorm != null) {
                     dormViewModel.insert( dorm)
                 }*/
+                huisnaam = adTitle
+                pickImagesIntent(usern,huisnaam)
+                Thread.sleep(5_000,)
                 finish()
+
+
             }
         }
     }
 
 
-    private fun pickImagesIntent(usern: String) {
+    private fun pickImagesIntent(usern: String,adTitle : String) {
         val intent = Intent(Intent.ACTION_PICK,
             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
-        intent.putExtra("username",usern)
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE)
+
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -165,7 +171,8 @@ class DormActivity : AppCompatActivity() {
                         bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
                         val image = stream.toByteArray()
 
-                        databaseStorage.getReference().child(usern).child("pic$i").putBytes(image)
+                        databaseStorage.reference.child("dorm").child(huisnaam).child("pic$i").putBytes(image)
+
                         //add image to list
                     }
 
@@ -186,18 +193,11 @@ class DormActivity : AppCompatActivity() {
                     imagview =findViewById(R.id.iv_camera2)
                     imagview.setImageBitmap(bitmap)
 
-                    val gson = Gson()
-                    val json: String? = androidx.preference.PreferenceManager.getDefaultSharedPreferences(
-                        applicationContext).getString("user", "")
-                    val u: User = gson.fromJson(json, User::class.java)
-
-                    var user  = u
-
-                    usern = user.username.toString()
-
                     var databaseStorage =FirebaseStorage.getInstance()
 
-                    databaseStorage.getReference().child(usern).child("pic").putBytes(image)
+                    Log.d("huisnaam",huisnaam)
+                    databaseStorage.reference.child("dorm").child(huisnaam).child("pic").putBytes(image)
+
                 }
             }
 

@@ -49,6 +49,7 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
             description: String?,
             owner: String?,
         ) {
+
             dormItemViewTitle.text = adTitle
             dormItemViewRent.text = "€"+ rent
             dormItemViewAdress.text = streetname + " "+ housenr.toString() + ", " + city
