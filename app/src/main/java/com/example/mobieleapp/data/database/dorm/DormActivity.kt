@@ -19,10 +19,13 @@ import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.activity_dorm.*
+import java.io.ByteArrayOutputStream
 
 
 class DormActivity : AppCompatActivity() {
+    lateinit var databaseStorage : FirebaseStorage
     lateinit var imagview : ImageView
+    lateinit var usern  : String
     private val dormViewModel: DormViewModel by viewModels {
         DormViewModelFactory((application as Application).repositoryDorm)
     }
@@ -46,8 +49,8 @@ class DormActivity : AppCompatActivity() {
         setContentView(R.layout.activity_dorm)
 
         var database = FirebaseDatabase.getInstance().reference.child("Dorm")
-        var databaseStorage : FirebaseStorage = FirebaseStorage.getInstance()
-        var imageref = databaseStorage.getReference().child("images")
+
+
 
         val gson = Gson()
         val json: String? = androidx.preference.PreferenceManager.getDefaultSharedPreferences(
@@ -55,12 +58,12 @@ class DormActivity : AppCompatActivity() {
         val u: User = gson.fromJson(json, User::class.java)
 
         var user  = u
-        var iduser = user.idUser
+        usern = user.username.toString()
         val button = findViewById<Button>(R.id.bevestigDorm)
 
         //pick images clicking this button
         btn_selectImages.setOnClickListener {
-            pickImagesIntent()
+            pickImagesIntent(usern)
         }
 
 
@@ -133,11 +136,12 @@ class DormActivity : AppCompatActivity() {
     }
 
 
-    private fun pickImagesIntent() {
+    private fun pickImagesIntent(usern: String) {
         val intent = Intent(Intent.ACTION_PICK,
             android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
+        intent.putExtra("username",usern)
         intent.action = Intent.ACTION_GET_CONTENT
         startActivityForResult(Intent.createChooser(intent, "Select Image(s)"), PICK_IMAGES_CODE)
     }
@@ -152,11 +156,19 @@ class DormActivity : AppCompatActivity() {
                     //picked multiple images
                     //get number of picked images
                     val count = data.clipData!!.itemCount
+                    var databaseStorage =FirebaseStorage.getInstance()
                     for (i in 0 until count) {
                         val imageUri = data.clipData!!.getItemAt(i).uri
+
+                        val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, imageUri)
+                        val stream = ByteArrayOutputStream()
+                        bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+                        val image = stream.toByteArray()
+
+                        databaseStorage.getReference().child(usern).child("pic$i").putBytes(image)
                         //add image to list
-                        images!!.add(imageUri.toString())
                     }
+
                 }
                 else {
                     //picked single image
@@ -167,11 +179,25 @@ class DormActivity : AppCompatActivity() {
                     imageB?.add(bitmap)
                     Log.d("uri", bitmap.toString())
 
+                    val stream = ByteArrayOutputStream()
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
+                    val image = stream.toByteArray()
+
                     imagview =findViewById(R.id.iv_camera2)
                     imagview.setImageBitmap(bitmap)
-                    
 
-                    //
+                    val gson = Gson()
+                    val json: String? = androidx.preference.PreferenceManager.getDefaultSharedPreferences(
+                        applicationContext).getString("user", "")
+                    val u: User = gson.fromJson(json, User::class.java)
+
+                    var user  = u
+
+                    usern = user.username.toString()
+
+                    var databaseStorage =FirebaseStorage.getInstance()
+
+                    databaseStorage.getReference().child(usern).child("pic").putBytes(image)
                 }
             }
 
