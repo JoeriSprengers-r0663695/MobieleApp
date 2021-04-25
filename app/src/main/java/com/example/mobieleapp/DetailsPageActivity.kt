@@ -6,6 +6,8 @@ import android.preference.PreferenceManager
 import android.util.Log
 import android.view.View
 import android.widget.Button
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
@@ -26,9 +28,14 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.StorageException
+import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import java.io.Serializable
 import kotlinx.android.synthetic.main.fragment_detailspage.*
+import java.lang.Exception
 
 class DetailsPageActivity : AppCompatActivity(),Serializable {
 
@@ -62,13 +69,44 @@ class DetailsPageActivity : AppCompatActivity(),Serializable {
         val u: UserFireBase = gson.fromJson(json, UserFireBase::class.java)
 
 
+        for (i in 0..5) {
+            val imageref = Firebase.storage.reference.child("dorm/" + kot.adTitle + "/pic"+i)
 
-        //slideshow list and such
-        var imgs = listOf<Int>(R.mipmap.ic_placeh1,R.mipmap.ic_placeh2,R.mipmap.ic_placeh3)
+            imageref.downloadUrl.addOnSuccessListener { Uri ->
 
 
-        var slideshowAdapter = SlideshowAdapater(imgs,this)
-        pager.adapter = slideshowAdapter
+
+                    val imageView = ImageView(this)
+                    imageView.layoutParams = LinearLayout.LayoutParams(800, 600) // value is in pixels
+                    imageView.setImageResource(R.mipmap.ic_launcher)
+                    linearForImage.addView(imageView)
+                    val imageURL = Uri.toString()
+                    /*  Glide.with(itemView).load(imageURL).into(imagev)*/
+                    Picasso.get().load(imageURL).into(imageView);
+
+            }
+        }
+        var imgs2 = ArrayList<String>()
+       /* try {
+            for (i in 0..4) {
+                val imageref = Firebase.storage.reference.child("dorm/"+ kot.adTitle +"/pic" + i)
+                imageref.downloadUrl.addOnSuccessListener {Uri->
+                    val imageURL = Uri.toString()
+                    imgs2.add(imageURL)
+                    Log.d("download","download")
+
+                }
+
+            }
+        }catch (e: StorageException){
+            e.message
+                 Log.d("geen fotos meer","geeeeeeeeeeeeeeeeen")
+
+        }
+
+
+        Log.d("array",imgs2.toString())
+*/
 
 
 

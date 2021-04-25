@@ -59,8 +59,8 @@ class DormListAdapter() : ListAdapter<Dorm, DormListAdapter.DormViewHolder>(Dorm
 
 
 
-
             val imageref = Firebase.storage.reference.child("dorm/$adTitle/pic0")
+
             imageref.downloadUrl.addOnSuccessListener {Uri->
 
                 val imageURL = Uri.toString()
