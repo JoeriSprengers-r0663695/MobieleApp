@@ -19,10 +19,7 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.data.database.Application
-import com.example.mobieleapp.data.database.dorm.Dorm
-import com.example.mobieleapp.data.database.dorm.DormListAdapter
-import com.example.mobieleapp.data.database.dorm.DormViewModel
-import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
+import com.example.mobieleapp.data.database.dorm.*
 import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
@@ -121,7 +118,10 @@ class CameraActivity : AppCompatActivity() {
             startActivityForResult(intent, 1000)
         }
 
-
+        findViewById<Button>(R.id.btn_Logout).setOnClickListener {
+            val intent = Intent(this@CameraActivity, loginActivity::class.java)
+            startActivity(intent)
+        }
         findViewById<TextView>(R.id.txtvProfileName).text = "Username: " +user.username
         findViewById<TextView>(R.id.txtvProfileEmail).text = "Email: " +user.email
         findViewById<TextView>(R.id.txtvProfilePhone).text = "Phone: " + user.phoneNr
