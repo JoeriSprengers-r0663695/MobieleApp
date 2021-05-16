@@ -21,14 +21,18 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.data.database.Application
 import com.example.mobieleapp.data.database.dorm.*
 import com.example.mobieleapp.data.database.user.User
+import com.example.mobieleapp.data.database.user.UserFireBase
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
 import com.google.gson.Gson
+import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
 
 
@@ -48,12 +52,25 @@ class CameraActivity : AppCompatActivity() {
         setContentView(R.layout.activity_camera)
 
 
+
+
         val gson = Gson()
         val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(
             "user",
             "")
-        val user: User = gson.fromJson(json, User::class.java)
+        val user: UserFireBase = gson.fromJson(json, UserFireBase::class.java)
 
+
+        val imageref = Firebase.storage.reference.child("user/" + user.username + "/profile")
+
+        if(imageref != null){
+            imageref.downloadUrl.addOnSuccessListener {Uri->
+
+                val imageURL = Uri.toString()
+                /*  Glide.with(itemView).load(imageURL).into(imagev)*/
+                Picasso.get().load(imageURL).into(imagview);
+            }
+        }
 
         var database = FirebaseDatabase.getInstance().reference.child("Dorm")
 
@@ -117,6 +134,7 @@ class CameraActivity : AppCompatActivity() {
         btnCapture.setOnClickListener{
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE)
             startActivityForResult(intent, 1000)
+            finish()
         }
 
         findViewById<Button>(R.id.btn_Logout).setOnClickListener {
@@ -132,13 +150,13 @@ class CameraActivity : AppCompatActivity() {
             findViewById<TextView>(R.id.txtvMyDorms).visibility = View.GONE
         }
 
-        if(user.pic != null){
+        /*if(user.pic != null){
                 val bitmap = BitmapFactory.decodeByteArray(user.pic, 0, user.pic.size)
 
                 if(bitmap != null ){
                     imagview.setImageBitmap(bitmap);
                 }
-        }
+        }*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

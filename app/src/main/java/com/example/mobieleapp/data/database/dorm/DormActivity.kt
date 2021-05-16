@@ -12,6 +12,7 @@ import android.widget.ImageView
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.observe
+import androidx.preference.PreferenceManager
 import com.example.mobieleapp.R
 import com.example.mobieleapp.data.database.*
 import com.example.mobieleapp.data.database.user.RegisterActivity
@@ -55,7 +56,7 @@ class DormActivity : AppCompatActivity() {
 
 
         val gson = Gson()
-        val json: String? = androidx.preference.PreferenceManager.getDefaultSharedPreferences(
+        val json: String? = PreferenceManager.getDefaultSharedPreferences(
             applicationContext).getString("user", "")
         val u: User = gson.fromJson(json, User::class.java)
 
@@ -148,7 +149,7 @@ class DormActivity : AppCompatActivity() {
 
     private fun pickImagesIntent(usern: String,adTitle : String) {
         val intent = Intent(Intent.ACTION_PICK,
-            android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
         intent.type = "image/*"
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true)
         intent.action = Intent.ACTION_GET_CONTENT
