@@ -134,7 +134,6 @@ class CameraActivity : AppCompatActivity() {
         btnCapture.setOnClickListener{
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE)
             startActivityForResult(intent, 1000)
-            finish()
         }
 
         findViewById<Button>(R.id.btn_Logout).setOnClickListener {
@@ -149,14 +148,6 @@ class CameraActivity : AppCompatActivity() {
         if(user.role.equals("Renter")) {
             findViewById<TextView>(R.id.txtvMyDorms).visibility = View.GONE
         }
-
-        /*if(user.pic != null){
-                val bitmap = BitmapFactory.decodeByteArray(user.pic, 0, user.pic.size)
-
-                if(bitmap != null ){
-                    imagview.setImageBitmap(bitmap);
-                }
-        }*/
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -191,38 +182,8 @@ class CameraActivity : AppCompatActivity() {
 
             user.username?.let { databaseStorage.reference.child("user").child(it).child("profile").putBytes(image) }
 
-            //updatePic(image, user, userViewModel)
 
 
         }
-    }
-
-    private fun updatePic(pic: ByteArray, user: User, userViewModel: UserViewModel){
-
-        var updatedPic = User(user.idUser,
-            user.username,
-            user.password,
-            user.role,
-            user.email,
-            user.phoneNr,
-            pic)
-        Log.d("update User his Pic", updatedPic.toString())
-        userViewModel.updateUser(updatedPic)
-
-        val prefsEditor: SharedPreferences.Editor = android.preference.PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
-        prefsEditor.remove("user")
-        prefsEditor.commit()
-        val gson = Gson()
-        val json = gson.toJson(updatedPic)
-        prefsEditor.putString("user", json)
-        prefsEditor.commit()
-
-
-
-        val bitmap = updatedPic.pic?.let { BitmapFactory.decodeByteArray(it, 0, it.size) }
-        imagview.setImageBitmap(bitmap);
-
-
-
     }
 }
