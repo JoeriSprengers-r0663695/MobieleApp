@@ -19,12 +19,17 @@ import androidx.preference.PreferenceManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mobieleapp.data.database.Application
+import com.example.mobieleapp.data.database.dorm.Dorm
 import com.example.mobieleapp.data.database.dorm.DormListAdapter
 import com.example.mobieleapp.data.database.dorm.DormViewModel
 import com.example.mobieleapp.data.database.dorm.DormViewModelFactory
 import com.example.mobieleapp.data.database.user.User
 import com.example.mobieleapp.data.database.user.UserViewModel
 import com.example.mobieleapp.data.database.user.UserViewModelFactory
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.gson.Gson
 import java.io.ByteArrayOutputStream
 
@@ -51,13 +56,60 @@ class CameraActivity : AppCompatActivity() {
             "")
         val user: User = gson.fromJson(json, User::class.java)
 
-        val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewUserDorms)
-        val adapter = DormListAdapter()
 
-        recyclerView.adapter = adapter
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        var database = FirebaseDatabase.getInstance().reference.child("Dorm")
 
-        adapter.submitList(user.idUser?.let { dormViewModel.dormForUser(it) })
+        var getdata = object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                if (snapshot.exists()) {
+                    var dormlist: ArrayList<Dorm> = ArrayList()
+                    var dorm: Dorm
+                    val recyclerView = findViewById<RecyclerView>(R.id.recyclerviewUserDorms)
+                    val adapter = DormListAdapter()
+
+                    recyclerView.adapter = adapter
+                    recyclerView.layoutManager = LinearLayoutManager(this@CameraActivity)
+                    for (d in snapshot.children) run {
+                        Log.d("tag", d.toString())
+                        var d = d.value as HashMap<String, String>
+
+
+                        var adTitle: String? = d.get("adTitle")
+                        var streetName: String? = d.get("streetName")
+                        var housenr: Long? = d.get("housenr") as Long
+                        var city: String? = d.get("city")
+                        var postalcode: Long? = d.get("postalcode") as Long
+                        var rent: String = d.get("rent") as String
+                        var description: String? = d.get("description")
+                        var owner: String? = d.get("owner")
+
+                        dorm = adTitle?.let {
+                            Dorm(it,
+                                streetName,
+                                housenr,
+                                city,
+                                postalcode,
+                                rent,
+                                description,
+                                owner)
+                        }!!
+                        if (dorm.User.equals(user.username)) { dormlist.add(dorm!!) }
+
+                    }
+                    Log.d("see if he comes in this", "ben hier")
+
+
+                    adapter.submitList(dormlist)
+                }
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        }
+        database.addValueEventListener(getdata)
+
 
         imagview = findViewById(R.id.iv_camera)
         btnCapture= findViewById(R.id.btnCapture)
@@ -73,6 +125,7 @@ class CameraActivity : AppCompatActivity() {
         findViewById<TextView>(R.id.txtvProfileName).text = "Username: " +user.username
         findViewById<TextView>(R.id.txtvProfileEmail).text = "Email: " +user.email
         findViewById<TextView>(R.id.txtvProfilePhone).text = "Phone: " + user.phoneNr
+
 
         if(user.role.equals("Renter")) {
             findViewById<TextView>(R.id.txtvMyDorms).visibility = View.GONE
