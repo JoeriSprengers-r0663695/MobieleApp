@@ -27,6 +27,7 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
 import com.google.gson.Gson
 import java.io.ByteArrayOutputStream
 
@@ -167,7 +168,12 @@ class CameraActivity : AppCompatActivity() {
             bitmap.compress(Bitmap.CompressFormat.PNG, 90, stream)
             val image = stream.toByteArray()
 
-            updatePic(image, user, userViewModel)
+
+            var databaseStorage = FirebaseStorage.getInstance()
+
+            user.username?.let { databaseStorage.reference.child("user").child(it).child("profile").putBytes(image) }
+
+            //updatePic(image, user, userViewModel)
 
 
         }
