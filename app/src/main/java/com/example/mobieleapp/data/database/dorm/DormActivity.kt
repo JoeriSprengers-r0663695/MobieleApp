@@ -177,7 +177,7 @@ class DormActivity : AppCompatActivity() {
                         val image = stream.toByteArray()
 
                         databaseStorage.reference.child("dorm").child(huisnaam).child("pic$i").putBytes(image)
-
+                        Thread.sleep(3_000,)
                         //add image to list
                     }
 

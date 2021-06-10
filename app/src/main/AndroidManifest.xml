@@ -33,6 +33,7 @@
             android:label="@string/title_activity_update_dorm"
             android:theme="@style/Theme.MobieleApp.NoActionBar" />
         <activity
+            android:noHistory="true"
             android:name=".mapsActivity"
             android:label="@string/title_activity_maps"
             android:theme="@style/Theme.MobieleApp.NoActionBar" />
@@ -47,6 +48,7 @@
         <activity android:name=".loginActivity" />
         <activity android:name=".data.database.user.RegisterActivity" />
         <activity
+            android:noHistory="true"
             android:name=".CameraActivity"
             android:label="@string/title_activity_camera"
             android:theme="@style/Theme.MobieleApp.NoActionBar" />
