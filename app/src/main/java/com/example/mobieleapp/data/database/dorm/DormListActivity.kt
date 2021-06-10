@@ -94,8 +94,10 @@ class DormListActivity : AppCompatActivity() {
             Log.d("user", user.toString())
 
         if (user != null) {
+            //Log.d("user role", user.role.toString())
             if(user.role.toString() == "Renter") {
-                findViewById<Button>(R.id.addKotId).visibility = View.GONE
+                //findViewById<Button>(R.id.addKotId).visibility = View.GONE
+                setContentView(R.layout.fragment_home2)
             }
         }
 

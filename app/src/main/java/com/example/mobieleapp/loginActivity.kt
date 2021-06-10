@@ -24,7 +24,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 
 class loginActivity : AppCompatActivity() {
 
-   private val currentUser : User? = null
+    private val currentUser: User? = null
 
     private val userViewModel: UserViewModel by viewModels {
         UserViewModelFactory((application as Application).repositoryUser)
@@ -45,112 +45,91 @@ class loginActivity : AppCompatActivity() {
 
         loginButton.setOnClickListener {
 
-            if(emailEditText.isEmpty() && passwordEditText.isEmpty()){
+            if (emailEditText.isEmpty() && passwordEditText.isEmpty()) {
                 Toast.makeText(
                     applicationContext,
                     "Empty, fill something in",
                     Toast.LENGTH_LONG
                 ).show()
-            }else{
-
+            } else {
 
 
                 Log.d("data out textbox", emailEditText.toString())
                 var found = false
 
-                userViewModel.allUsers?.observe(this){ users -> for(i in users){
-                    var user:HashMap<String,String>
-                    var getdata = object : ValueEventListener {
-                        override fun onDataChange(snapshot: DataSnapshot) {
-                            val usernameEditText = findViewById<EditText>(R.id.email).text
-                            val passwordEditText = findViewById<EditText>(R.id.password).text
+                userViewModel.allUsers?.observe(this) { users ->
+                    for (i in users) {
+                        var user: HashMap<String, String>
+                        var getdata = object : ValueEventListener {
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                val usernameEditText = findViewById<EditText>(R.id.email).text
+                                val passwordEditText = findViewById<EditText>(R.id.password).text
 
-                            if (snapshot.exists()) {
-                                Log.d("data out textbox in cha", usernameEditText.toString())
+                                if (snapshot.exists()) {
+                                    Log.d("data out textbox in cha", usernameEditText.toString())
 
-                                for (i in snapshot.children) {
-                                    //Log.d("gevonden key+val",i.toString())
+                                    for (i in snapshot.children) {
+                                        //Log.d("gevonden key+val",i.toString())
 
-                                    user = i.value as HashMap<String, String>
-                                    Log.d("gevonden pass",user.get("password").toString())
-                                    Log.d("gevonden username",user.get("email").toString())
-                                    if(user.get("email").toString().equals(usernameEditText.toString()) && user.get("password").toString().equals(passwordEditText.toString())){
-                                        Log.d("------------------",user.get("password").toString())
-                                        found = true
-                                        Toast.makeText(
-                                            applicationContext,
-                                            "Welcome " + user.get("username"),
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                       var arr: String= ""
-                                        if(user.get("pic").toString() != ""){
-                                          arr = user.get("pic").toString()
+                                        user = i.value as HashMap<String, String>
+                                        Log.d("gevonden pass", user.get("password").toString())
+                                        Log.d("gevonden username", user.get("email").toString())
+                                        if (user.get("email").toString().equals(usernameEditText.toString()) && user.get("password").toString().equals(passwordEditText.toString())) {
+                                            Log.d("------------------",
+                                                user.get("password").toString())
+                                            found = true
+                                            Toast.makeText(
+                                                applicationContext,
+                                                "Welcome " + user.get("username"),
+                                                Toast.LENGTH_SHORT
+                                            ).show()
+                                            var arr: String = ""
+                                            if (user.get("pic").toString() != "") {
+                                                arr = user.get("pic").toString()
+                                            }
+                                            val user = UserFireBase(user.get("username").toString(),
+                                                user.get("password").toString(),
+                                                user.get("role").toString(),
+                                                user.get("email").toString(),
+                                                user.get("phoneNr").toString(),
+                                                null)
+
+                                            val intent = Intent(this@loginActivity,DormListActivity::class.java)
+
+                                            val prefsEditor: SharedPreferences.Editor =
+                                                PreferenceManager.getDefaultSharedPreferences(
+                                                    applicationContext).edit()
+                                            val gson = Gson()
+                                            val json = gson.toJson(user)
+                                            prefsEditor.putString("user", json)
+
+                                            prefsEditor.commit()
+                                            finish()
+                                            Log.d("2de stuck", "zit aan tweede intent")
+                                            startActivity(intent)
+                                            break
+
                                         }
-                                        val user = UserFireBase(user.get("username").toString(),user.get("password").toString(),user.get("role").toString(),user.get("email").toString(),user.get("phoneNr").toString(),null)
 
-                                       Log.d("checkuseroutDb",user.pic.toString())
-                                        val intent = Intent(this@loginActivity, DormListActivity::class.java)
-
-                                        val prefsEditor: SharedPreferences.Editor = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
-                                        val gson = Gson()
-                                        val json = gson.toJson(user)
-                                        prefsEditor.putString("user", json)
-
-                                        prefsEditor.commit()
-                                        finish()
-                                        startActivity(intent)
-                                        break
 
                                     }
-
-
                                 }
                             }
-                        }
 
 
-                        override fun onCancelled(error: DatabaseError) {
-                            TODO("Not yet implemented")
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
+
                         }
+                        database.addValueEventListener(getdata)
 
                     }
 
 
 
-
-
-                   val value = database.addValueEventListener(getdata)
-                    Log.d("valueofListener", value.toString())
-                        if (i.email.toString().equals(emailEditText.toString())&& i.password.toString().equals(passwordEditText.toString())){
-                            found = true
-                            Toast.makeText(
-                                applicationContext,
-                                "Welcome " + i.username,
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                            val intent = Intent(this, DormListActivity::class.java)
-
-                            val prefsEditor: SharedPreferences.Editor = PreferenceManager.getDefaultSharedPreferences(applicationContext).edit()
-                            val gson = Gson()
-                            val json = gson.toJson(i)
-                            prefsEditor.putString("user", json)
-
-                            prefsEditor.commit()
-                            finish()
-                            startActivity(intent)
-                            break
-                        }
                 }
-                    if(!found) {
-                        Toast.makeText(
-                            applicationContext,
-                            R.string.invalid_username,
-                            Toast.LENGTH_SHORT
 
-                        ).show()
-                    }
-                }
             }
         }
 
