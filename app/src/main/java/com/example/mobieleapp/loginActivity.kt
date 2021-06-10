@@ -40,12 +40,12 @@ class loginActivity : AppCompatActivity() {
         var database = FirebaseDatabase.getInstance().reference.child("User")
 
         val loginButton = findViewById<Button>(R.id.btn_Login)
-        val usernameEditText = findViewById<EditText>(R.id.username2).text
-        val passwordEditText = findViewById<EditText>(R.id.password2).text
+        val emailEditText = findViewById<EditText>(R.id.email).text
+        val passwordEditText = findViewById<EditText>(R.id.password).text
 
         loginButton.setOnClickListener {
 
-            if(usernameEditText.isEmpty() && passwordEditText.isEmpty()){
+            if(emailEditText.isEmpty() && passwordEditText.isEmpty()){
                 Toast.makeText(
                     applicationContext,
                     "Empty, fill something in",
@@ -55,15 +55,15 @@ class loginActivity : AppCompatActivity() {
 
 
 
-                Log.d("data out textbox", usernameEditText.toString())
+                Log.d("data out textbox", emailEditText.toString())
                 var found = false
 
                 userViewModel.allUsers?.observe(this){ users -> for(i in users){
                     var user:HashMap<String,String>
                     var getdata = object : ValueEventListener {
                         override fun onDataChange(snapshot: DataSnapshot) {
-                            val usernameEditText = findViewById<EditText>(R.id.username2).text
-                            val passwordEditText = findViewById<EditText>(R.id.password2).text
+                            val usernameEditText = findViewById<EditText>(R.id.email).text
+                            val passwordEditText = findViewById<EditText>(R.id.password).text
 
                             if (snapshot.exists()) {
                                 Log.d("data out textbox in cha", usernameEditText.toString())
@@ -73,14 +73,14 @@ class loginActivity : AppCompatActivity() {
 
                                     user = i.value as HashMap<String, String>
                                     Log.d("gevonden pass",user.get("password").toString())
-                                    Log.d("gevonden username",user.get("username").toString())
-                                    if(user.get("username").toString().equals(usernameEditText.toString()) && user.get("password").toString().equals(passwordEditText.toString())){
+                                    Log.d("gevonden username",user.get("email").toString())
+                                    if(user.get("email").toString().equals(usernameEditText.toString()) && user.get("password").toString().equals(passwordEditText.toString())){
                                         Log.d("------------------",user.get("password").toString())
                                         found = true
                                         Toast.makeText(
                                             applicationContext,
                                             "Welcome " + user.get("username"),
-                                            Toast.LENGTH_LONG
+                                            Toast.LENGTH_SHORT
                                         ).show()
                                        var arr: String= ""
                                         if(user.get("pic").toString() != ""){
@@ -121,12 +121,12 @@ class loginActivity : AppCompatActivity() {
 
                    val value = database.addValueEventListener(getdata)
                     Log.d("valueofListener", value.toString())
-                        if (i.username.toString().equals(usernameEditText.toString())&& i.password.toString().equals(passwordEditText.toString())){
+                        if (i.email.toString().equals(emailEditText.toString())&& i.password.toString().equals(passwordEditText.toString())){
                             found = true
                             Toast.makeText(
                                 applicationContext,
                                 "Welcome " + i.username,
-                                Toast.LENGTH_LONG
+                                Toast.LENGTH_SHORT
                             ).show()
 
                             val intent = Intent(this, DormListActivity::class.java)
