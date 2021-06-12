@@ -132,6 +132,7 @@ class CameraActivity : AppCompatActivity() {
 
 
         btnCapture.setOnClickListener{
+            Log.d("cam", "clikc")
             val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE_SECURE)
             startActivityForResult(intent, 1000)
         }
@@ -152,7 +153,6 @@ class CameraActivity : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-
         val gson = Gson()
         val json: String? = PreferenceManager.getDefaultSharedPreferences(applicationContext).getString(
             "user",
@@ -165,7 +165,6 @@ class CameraActivity : AppCompatActivity() {
 
 
         var bitmap: Bitmap
-
         if(requestCode == 1000 && resultCode == RESULT_OK){
             bitmap = data?.extras?.get("data") as Bitmap
             imagview.setImageBitmap(bitmap)
@@ -181,9 +180,6 @@ class CameraActivity : AppCompatActivity() {
             var databaseStorage = FirebaseStorage.getInstance()
 
             user.username?.let { databaseStorage.reference.child("user").child(it).child("profile").putBytes(image) }
-
-
-
         }
     }
 }
